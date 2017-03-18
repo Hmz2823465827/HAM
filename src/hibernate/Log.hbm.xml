@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-18 21:28:05 by Hibernate Tools 5.2.1.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Log" table="log" catalog="houseagencymanagement" optimistic-lock="version">
+        <id name="logId" type="int">
+            <column name="logID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="employee" class="hibernate.Employee" fetch="select">
+            <column name="employeeID" />
+        </many-to-one>
+        <property name="logDate" type="date">
+            <column name="logDate" length="10" not-null="true" />
+        </property>
+        <property name="quitDate" type="date">
+            <column name="quitDate" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>
