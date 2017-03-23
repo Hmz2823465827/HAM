@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-18 21:28:05 by Hibernate Tools 5.2.1.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Depart" table="depart" catalog="houseagencymanagement" optimistic-lock="version">
+        <id name="departId" type="int">
+            <column name="departID" />
+            <generator class="assigned" />
+        </id>
+        <property name="departName" type="string">
+            <column name="departName" length="12" not-null="true" />
+        </property>
+        <property name="departInfo" type="string">
+            <column name="departInfo" length="225" />
+        </property>
+        <property name="departRank" type="java.lang.Integer">
+            <column name="departRank" />
+        </property>
+        <set name="employeesForDepartId" table="employee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="departID" />
+            </key>
+            <one-to-many class="hibernate.Employee" />
+        </set>
+        <set name="employeesForDepDepartId" table="employee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dep_departID" />
+            </key>
+            <one-to-many class="hibernate.Employee" />
+        </set>
+    </class>
+</hibernate-mapping>
