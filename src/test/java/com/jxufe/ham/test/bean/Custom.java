@@ -1,9 +1,9 @@
-package com.jxufe.ham.test.bean;
+﻿package com.jxufe.ham.test.bean;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.test.bean.abstractBean.SerializeToJsonBean;
 
 /**
  * 

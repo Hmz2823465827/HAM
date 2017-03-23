@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
-import com.jxufe.ham.test.bean.House;
-import com.jxufe.ham.test.bean.Performance;
+import com.jxufe.ham.bean.House;
+import com.jxufe.ham.bean.Performance;
 
 /**
  * @Description: 合同实体类

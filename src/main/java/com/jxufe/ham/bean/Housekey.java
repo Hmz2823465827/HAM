@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
-import com.jxufe.ham.test.bean.House;
-import com.jxufe.ham.test.bean.Keycontroll;
+import com.jxufe.ham.bean.House;
+import com.jxufe.ham.bean.Keycontroll;
 
 /**
  * @Description: 房屋钥匙

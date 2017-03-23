@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.jxufe.ham.bean.Employee;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.test.bean.Employee;
+import com.jxufe.ham.test.bean.abstractBean.SerializeToJsonBean;
 
 /**
  * @Description: 留言实体类

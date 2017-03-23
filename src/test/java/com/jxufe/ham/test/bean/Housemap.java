@@ -2,8 +2,8 @@ package com.jxufe.ham.test.bean;
 
 import java.util.Date;
 
-import com.jxufe.ham.bean.House;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.test.bean.House;
+import com.jxufe.ham.test.bean.abstractBean.SerializeToJsonBean;
 
 /**
  * @Description:房屋地图实体类 

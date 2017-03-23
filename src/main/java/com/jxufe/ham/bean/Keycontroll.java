@@ -3,8 +3,8 @@ package com.jxufe.ham.bean;
 import java.util.Date;
 
 import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
-import com.jxufe.ham.test.bean.Employee;
-import com.jxufe.ham.test.bean.Housekey;
+import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.Housekey;
 
 /**
  * @Description: 钥匙接管记录实体类

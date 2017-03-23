@@ -1,8 +1,8 @@
 package com.jxufe.ham.test.bean;
 
-import com.jxufe.ham.bean.Employee;
-import com.jxufe.ham.bean.Task;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.test.bean.Employee;
+import com.jxufe.ham.test.bean.Task;
+import com.jxufe.ham.test.bean.abstractBean.SerializeToJsonBean;
 
 /**
  * @Description: 任务分配实体类

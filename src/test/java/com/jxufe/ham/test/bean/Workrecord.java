@@ -2,8 +2,8 @@ package com.jxufe.ham.test.bean;
 
 import java.util.Date;
 
-import com.jxufe.ham.bean.Employee;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.test.bean.Employee;
+import com.jxufe.ham.test.bean.abstractBean.SerializeToJsonBean;
 
 /**
  * @Description: 考勤实体类

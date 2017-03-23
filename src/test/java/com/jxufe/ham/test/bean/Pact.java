@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.jxufe.ham.bean.House;
-import com.jxufe.ham.bean.Performance;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.test.bean.House;
+import com.jxufe.ham.test.bean.Performance;
+import com.jxufe.ham.test.bean.abstractBean.SerializeToJsonBean;
 
 /**
  * @Description: 合同实体类

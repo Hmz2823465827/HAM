@@ -5,9 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
-import com.jxufe.ham.test.bean.Custom;
-import com.jxufe.ham.test.bean.Employee;
-import com.jxufe.ham.test.bean.Pact;
+import com.jxufe.ham.bean.Custom;
+import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.Pact;
 
 /**
  * @Description: 绩效记录实体类

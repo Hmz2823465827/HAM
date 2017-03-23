@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
-import com.jxufe.ham.test.bean.Employee;
-import com.jxufe.ham.test.bean.Followup;
-import com.jxufe.ham.test.bean.Housekey;
-import com.jxufe.ham.test.bean.Housemap;
-import com.jxufe.ham.test.bean.Pact;
+import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.Followup;
+import com.jxufe.ham.bean.Housekey;
+import com.jxufe.ham.bean.Housemap;
+import com.jxufe.ham.bean.Pact;
 
 /**
  * @Description: 房屋实体类

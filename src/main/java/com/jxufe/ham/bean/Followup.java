@@ -2,9 +2,9 @@ package com.jxufe.ham.bean;
 
 import java.util.Date;
 
-import com.jxufe.ham.test.bean.Custom;
-import com.jxufe.ham.test.bean.Employee;
-import com.jxufe.ham.test.bean.House;
+import com.jxufe.ham.bean.Custom;
+import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.House;
 
 /**
  * @Description:跟进记录实体类 
