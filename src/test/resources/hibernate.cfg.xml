@@ -2,16 +2,15 @@
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-
 <hibernate-configuration>
 
     <session-factory>
 
         <!-- Database connection settings -->
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://10.16.26.152:3306/houseagencymanagement</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">971021</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://10.16.26.152:3306/houseagencymanagement</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">971020</property>
 
         <!-- JDBC connection pool (use the built-in) -->
         <property name="hibernate.connection.pool_size">1</property>
@@ -20,19 +19,34 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
         <!-- Enable Hibernate's automatic session context management -->
-        <!-- <property name="current_session_context_class">thread</property> -->
+        <property name="current_session_context_class">thread</property>
 
         <!-- Disable the second-level cache  -->
-        <!-- <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property> -->
+        <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
 
         <!-- Echo all executed SQL to stdout -->
-        <!-- <property name="show_sql">true</property> -->
+        <property name="show_sql">true</property> 
 
         <!-- Drop and re-create the database schema on startup -->
-        <!-- <property name="hbm2ddl.auto">update</property> -->
+        <property name="hbm2ddl.auto">update</property>
 
-        <mapping resource="com/jxufe/ham/test/bean/Log.hbm.xml"/>
-
+        <!-- <mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/Log.hbm.xml"/>-->
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/Employee.hbm.xml"/>		
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/Log.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/Leaveword.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/Custom.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/Depart.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/House.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/HouseKey.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/HouseMap.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/Pact.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/Task.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/TaskAllot.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/Workrecord.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/Performance.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/Followup.hbm.xml"/>
+		<mapping resource="com/jxufe/ham/test/bean/hibernatePersistentINF/Keycontroll.hbm.xml"/>
+		
     </session-factory>
 
 </hibernate-configuration>

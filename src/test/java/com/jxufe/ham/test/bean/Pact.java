@@ -43,7 +43,7 @@ public class Pact extends SerializeToJsonBean{
 		this.pactDate = pactDate;
 	}
 
-	public Pact(int pactId, House house, Performance performance, int pactStatue, Date pactDate, String pactInfo,
+	public Pact(int pactId, House house, int pactStatue, Date pactDate, String pactInfo,
 			Set<Performance> performances) {
 		super();
 		this.pactId = pactId;
@@ -102,4 +102,5 @@ public class Pact extends SerializeToJsonBean{
 		this.performances = performances;
 	}
 
+	
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.jxufe.ham.test.bean.Log" table="log" catalog="houseagencymanagement" optimistic-lock="version">
         <id name="logId" type="int">
             <column name="logID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="employee" class="hibernate.Employee" fetch="select">
+        <many-to-one name="employee" class="com.jxufe.ham.test.bean.Employee" fetch="select">
             <column name="employeeID" />
         </many-to-one>
         <property name="logDate" type="date">

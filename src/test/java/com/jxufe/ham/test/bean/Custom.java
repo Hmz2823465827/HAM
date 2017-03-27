@@ -14,6 +14,9 @@ import com.jxufe.ham.test.bean.abstractBean.SerializeToJsonBean;
  */
 public class Custom extends SerializeToJsonBean {
 
+	//序列ID
+	private static final long serialVersionUID = 5349459242972743720L;
+
 	private int customId;//客户ID
 	
 	private String customName;//客户名称
@@ -30,9 +33,9 @@ public class Custom extends SerializeToJsonBean {
 	
 	private String purposePosition;//意向位置
 	
-	private Set performances = new HashSet(0);//绩效
+	private Set<Performance> performances = new HashSet<Performance>(0);//绩效
 	
-	private Set followups = new HashSet(0);//跟进
+	private Set<Followup> followups = new HashSet<Followup>(0);//跟进
 
 	public Custom() {
 		super();
@@ -47,7 +50,7 @@ public class Custom extends SerializeToJsonBean {
 	}
 
 	public Custom(int customId, String customName, boolean customSex, String customInfo, int customRank,
-			Float purposePrice, Float purposeArea, String purposePosition, Set performances, Set followups) {
+			Float purposePrice, Float purposeArea, String purposePosition, Set<Performance> performances, Set<Followup> followups) {
 		super();
 		this.customId = customId;
 		this.customName = customName;
@@ -125,19 +128,19 @@ public class Custom extends SerializeToJsonBean {
 		this.purposePosition = purposePosition;
 	}
 
-	public Set getPerformances() {
+	public Set<Performance> getPerformances() {
 		return this.performances;
 	}
 
-	public void setPerformances(Set performances) {
+	public void setPerformances(Set<Performance> performances) {
 		this.performances = performances;
 	}
 
-	public Set getFollowups() {
+	public Set<Followup> getFollowups() {
 		return this.followups;
 	}
 
-	public void setFollowups(Set followups) {
+	public void setFollowups(Set<Followup> followups) {
 		this.followups = followups;
 	}
 

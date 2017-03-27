@@ -38,7 +38,7 @@ public class Performance extends SerializeToJsonBean{
 	
 	private String performanceInfo;//绩效时间
 	
-	private Set<Pact> pacts = new HashSet<Pact>(0);
+	private Set<Pact> pacts = new HashSet<Pact>(0);//绩效相关合同
 
 	public Performance() {
 		super();

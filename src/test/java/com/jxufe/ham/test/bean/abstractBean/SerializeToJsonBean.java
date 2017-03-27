@@ -2,7 +2,6 @@ package com.jxufe.ham.test.bean.abstractBean;
 
 import java.io.Serializable;
 
-import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -15,6 +14,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class SerializeToJsonBean implements Serializable{
 	
+	//序列ID
+	private static final long serialVersionUID = 9187569369641399689L;
+
 	public SerializeToJsonBean() {
 	}
 	
