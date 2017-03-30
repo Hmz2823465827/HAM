@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jxufe.ham.test.bean.Task" table="task" catalog="houseagencymanagement" optimistic-lock="version">
+        <id name="taskId" type="int">
+            <column name="taskID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="employee" class="com.jxufe.ham.test.bean.Employee" fetch="select">
+            <column name="employeeID" not-null="true" />
+        </many-to-one>
+        <property name="planDo" type="date">
+            <column name="planDo" length="10" not-null="true" />
+        </property>
+        <property name="publishDate" type="date">
+            <column name="publishDate" length="10" not-null="true" />
+        </property>
+        <property name="taskStatue" type="boolean">
+            <column name="taskStatue" not-null="true" />
+        </property>
+        <property name="taskLevel" type="java.lang.Integer">
+            <column name="taskLevel" />
+        </property>
+        <property name="taskInfo" type="string">
+            <column name="taskInfo" length="250" />
+        </property>
+        <set name="employees" table="employee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="taskID" />
+            </key>
+            <one-to-many class="com.jxufe.ham.test.bean.Employee" />
+        </set>
+    </class>
+</hibernate-mapping>
