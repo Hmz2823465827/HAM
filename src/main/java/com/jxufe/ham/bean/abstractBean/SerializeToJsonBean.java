@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SerializeToJsonBean implements Serializable{
 	
 	//序列ID
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 9187569369641399689L;
 
 	public SerializeToJsonBean() {
 	}

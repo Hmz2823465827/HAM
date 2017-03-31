@@ -3,9 +3,9 @@ package com.jxufe.ham.bean;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
 import com.jxufe.ham.bean.House;
 import com.jxufe.ham.bean.Keycontroll;
+import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
 
 /**
  * @Description: 房屋钥匙

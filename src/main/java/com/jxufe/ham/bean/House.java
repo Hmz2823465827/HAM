@@ -3,12 +3,12 @@ package com.jxufe.ham.bean;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.Followup;
 import com.jxufe.ham.bean.Housekey;
 import com.jxufe.ham.bean.Housemap;
 import com.jxufe.ham.bean.Pact;
+import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
 
 /**
  * @Description: 房屋实体类

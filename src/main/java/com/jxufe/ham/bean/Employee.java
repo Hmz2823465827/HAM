@@ -4,17 +4,17 @@ package com.jxufe.ham.bean;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
-import com.jxufe.ham.bean.Depart;
-import com.jxufe.ham.bean.Followup;
-import com.jxufe.ham.bean.House;
-import com.jxufe.ham.bean.Keycontroll;
-import com.jxufe.ham.bean.Leaveword;
-import com.jxufe.ham.bean.Log;
-import com.jxufe.ham.bean.Performance;
-import com.jxufe.ham.bean.Task;
-import com.jxufe.ham.bean.TaskAllot;
-import com.jxufe.ham.bean.Workrecord;
+import com.jxufe.ham.test.bean.Depart;
+import com.jxufe.ham.test.bean.Followup;
+import com.jxufe.ham.test.bean.House;
+import com.jxufe.ham.test.bean.Keycontroll;
+import com.jxufe.ham.test.bean.Leaveword;
+import com.jxufe.ham.test.bean.Log;
+import com.jxufe.ham.test.bean.Performance;
+import com.jxufe.ham.test.bean.Task;
+import com.jxufe.ham.test.bean.TaskAllot;
+import com.jxufe.ham.test.bean.Workrecord;
+import com.jxufe.ham.test.bean.abstractBean.SerializeToJsonBean;
 
 /**
  * @Description: 员工实体类

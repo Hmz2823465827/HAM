@@ -2,8 +2,8 @@ package com.jxufe.ham.bean;
 
 import java.util.Date;
 
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
 import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
 
 /**
  * @Description: 系统日志实体类
@@ -34,6 +34,7 @@ public class Log extends SerializeToJsonBean {
 		this.logDate = logDate;
 	}
 
+	
 	public Log(int logId, Employee employee, Date logDate, Date quitDate) {
 		super();
 		this.logId = logId;

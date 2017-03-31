@@ -14,7 +14,7 @@ import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
 public class Depart extends SerializeToJsonBean{
 
 	//序列ID
-	private static final long serialVersionUID = 5343033635585086920L;
+	private static final long serialVersionUID = 6033286629137050077L;
 
 	private int departId;//部门编号
 	
@@ -38,8 +38,8 @@ public class Depart extends SerializeToJsonBean{
 		this.departName = departName;
 	}
 
-	public Depart(int departId, String departName, String departInfo, Integer departRank, Set<Employee> employeesForDepartId
-			) {
+	public Depart(int departId, String departName, String departInfo, Integer departRank, 
+			Set<Employee> employeesForDepartId) {
 		super();
 		this.departId = departId;
 		this.departName = departName;
@@ -75,16 +75,6 @@ public class Depart extends SerializeToJsonBean{
 	public Integer getDepartRank() {
 		return this.departRank;
 	}
-	
-	
-
-	public int getEmployeeId() {
-		return employeeId;
-	}
-
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
 
 	public void setDepartRank(Integer departRank) {
 		this.departRank = departRank;
@@ -96,6 +86,14 @@ public class Depart extends SerializeToJsonBean{
 
 	public void setEmployeesForDepartId(Set<Employee> employeesForDepartId) {
 		this.employeesForDepartId = employeesForDepartId;
+	}
+
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
 
 }
