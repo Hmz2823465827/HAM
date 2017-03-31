@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
 import com.jxufe.ham.bean.House;
 import com.jxufe.ham.bean.Performance;
+import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
 
 /**
  * @Description: 合同实体类
@@ -43,7 +43,7 @@ public class Pact extends SerializeToJsonBean{
 		this.pactDate = pactDate;
 	}
 
-	public Pact(int pactId, House house, Performance performance, int pactStatue, Date pactDate, String pactInfo,
+	public Pact(int pactId, House house, int pactStatue, Date pactDate, String pactInfo,
 			Set<Performance> performances) {
 		super();
 		this.pactId = pactId;
@@ -102,4 +102,5 @@ public class Pact extends SerializeToJsonBean{
 		this.performances = performances;
 	}
 
+	
 }

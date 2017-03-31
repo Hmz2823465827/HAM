@@ -1,4 +1,4 @@
-package com.jxufe.ham.bean;
+﻿package com.jxufe.ham.bean;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +15,7 @@ import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
 public class Custom extends SerializeToJsonBean {
 
 	//序列ID
-	private static final long serialVersionUID = -6344870726053183006L;
+	private static final long serialVersionUID = 5349459242972743720L;
 
 	private int customId;//客户ID
 	
