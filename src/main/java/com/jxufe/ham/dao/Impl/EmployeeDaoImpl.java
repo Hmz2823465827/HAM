@@ -1,32 +1,39 @@
-package com.jxufe.ham.test.dao;
+package com.jxufe.ham.dao.Impl;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.Log;
+import com.jxufe.ham.dao.BaseDao;
+import com.jxufe.ham.dao.EmployeeDao;
 
-public class EmployeeDaoImpl extends BaseDao<Employee> implements EmployeeDao<Employee> {
+@Repository
+public class EmployeeDaoImpl extends  EmployeeDao<Employee> {
 	
-	private final String SELECT =  "from employee where "
+	private final String SELECT =  "SELECT * from employee where "
 			+ "employeeID = ?";//查询sql语句
 	
+	@Autowired
 	private SessionFactory sessionFactory;
 	
+     
+/*    public void setSessionFactory(SessionFactory sessionFactory)  
+    {  
+        this.sessionFactory = sessionFactory;  
+    }  */
+    
     public Session getSession()  
     {  
         return sessionFactory.getCurrentSession();  
-    }  
-  
-    @Resource  
-    public void setSessionFactory(SessionFactory sessionFactory)  
-    {  
-        this.sessionFactory = sessionFactory;  
-    }  
-	
+    } 
 	/*
 	 * 
 	* Title: insert
@@ -47,12 +54,14 @@ public class EmployeeDaoImpl extends BaseDao<Employee> implements EmployeeDao<Em
 //		return null;
 	}
 
+
 	@Override
 	public Employee select(int id) {
-		List<Employee> list = getSession().createQuery(SELECT).list();
-		if(list.isEmpty())
-			return null;
-		return list.get(1);
+//		List<Employee> list = getSession().createQuery(SELECT).
+//				setInteger(1, id).list();
+		Session session = getSession();
+		Employee list = (Employee) session.get(Employee.class, new Integer(id));		
+		return list;
 	}
 
 	@Override

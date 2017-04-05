@@ -12,6 +12,10 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.Log;
+import com.jxufe.ham.dao.BaseDao;
+import com.jxufe.ham.dao.EmployeeDao;
+import com.jxufe.ham.dao.Impl.EmployeeDaoImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring.xml",
@@ -20,12 +24,15 @@ import com.jxufe.ham.bean.Employee;
 @Transactional
 public class EmployeeDaoTest {
 
-	private EmployeeDao eDao;
+	
+	
+	private BaseDao<Employee> eDao;
+	
 	
 	private Employee employee;
-	
+
 	@Autowired
-	public void setEmployeeDao(EmployeeDao eDao) {
+	public void setEmployeeDao(EmployeeDaoImpl eDao) {
 		this.eDao = eDao;
 	}
 
@@ -33,13 +40,40 @@ public class EmployeeDaoTest {
 	public void init() {
 	}
 
-	@Test
-	public void getList() {
+//	@Test
+	public void select() {
 		try {
-			this.employee = eDao.select(1);
-			assertNotNull(employee.getEmployeeId());
+			Employee log= eDao.select(1);
+			System.out.println(log.getEmployeeName());
+//			assertNotNull(employee.getEmployeeId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/*
+	 * 插入方法junit测试
+	 */
+//	@Test
+	public void insertTest(){
+		Employee e = new Employee(new Integer(8), "test", 1);
+		assertNotNull(eDao.insert(e));
+	}
+	
+	/*
+	 * 删除方法junit测试
+	 */
+//	@Test
+	public void deleteTest(){
+		eDao.delete(new Employee(8,"test",1));
+		assert(eDao.select(8)==null);
+	}
+	
+	@Test
+	public void updateTest(){
+		eDao.update(new Employee(2,"tese2",2));
+		Employee e = eDao.select(2);
+//		assertNotNull(e);
+		assert(e.getEmployeeName().equals("test2")==true);
 	}
 }
