@@ -1,4 +1,4 @@
-package com.jxufe.ham.bean;
+package com.jxufe.ham.test.bean;
 
 
 import java.util.HashSet;

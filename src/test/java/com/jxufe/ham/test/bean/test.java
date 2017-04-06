@@ -18,16 +18,14 @@ import org.hibernate.metamodel.MetadataSources;
 import org.hibernate.service.ServiceRegistry;
 import org.junit.Test;
 
-import com.jxufe.ham.bean.Employee;
-import com.jxufe.ham.bean.House;
-import com.jxufe.ham.bean.Log;
+import com.jxufe.ham.test.bean.Log;
 
 
 public class test {
 	
 	@Test
 	public  void testBean() {
-//		File fileConfig = new File("src/main/resources/config.properties") ;
+//		File fileConfig = new File("src/test/resources/config.properties") ;
 		Configuration configuration = new Configuration().configure();
 //		configuration.setProperty("jdbc.driver", "com.mysql.jdbc.Driver");
 //		configuration.setProperty("jdbc.url", "jdbc:mysql://10.16.26.152:3306/houseagencymanagement");
@@ -50,14 +48,13 @@ public class test {
         Transaction transaction;
         transaction = session.beginTransaction();
 //        transaction = session.beginTransaction();
-		House log = new House();
+		Log log = new Log();
 //		log.setSid(1);
 //		log.setNumber("qwe");
 //		log.setName("bullshit");
-		log.setHouseId(1);
-		log.setClientPhone("test");
-		Employee employee = (Employee)session.get(Employee.class, 1);
-		System.out.println(employee.getEmployeeName());
+		log.setLogId(1);
+		log.setLogDate(new Date());
+		session.save(log);
 		transaction.commit();
 //        // 关闭会话
 //        session.close();
@@ -73,7 +70,7 @@ public class test {
 //	@Test
 	public void testSaxRead() throws DocumentException {
 		SAXReader saxReader = new SAXReader();
-		Document document = saxReader.read(new File("src/main/java/com/jxufe/ham/test/bean/hibernatePersistentINF/Depart.hbm.xml"));
+		Document document = saxReader.read(new File("src/test/java/com/jxufe/ham/test/bean/hibernatePersistentINF/Depart.hbm.xml"));
 //		DocumentHelper.parseText(text);
 		System.out.println(document.toString());
 	}

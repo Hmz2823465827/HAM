@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-18 21:28:05 by Hibernate Tools 5.2.1.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Employee" table="employee" catalog="houseagencymanagement" optimistic-lock="version">
+        <id name="employeeId" type="int">
+            <column name="employeeID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="departByDepartId" class="hibernate.Depart" fetch="select">
+            <column name="departID" />
+        </many-to-one>
+        <many-to-one name="task" class="hibernate.Task" fetch="select">
+            <column name="taskID" />
+        </many-to-one>
+        <property name="employeeName" type="string">
+            <column name="employeeName" length="10" not-null="true" />
+        </property>
+        <property name="employeeSex" type="java.lang.Boolean">
+            <column name="employeeSex" />
+        </property>
+        <property name="employeePhone" type="string">
+            <column name="employeePhone" length="15" />
+        </property>
+        <property name="employeePosition" type="int">
+            <column name="employeePosition" not-null="true" />
+        </property>
+        <set name="leavewords" table="leaveword" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employeeID" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Leaveword" />
+        </set>
+        <set name="performances" table="performance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employeeID" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Performance" />
+        </set>
+        <set name="houses" table="house" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employeeID" />
+            </key>
+            <one-to-many class="hibernate.House" />
+        </set>
+        <set name="followups" table="followup" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employeeID" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Followup" />
+        </set>
+        <set name="workrecords" table="workrecord" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employeeID" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Workrecord" />
+        </set>
+        <set name="logs" table="log" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employeeID" />
+            </key>
+            <one-to-many class="hibernate.Log" />
+        </set>
+        <set name="keycontrolls" table="keycontroll" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employeeID" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Keycontroll" />
+        </set>
+        <set name="tasks" table="task" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employeeID" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Task" />
+        </set>
+    </class>
+</hibernate-mapping>
