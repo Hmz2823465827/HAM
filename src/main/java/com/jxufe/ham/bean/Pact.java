@@ -101,6 +101,14 @@ public class Pact extends SerializeToJsonBean{
 	public void setPerformances(Set<Performance> performances) {
 		this.performances = performances;
 	}
+	
+	@Override
+	public String toString() {
+		return "Pact [pactId=" + pactId + ", house=" + house.getHouseId() +
+				",pactStatue=" + pactStatue + ", pactDate=" + pactDate +
+				", pactInfo=" + pactInfo + 
+				",performances="+ performances.toString() +"]";
+	}
 
 	
 }

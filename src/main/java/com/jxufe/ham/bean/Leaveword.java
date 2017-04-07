@@ -111,5 +111,13 @@ public class Leaveword extends SerializeToJsonBean{
 	public void setLeavewords(Set<Leaveword> leavewords) {
 		this.leavewords = leavewords;
 	}
+	
+	@Override
+	public String toString() {
+		return "Leaveword [leaveWordId=" + leaveWordId + ", employee=" + employee.getEmployeeName() +
+				",leaveword=" + leaveword.leaveWordId + ",leaveWordContent=" + leaveWordContent +
+				", anonymousStatue=" + anonymousStatue + 
+				",leavewords="+ leavewords.toString() +"]";
+	}
 
 }

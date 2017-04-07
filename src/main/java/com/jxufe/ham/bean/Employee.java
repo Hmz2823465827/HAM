@@ -230,6 +230,21 @@ public class Employee extends SerializeToJsonBean {
 	public void setTaskAllots(Set<TaskAllot> taskAllots) {
 		this.taskAllots = taskAllots;
 	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Employee [employeeId=" + employeeId + ", departByDepartId=" + departByDepartId.getDepartId() +
+				",task=" + task.getTaskId() + ", employeeName=" + employeeName + ", employeeSex=" + employeeSex + 
+				",employeePhone="+ employeePhone + ",employeePosition="+employeePosition+
+				",leavewords="+ leavewords.toString() + ",performances="+performances.toString()+
+				",houses="+ houses.toString() + ",followups="+followups.toString()+
+				",workrecords="+ workrecords.toString() + ",logs="+logs.toString()+
+				",keycontrolls="+ keycontrolls.toString() + ",tasks="+tasks.toString()+
+				",departs="+ departs.toString() + ",taskAllots="+taskAllots.toString()+
+				"]";
+	}
 
 	
 }

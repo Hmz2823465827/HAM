@@ -184,5 +184,13 @@ public class House extends SerializeToJsonBean {
 	public void setHousemaps(Set<Housemap> housemaps) {
 		this.housemaps = housemaps;
 	}
+	
+	@Override
+	public String toString() {
+		return "House [houseId=" + houseId + ", housekey=" + housekey.getHouseKey() +
+				",rentStatue=" + rentStatue + ", saleStatue=" + saleStatue + ", houseArea=" + houseArea + 
+				",unitRentPrice="+ unitRentPrice + ",unitSalePrice="+unitSalePrice+
+				",clientName=" + clientName + ",clientPhone="+clientPhone+"]";
+	}
 
 }

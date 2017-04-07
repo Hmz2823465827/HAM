@@ -148,5 +148,15 @@ public class Performance extends SerializeToJsonBean{
 	public void setPacts(Set<Pact> pacts) {
 		this.pacts = pacts;
 	}
+	
+	@Override
+	public String toString() {
+		return "Performance [performanceId=" + performanceId + ", custom=" + custom.getCustomName() +
+				",employee=" + employee.getEmployeeName() + ", pact=" + pact.getPactId() +
+				", employeeCoustomState=" + employeeCoustomState + 
+				",customType="+ customType + ",registerDate="+registerDate+
+				",completeDate="+completeDate+",performanceInfo="+performanceInfo.toString()+
+				",pacts="+ pacts.toString() +"]";
+	}
 
 }

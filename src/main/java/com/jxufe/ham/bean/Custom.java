@@ -143,5 +143,14 @@ public class Custom extends SerializeToJsonBean {
 	public void setFollowups(Set<Followup> followups) {
 		this.followups = followups;
 	}
+	
+	@Override
+	public String toString() {
+		return "Custom [customId=" + customId + ", customName=" + customName +
+				",customSex=" + customSex + ", customInfo=" + customInfo + ", customRank=" + customRank + 
+				",purposePrice="+ purposePrice + ",purposeArea="+purposeArea+
+				",purposePosition="+purposePosition+",performances="+performances.toString()+
+				",followups="+ followups.toString() +"]";
+	}
 
 }

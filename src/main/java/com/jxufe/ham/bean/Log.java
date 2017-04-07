@@ -74,5 +74,11 @@ public class Log extends SerializeToJsonBean {
 	public void setQuitDate(Date quitDate) {
 		this.quitDate = quitDate;
 	}
+	
+	@Override
+	public String toString() {
+		return "Log [logId=" + logId + ", employee=" + employee.getEmployeeName() +
+				",logDate=" + logDate + ", quitDate=" + quitDate +"]";
+	}
 
 }

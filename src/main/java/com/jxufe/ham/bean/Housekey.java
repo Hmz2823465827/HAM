@@ -75,5 +75,12 @@ public class Housekey extends SerializeToJsonBean{
 	public void setHouses(Set<House> houses) {
 		this.houses = houses;
 	}
+	
+	@Override
+	public String toString() {
+		return "HouseKey [houseKey=" + houseKey + ", houseKeyStatue=" + houseKeyStatue +
+				",keycontrolls=" + keycontrolls.toString() + ", houses="+
+				houses.toString() +"]";
+	}
 
 }

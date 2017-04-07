@@ -10,8 +10,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.jxufe.ham.bean.Depart;
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.Log;
+import com.jxufe.ham.bean.Task;
 import com.jxufe.ham.dao.BaseDao;
 import com.jxufe.ham.dao.EmployeeDao;
 
@@ -82,9 +84,5 @@ public class EmployeeDaoImpl extends  EmployeeDao<Employee> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 	
-
-	
-
 }

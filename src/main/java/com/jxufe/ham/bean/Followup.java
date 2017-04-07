@@ -92,4 +92,12 @@ public class Followup implements java.io.Serializable {
 		this.followUpDate = followUpDate;
 	}
 
+	@Override
+	public String toString() {
+		return "followUp [followUpId=" + followUpId + ", custom=" + custom.getCustomName() +
+				",employee=" + employee.getEmployeeName() + ", house=" + house.getHouseId() + 
+				", followUpStatue=" + followUpStatue + 
+				",followUpDate="+ followUpDate +"]";
+	}
+
 }

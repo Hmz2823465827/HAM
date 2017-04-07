@@ -66,5 +66,11 @@ public class TaskAllot extends SerializeToJsonBean {
 		this.task = task;
 	}
 	
+	@Override
+	public String toString() {
+		return "TaskAllot [taskAllotId=" + taskAllotId + ", employee=" + employee.getEmployeeName() +
+				",task=" + task.getTaskId() +"]";
+	}
+	
 	
 }

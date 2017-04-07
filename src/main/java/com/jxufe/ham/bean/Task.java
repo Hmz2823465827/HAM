@@ -121,5 +121,13 @@ public class Task implements java.io.Serializable {
 	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
 	}
+	
+	@Override
+	public String toString() {
+		return "Task [taskId= " + taskId + ", employee= " + employee.getEmployeeName() +
+				",planDo= " + planDo + ", publishDate= " + publishDate + ", taskStatue= " + taskStatue + 
+				",taskLevel= "+ taskLevel + ",taskInfo="+taskInfo+
+				",employees = "+employees.toString() +"]";
+	}
 
 }

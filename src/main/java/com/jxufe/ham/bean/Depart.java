@@ -95,5 +95,12 @@ public class Depart extends SerializeToJsonBean{
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
+	
+	@Override
+	public String toString() {
+		return "Depart [departId=" +departId + ", departName=" + departName +
+				",departInfo=" + departInfo + ",departRank=" + departRank +
+				", employeeId=" + employeeId +", employeesForDepartId=" + employeesForDepartId.toString() +"]";
+	}
 
 }

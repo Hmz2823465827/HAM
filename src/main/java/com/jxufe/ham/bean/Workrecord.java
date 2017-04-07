@@ -85,5 +85,12 @@ public class Workrecord extends SerializeToJsonBean{
 	public void setLeaveSignIn(Date leaveSignIn) {
 		this.leaveSignIn = leaveSignIn;
 	}
+	
+	@Override
+	public String toString() {
+		return "Workrecord [workRecordId=" + workRecordId + ", employee=" + employee.getEmployeeName() +
+				",workRecordDate=" + workRecordDate + ", actualSignIn=" + actualSignIn +
+				", leaveSignIn=" + leaveSignIn +"]";
+	}
 
 }

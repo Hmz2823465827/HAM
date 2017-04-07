@@ -47,4 +47,10 @@ public class Student {
     public void setNumber(String number) {
         this.number = number;
     }
+    
+    @Override
+	public String toString() {
+		return "Student [sid=" + sid + ", name=" + name +
+				",number=" + number +"]";
+	}
 }
