@@ -15,7 +15,7 @@ import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.Log;
 import com.jxufe.ham.dao.BaseDao;
 import com.jxufe.ham.dao.EmployeeDao;
-import com.jxufe.ham.dao.Impl.EmployeeDaoImpl;
+import com.jxufe.ham.dao.impl.EmployeeDaoImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring.xml",
@@ -40,10 +40,10 @@ public class EmployeeDaoTest {
 	public void init() {
 	}
 
-//	@Test
+	@Test
 	public void select() {
 		try {
-			Employee log= eDao.select(1);
+			Employee log= eDao.select(8);
 			System.out.println(log.getEmployeeName());
 //			assertNotNull(employee.getEmployeeId());
 		} catch (Exception e) {
@@ -69,7 +69,7 @@ public class EmployeeDaoTest {
 		assert(eDao.select(8)==null);
 	}
 	
-	@Test
+//	@Test
 	public void updateTest(){
 		eDao.update(new Employee(2,"tese2",2));
 		Employee e = eDao.select(2);

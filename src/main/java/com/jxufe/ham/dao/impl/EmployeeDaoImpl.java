@@ -1,4 +1,4 @@
-package com.jxufe.ham.dao.Impl;
+package com.jxufe.ham.dao.impl;
 
 import java.util.List;
 

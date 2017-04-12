@@ -1,4 +1,4 @@
-package com.jxufe.ham.bean;
+﻿package com.jxufe.ham.bean;
 
 import java.util.Date;
 
@@ -32,7 +32,7 @@ public class Log extends SerializeToJsonBean {
 		super();
 		this.logId = logId;
 		this.logDate = logDate;
-	}
+	} 
 
 	
 	public Log(int logId, Employee employee, Date logDate, Date quitDate) {

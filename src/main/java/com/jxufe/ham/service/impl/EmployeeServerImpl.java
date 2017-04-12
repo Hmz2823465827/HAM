@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.dao.EmployeeDao;
-import com.jxufe.ham.dao.Impl.EmployeeDaoImpl;
+import com.jxufe.ham.dao.impl.EmployeeDaoImpl;
 import com.jxufe.ham.service.EmployeeService;
 
 /**
@@ -42,6 +42,19 @@ public class EmployeeServerImpl implements EmployeeService {
 	public Employee update(Employee e) {
 		Employee employee = eDao.update(e);
 		return employee;
+	}
+
+	@Override
+	public Employee login(Employee e) {
+		Employee eLoad;
+		eLoad = load(e.getEmployeeId());
+		if(eLoad!=null){//通过id加载雇员不为空
+			//验证通过
+			if(eLoad.getEmployeeName().equals(e.getEmployeeName())){
+				return eLoad;
+			}
+		}
+		return null;
 	}
 
 }

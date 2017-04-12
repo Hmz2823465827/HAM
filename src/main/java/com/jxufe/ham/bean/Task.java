@@ -1,4 +1,4 @@
-package com.jxufe.ham.bean;
+﻿package com.jxufe.ham.bean;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -67,7 +67,7 @@ public class Task implements java.io.Serializable {
 	}
 
 	public Employee getEmployee() {
-		return this.employee;
+		return this.employee; 
 	}
 
 	public void setEmployee(Employee employee) {

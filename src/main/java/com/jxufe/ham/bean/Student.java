@@ -1,4 +1,4 @@
-package com.jxufe.ham.bean;
+﻿package com.jxufe.ham.bean;
 
 public class Student {
     /**
@@ -29,7 +29,7 @@ public class Student {
     }
 
     public void setSid(int sid) {
-        this.sid = sid;
+        this.sid = sid; 
     }
 
     public String getName() {

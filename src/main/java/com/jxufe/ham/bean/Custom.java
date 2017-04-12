@@ -6,7 +6,6 @@ import java.util.Set;
 import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
 
 /**
- * 
  * @Description: 用户实体类
  * @ClassName: Custom
  * @author hmz
