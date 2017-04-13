@@ -11,7 +11,7 @@
 
 	<!-- 自动扫描注解注入为Controller -->
  	<context:component-scan base-package="com.jxufe.ham"/>
-	<mvc:annotation-driven />
+	<!-- <mvc:annotation-driven /> -->
 	
 
 	<!-- 以下为SpringMVC配置 -->

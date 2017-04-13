@@ -142,7 +142,7 @@ pageEncoding="UTF-8"%>
 				    type:"POST",
 				    datetype:"json",
 				    data:$("#form1").serializeArray(),
-				    url:"/springmvc_hibernate_demo/user/login.htmls",
+				    url:"/HAM/employee/get.htmls",
 				    success:function(){
 				    	/* if(data.isLogin==true){
 				    		window.setTimeout("loginsuccess()", 500);
@@ -150,7 +150,7 @@ pageEncoding="UTF-8"%>
 				    	if(data.isLogin==false){
 				    		alert(data.errorMsg);
 				    	} */
-				    	$("#form1").attr({"action":"/springmvc_hibernate_demo/user/toIndex.htmls","method":"POST"}).submit();
+				    	$("#form1").attr({"action":"/HAM/employee/login.htmls","method":"GET"}).submit();
 
 				    }
 				});
