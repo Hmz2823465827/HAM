@@ -2,7 +2,9 @@ package com.jxufe.ham.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jxufe.ham.bean.Employee;
@@ -17,7 +19,8 @@ public class EmployeeContrllor {
 	private EmployeeDao<Employee> eService;//自动注入 employeeServer
 	
 	@RequestMapping("/get")
-	public String get(int id){
+	public String get(){
+		int id = 1;
 		Employee e = eService.select(id);
 		return e.ToJson();
 	}
