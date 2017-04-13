@@ -1,4 +1,4 @@
-package com.jxufe.ham.bean;
+﻿package com.jxufe.ham.bean;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -106,7 +106,7 @@ public class Performance extends SerializeToJsonBean{
 	}
 
 	public void setEmployeeCoustomState(int employeeCoustomState) {
-		this.employeeCoustomState = employeeCoustomState;
+		this.employeeCoustomState  = employeeCoustomState;
 	}
 
 	public int getCustomType() {

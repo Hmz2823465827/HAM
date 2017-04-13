@@ -20,6 +20,7 @@ import org.junit.Test;
 
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.House;
+import com.jxufe.ham.bean.Housekey;
 import com.jxufe.ham.bean.Log;
 
 
@@ -56,8 +57,8 @@ public class test {
 //		log.setName("bullshit");
 		log.setHouseId(1);
 		log.setClientPhone("test");
-		Employee employee = (Employee)session.get(Employee.class, 1);
-		System.out.println(employee.getEmployeeName());
+		Housekey employee = (Housekey)session.get(Housekey.class, 1);
+		System.out.println(employee.getHouseKey());
 		transaction.commit();
 //        // 关闭会话
 //        session.close();

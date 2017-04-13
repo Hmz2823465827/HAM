@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jxufe.ham.bean.Housemap" table="housemap" catalog="houseagencymanagement" optimistic-lock="version">
+        <id name="houseMapId" type="int">
+            <column name="houseMapID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="house" class="com.jxufe.ham.bean.House" fetch="select">
+            <column name="houseID" not-null="true" />
+        </many-to-one>
+        <property name="position" type="string">
+            <column name="position" length="50" not-null="true" />
+        </property>
+        <property name="image" type="string">
+            <column name="image" length="20" />
+        </property>
+        <property name="updateTime" type="date">
+            <column name="updateTime" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jxufe.ham.bean.Keycontroll" table="keycontroll" catalog="houseagencymanagement" optimistic-lock="version">
+        <id name="keyControllId" type="int">
+            <column name="keyControllID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" fetch="select">
+            <column name="employeeID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="housekey" class="com.jxufe.ham.bean.Housekey" fetch="select">
+            <column name="houseKey" not-null="true" />
+        </many-to-one>
+        <property name="isApprove" type="boolean">
+            <column name="isApprove" not-null="true" />
+        </property>
+        <property name="approveDate" type="date">
+            <column name="approveDate" length="10" not-null="true" />
+        </property>
+        <property name="planReturnDate" type="date">
+            <column name="planReturnDate" length="10" />
+        </property>
+        <property name="actualReturnDate" type="date">
+            <column name="actualReturnDate" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>
