@@ -31,7 +31,7 @@ public class LogController {
 	 */
 	@RequestMapping("/login")
 	public HashMap<String, Object> login(Employee e){
-		HashMap<String, Object> hashMap = new HashMap<>();
+		HashMap<String, Object> hashMap = new HashMap<String,Object>();
 		if(e==null){
 			hashMap.put("isLogin", false);
 			log.debug("账户为空登录失败");

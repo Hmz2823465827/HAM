@@ -1,4 +1,4 @@
-﻿package com.jxufe.ham.bean.abstractBean;
+package com.jxufe.ham.bean.abstractBean;
 
 import java.io.Serializable;
 

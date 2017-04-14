@@ -37,5 +37,5 @@ public abstract class EmployeeDao<E> extends BaseDao<E>{
 	 */
 	public abstract int getCount(String hql);
 	
-	public abstract String toString();
+//	public abstract String toString();
 }
