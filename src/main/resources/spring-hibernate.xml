@@ -54,7 +54,7 @@
 				</prop>
 			</props>
 			</property>
-	<property name="configLocation" value="classpath:hibernate.cfg.xml"></property> 
+	<property name="mappingLocations" value="classpath:com/jxufe/ham/bean/hibernatePersistentINF/*.hbm.xml"></property> 
     </bean>
 
 	<!-- 配置事务管理器 -->

@@ -1,4 +1,4 @@
-﻿package com.jxufe.ham.bean;
+package com.jxufe.ham.bean;
 
 import java.util.Date;
 
@@ -85,6 +85,12 @@ public class Housemap extends SerializeToJsonBean{
 
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+	
+	@Override
+	public String toString() {
+		return "Housemap [houseMapId=" + houseMapId + ", house=" + house.getHouseId() +
+				",position=" + position + ", image=" + image + ", updateTime=" + updateTime +"]";
 	}
 
 }

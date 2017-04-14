@@ -1,4 +1,4 @@
-﻿package com.jxufe.ham.bean;
+package com.jxufe.ham.bean;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -147,6 +147,16 @@ public class Performance extends SerializeToJsonBean{
 
 	public void setPacts(Set<Pact> pacts) {
 		this.pacts = pacts;
+	}
+	
+	@Override
+	public String toString() {
+		return "Performance [performanceId=" + performanceId + ", custom=" + custom.getCustomName() +
+				",employee=" + employee.getEmployeeName() + ", pact=" + pact.getPactId() +
+				", employeeCoustomState=" + employeeCoustomState + 
+				",customType="+ customType + ",registerDate="+registerDate+
+				",completeDate="+completeDate+",performanceInfo="+performanceInfo.toString()+
+				",pacts="+ pacts.toString() +"]";
 	}
 
 }

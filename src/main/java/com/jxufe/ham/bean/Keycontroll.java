@@ -1,4 +1,4 @@
-﻿package com.jxufe.ham.bean;
+package com.jxufe.ham.bean;
 
 import java.util.Date;
 
@@ -110,6 +110,13 @@ public class Keycontroll extends SerializeToJsonBean {
 
 	public void setActualReturnDate(Date actualReturnDate) {
 		this.actualReturnDate = actualReturnDate;
+	}
+	
+	@Override
+	public String toString() {
+		return "Keycontroll [keyControllId=" + keyControllId + ", employee=" + employee.getEmployeeName() +
+				",housekey=" + housekey.getHouseKey() + ", isApprove=" + isApprove + ", approveDate=" + approveDate + 
+				",planReturnDate="+ planReturnDate + ",actualReturnDate="+actualReturnDate+"]";
 	}
 
 }

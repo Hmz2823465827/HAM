@@ -21,30 +21,25 @@ public class EmployeeServerImpl implements EmployeeService {
 	@Autowired
 	private EmployeeDao<Employee> eDao;//自动注入employeeDao层实现类
 	
-	@Override
 	public Employee load(int id) {
 		Employee e = eDao.select(id);
 		return e;
 	}
 
-	@Override
 	public int sava(Employee e) {
 		int eId= eDao.insert(e);
 		return eId;
 	}
 
-	@Override
 	public void delete(Employee e) {
 		eDao.delete(e);
 	}
 
-	@Override
 	public Employee update(Employee e) {
 		Employee employee = eDao.update(e);
 		return employee;
 	}
 
-	@Override
 	public Employee login(Employee e) {
 		Employee eLoad;
 		eLoad = load(e.getEmployeeId());
