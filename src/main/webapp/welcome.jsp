@@ -90,7 +90,7 @@ pageEncoding="UTF-8"%>
 											<div class="form-group">
 												<label for="input2" class="col-sm-2 control-label">密码:</label>
 												<div class="col-sm-10">
-													<input class="form-control" id="input2" type="password" placeholder="请输入密码" name="employeeName"/>
+													<input class="form-control" id="input2" type="password" placeholder="请输入密码" name="passWord"/>
 												</div>
 											</div>
 											<div class="form-group">
@@ -143,22 +143,22 @@ pageEncoding="UTF-8"%>
 				    datetype:"json",
 				    data:$("#form1").serializeArray(),
 				    url:"/HAM/index/login.htmls",
-				    success:function(){
-				    	/* if(data.isLogin==true){
+				    success:function(data){
+				    	/* var dataJson = data.parseJSON(); */
+				    	var dataJson = JSON.parse(data);
+				    	if(dataJson.isLogin==true){
 				    		window.setTimeout("loginsuccess()", 500);
 				    	}
-				    	if(data.isLogin==false){
+				    	if(dataJson.isLogin==false){
 				    		alert(data.errorMsg);
-				    	} */
-				    	alert("成功");
-				    	//$("#form1").attr({"action":"/HAM/employee/login.htmls","method":"GET"}).submit();
-
+				    	}
+				    	
 				    }
 				});
 			});
 			
 			function loginsuccess(){
-				$("#form1").attr({"action":"/HAM/index/toIndex.htmls","method":"POST"}).submit();
+				$("#form1").attr({"action":"/HAM/index.htmls","method":"POST"}).submit();
 			};
 	</script>
 </html>
