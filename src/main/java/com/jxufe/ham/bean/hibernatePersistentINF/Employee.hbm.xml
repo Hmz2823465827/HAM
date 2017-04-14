@@ -25,6 +25,9 @@
         <property name="employeePosition" type="int">
             <column name="employeePosition" not-null="true" />
         </property>
+        <property name="passWord" type="string">
+        	<column name="passWord" length="25"/>
+        </property>
         <set name="leavewords" table="leaveword" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="employeeID" not-null="true" />
