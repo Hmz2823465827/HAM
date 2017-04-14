@@ -1,4 +1,4 @@
-﻿package com.jxufe.ham.bean;
+package com.jxufe.ham.bean;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -94,6 +94,13 @@ public class Depart extends SerializeToJsonBean{
 
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
+	}
+	
+	@Override
+	public String toString() {
+		return "Depart [departId=" +departId + ", departName=" + departName +
+				",departInfo=" + departInfo + ",departRank=" + departRank +
+				", employeeId=" + employeeId +", employeesForDepartId=" + employeesForDepartId.toString() +"]";
 	}
 
 }

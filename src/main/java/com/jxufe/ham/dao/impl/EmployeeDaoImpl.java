@@ -44,7 +44,7 @@ public class EmployeeDaoImpl extends  EmployeeDao<Employee> {
 	 */
 	@Override
 	public int insert(Employee e) {
-		return (int)getSession().save(e);
+		return (Integer) getSession().save(e);
 	}
 
 	@Override

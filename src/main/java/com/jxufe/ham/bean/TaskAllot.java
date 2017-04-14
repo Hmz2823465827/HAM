@@ -1,4 +1,4 @@
-﻿package com.jxufe.ham.bean;
+package com.jxufe.ham.bean;
 
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.Task;
@@ -64,6 +64,12 @@ public class TaskAllot extends SerializeToJsonBean {
 
 	public void setTask(Task task) {
 		this.task = task;
+	}
+	
+	@Override
+	public String toString() {
+		return "TaskAllot [taskAllotId=" + taskAllotId + ", employee=" + employee.getEmployeeName() +
+				",task=" + task.getTaskId() +"]";
 	}
 	
 	

@@ -1,4 +1,4 @@
-﻿package com.jxufe.ham.bean;
+package com.jxufe.ham.bean;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -141,6 +141,15 @@ public class Custom extends SerializeToJsonBean {
 
 	public void setFollowups(Set<Followup> followups) {
 		this.followups = followups;
+	}
+	
+	@Override
+	public String toString() {
+		return "Custom [customId=" + customId + ", customName=" + customName +
+				",customSex=" + customSex + ", customInfo=" + customInfo + ", customRank=" + customRank + 
+				",purposePrice="+ purposePrice + ",purposeArea="+purposeArea+
+				",purposePosition="+purposePosition+",performances="+performances.toString()+
+				",followups="+ followups.toString() +"]";
 	}
 
 }

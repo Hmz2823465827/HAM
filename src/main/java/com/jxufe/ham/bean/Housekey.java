@@ -1,4 +1,4 @@
-﻿package com.jxufe.ham.bean;
+package com.jxufe.ham.bean;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -74,6 +74,13 @@ public class Housekey extends SerializeToJsonBean{
 
 	public void setHouses(Set<House> houses) {
 		this.houses = houses;
+	}
+	
+	@Override
+	public String toString() {
+		return "HouseKey [houseKey=" + houseKey + ", houseKeyStatue=" + houseKeyStatue +
+				",keycontrolls=" + keycontrolls.toString() + ", houses="+
+				houses.toString() +"]";
 	}
 
 }
