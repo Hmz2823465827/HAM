@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.jxufe.ham.bean.Custom" table="custom" catalog="houseagencymanagement" optimistic-lock="version">
+    <class name="com.jxufe.ham.bean.Custom" table="custom" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
         <id name="customId" type="int">
             <column name="customID"/>
             <generator class="assigned" />

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.jxufe.ham.bean.Employee;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
  * @Description: 留言实体类
@@ -13,7 +13,7 @@ import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
  * @author hmz
  * @date 2017年3月23日 下午4:07:08
  */
-public class Leaveword extends SerializeToJsonBean{
+public class Leaveword extends BaseBean{
 
 	//序列ID
 	private static final long serialVersionUID = 6237758949904689739L;

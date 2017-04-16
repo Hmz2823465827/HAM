@@ -2,7 +2,7 @@ package com.jxufe.ham.bean;
 
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.Task;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
  * @Description: 任务分配实体类
@@ -10,7 +10,7 @@ import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
  * @author halu
  * @date 2017年3月23日 下午5:47:39
  */
-public class TaskAllot extends SerializeToJsonBean {
+public class TaskAllot extends BaseBean {
 
 	//序列化ID
 	private static final long serialVersionUID = -3011993280777513510L;

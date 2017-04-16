@@ -11,41 +11,40 @@ import com.jxufe.ham.service.EmployeeService;
 /**
  * 
  * @Description: 雇员service层实现类
- * @ClassName: EmployeeServerImpl
+ * @ClassName: EmployeeServiceImpl
  * @author halu
  * @date 2017年4月5日 下午8:32:07
  */
 @Service
-public class EmployeeServerImpl implements EmployeeService {
+public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
-	private EmployeeDao<Employee> eDao;//自动注入employeeDao层实现类
+	private EmployeeDao<Employee> dao;//自动注入employeeDao层实现类
 	
 	public Employee load(int id) {
-		Employee e = eDao.select(id);
-		return e;
+		Employee bean = dao.select(id);
+		return bean;
 	}
 
-	public int sava(Employee e) {
-		int eId= eDao.insert(e);
+	public int sava(Employee bean) {
+		int eId= dao.insert(bean);
 		return eId;
 	}
 
-	public void delete(Employee e) {
-		eDao.delete(e);
+	public void delete(Employee bean) {
+		dao.delete(bean);
 	}
 
-	public Employee update(Employee e) {
-		Employee employee = eDao.update(e);
-		return employee;
+	public void update(Employee bean) {
+		dao.update(bean);
 	}
 
-	public Employee login(Employee e) {
+	public Employee login(Employee bean) {
 		Employee eLoad;
-		eLoad = load(e.getEmployeeId());
+		eLoad = load(bean.getEmployeeId());
 		if(eLoad!=null){//通过id加载雇员不为空
 			//验证通过
-			if(eLoad.getEmployeeName().equals(e.getEmployeeName())){
+			if(eLoad.getEmployeeName().equals(bean.getEmployeeName())){
 				return eLoad;
 			}
 		}

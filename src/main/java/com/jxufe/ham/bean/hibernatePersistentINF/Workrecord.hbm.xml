@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.jxufe.ham.bean.Workrecord" table="workrecord" catalog="houseagencymanagement" optimistic-lock="version">
+    <class name="com.jxufe.ham.bean.Workrecord" table="workrecord" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
         <id name="workRecordId" type="int">
             <column name="workRecordID" />
             <generator class="assigned" />

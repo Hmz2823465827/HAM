@@ -8,16 +8,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * 
  * @Description:实体类的父类 
- * @ClassName: SerializeToJsonBean
+ * @ClassName: BaseBean
  * @author hongch
  * @date 2017年3月23日 上午10:10:21
  */
-public class SerializeToJsonBean implements Serializable{
+public class BaseBean implements Serializable{
 	
 	//序列ID
 	private static final long serialVersionUID = 9187569369641399689L;
 
-	public SerializeToJsonBean() {
+	public BaseBean() {
 	}
 	
 	/**

@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.Housekey;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
  * @Description: 钥匙接管记录实体类
@@ -12,7 +12,7 @@ import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
  * @author hmz
  * @date 2017年3月23日 下午4:06:21
  */
-public class Keycontroll extends SerializeToJsonBean {
+public class Keycontroll extends BaseBean {
 
 	//序列ID
 	private static final long serialVersionUID = -4165822806960168304L;

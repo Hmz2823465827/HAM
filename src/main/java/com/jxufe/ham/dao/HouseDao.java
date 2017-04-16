@@ -2,15 +2,14 @@ package com.jxufe.ham.dao;
 
 import java.util.List;
 
-
 /**
- * @Description: 雇员dao层借口
- * @ClassName: EmployeeDao
+ * @Description: 房屋dao层接口
+ * @ClassName: HouseDao
  * @author halu
  * @date 2017年3月30日 上午8:58:15
  */
 
-public abstract class EmployeeDao<E> extends BaseDao<E>{
+public abstract class HouseDao<E> extends BaseDao<E>{
 	
 	/**
 	 * 
@@ -31,5 +30,5 @@ public abstract class EmployeeDao<E> extends BaseDao<E>{
 	* @return
 	 */
 	public abstract int getCount(String hql);
-	
+
 }

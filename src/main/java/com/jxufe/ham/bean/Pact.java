@@ -6,7 +6,7 @@ import java.util.Set;
 
 import com.jxufe.ham.bean.House;
 import com.jxufe.ham.bean.Performance;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
  * @Description: 合同实体类
@@ -14,7 +14,7 @@ import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
  * @author hmz
  * @date 2017年3月23日 下午4:15:14
  */
-public class Pact extends SerializeToJsonBean{
+public class Pact extends BaseBean{
 
 	//序列化ID
 	private static final long serialVersionUID = 8768850238249330372L;

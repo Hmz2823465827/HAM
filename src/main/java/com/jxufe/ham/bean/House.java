@@ -8,7 +8,7 @@ import com.jxufe.ham.bean.Followup;
 import com.jxufe.ham.bean.Housekey;
 import com.jxufe.ham.bean.Housemap;
 import com.jxufe.ham.bean.Pact;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
  * @Description: 房屋实体类
@@ -16,7 +16,7 @@ import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
  * @author hongch
  * @date 2017年3月23日 下午3:28:20
  */
-public class House extends SerializeToJsonBean {
+public class House extends BaseBean {
 
 	//序列化ID
 	private static final long serialVersionUID = -3370860611583081783L;
