@@ -3,7 +3,7 @@ package com.jxufe.ham.bean;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
  * @Description:部门类 
@@ -11,7 +11,7 @@ import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
  * @author hmz
  * @date 2017年3月23日 上午10:17:01
  */
-public class Depart extends SerializeToJsonBean{
+public class Depart extends BaseBean{
 
 	//序列ID
 	private static final long serialVersionUID = 6033286629137050077L;

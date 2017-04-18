@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.jxufe.ham.bean.Employee" table="employee" catalog="houseagencymanagement" optimistic-lock="version">
+    <class name="com.jxufe.ham.bean.Employee" table="employee" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
         <id name="employeeId" type="int">
             <column name="employeeID" />
             <generator class="assigned" />
@@ -24,6 +24,9 @@
         </property>
         <property name="employeePosition" type="int">
             <column name="employeePosition" not-null="true" />
+        </property>
+        <property name="passWord" type="string">
+        	<column name="passWord" length="25"/>
         </property>
         <set name="leavewords" table="leaveword" inverse="true" lazy="true" fetch="select">
             <key>

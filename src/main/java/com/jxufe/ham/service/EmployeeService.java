@@ -45,7 +45,7 @@ public interface EmployeeService {
 	* @param e
 	* @return
 	 */
-	public Employee update(Employee e);
+	public void update(Employee e);
 	
 	public Employee login(Employee e);
 }

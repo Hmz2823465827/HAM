@@ -1,4 +1,4 @@
-package com.jxufe.ham.bean;
+﻿package com.jxufe.ham.bean;
 
 
 import java.util.HashSet;
@@ -14,7 +14,7 @@ import com.jxufe.ham.bean.Performance;
 import com.jxufe.ham.bean.Task;
 import com.jxufe.ham.bean.TaskAllot;
 import com.jxufe.ham.bean.Workrecord;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
  * @Description: 员工实体类
@@ -22,7 +22,7 @@ import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
  * @author hmz
  * @date 2017年3月23日 上午10:32:54
  */
-public class Employee extends SerializeToJsonBean {
+public class Employee extends BaseBean {
 
 	//序列化ID
 	private static final long serialVersionUID = 7031407605308824083L;
@@ -38,6 +38,8 @@ public class Employee extends SerializeToJsonBean {
 	private Boolean employeeSex;//员工性别
 	
 	private String employeePhone;//员工联系方式
+	
+	private String passWord;//登入密码
 	
 	private int employeePosition;//员工职位
 	
@@ -93,6 +95,16 @@ public class Employee extends SerializeToJsonBean {
 		this.keycontrolls = keycontrolls;
 		this.tasks = tasks;
 		this.taskAllots = taskAllots;
+	}
+
+	
+	
+	public String getPassWord() {
+		return passWord;
+	}
+
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
 	}
 
 	public int getEmployeeId() {
@@ -229,21 +241,6 @@ public class Employee extends SerializeToJsonBean {
 
 	public void setTaskAllots(Set<TaskAllot> taskAllots) {
 		this.taskAllots = taskAllots;
-	}
-	
-	
-	
-	@Override
-	public String toString() {
-		return "Employee [employeeId=" + employeeId + ", departByDepartId=" + departByDepartId.getDepartId() +
-				",task=" + task.getTaskId() + ", employeeName=" + employeeName + ", employeeSex=" + employeeSex + 
-				",employeePhone="+ employeePhone + ",employeePosition="+employeePosition+
-				",leavewords="+ leavewords.toString() + ",performances="+performances.toString()+
-				",houses="+ houses.toString() + ",followups="+followups.toString()+
-				",workrecords="+ workrecords.toString() + ",logs="+logs.toString()+
-				",keycontrolls="+ keycontrolls.toString() + ",tasks="+tasks.toString()+
-				",departs="+ departs.toString() + ",taskAllots="+taskAllots.toString()+
-				"]";
 	}
 
 	

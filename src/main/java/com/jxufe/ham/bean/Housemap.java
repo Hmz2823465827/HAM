@@ -3,7 +3,7 @@ package com.jxufe.ham.bean;
 import java.util.Date;
 
 import com.jxufe.ham.bean.House;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
  * @Description:房屋地图实体类 
@@ -11,7 +11,7 @@ import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
  * @author hmz
  * @date 2017年3月23日 下午3:58:38
  */
-public class Housemap extends SerializeToJsonBean{
+public class Housemap extends BaseBean{
 
 	//序列ID
 	private static final long serialVersionUID = -1035216073781582274L;

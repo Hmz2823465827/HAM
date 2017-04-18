@@ -4,13 +4,15 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.jxufe.ham.bean.abstractBean.BaseBean;
+
 /**
  * @Description: 
  * @ClassName: Task
  * @author hongch
  * @date 2017年3月23日 下午4:35:42
  */
-public class Task implements java.io.Serializable {
+public class Task extends BaseBean {
 
 	//序列化ID
 	private static final long serialVersionUID = 423611441373822314L;

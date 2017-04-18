@@ -3,7 +3,7 @@ package com.jxufe.ham.bean;
 import java.util.Date;
 
 import com.jxufe.ham.bean.Employee;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
  * @Description: 考勤实体类
@@ -11,7 +11,7 @@ import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
  * @author hmz
  * @date 2017年3月23日 下午4:42:54
  */
-public class Workrecord extends SerializeToJsonBean{
+public class Workrecord extends BaseBean{
 
 	//序列化ID
 	private static final long serialVersionUID = 4683325736254304171L;

@@ -2,21 +2,17 @@ package com.jxufe.ham.dao.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jxufe.ham.bean.Employee;
-import com.jxufe.ham.bean.Log;
-import com.jxufe.ham.dao.BaseDao;
-import com.jxufe.ham.dao.EmployeeDao;
+import com.jxufe.ham.bean.Custom;
+import com.jxufe.ham.dao.CustomDao;
 
 @Repository
-public class EmployeeDaoImpl extends  EmployeeDao<Employee> {
+public class CustomDaoImpl extends  CustomDao<Custom> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -37,15 +33,15 @@ public class EmployeeDaoImpl extends  EmployeeDao<Employee> {
 	* Description: 
 	* @param bean
 	* @return
-	* @see com.jxufe.ham.test.dao.EmployeeDao#insert(com.jxufe.ham.bean.Employee)
+	* @see com.jxufe.ham.test.dao.CustomDao#insert(com.jxufe.ham.bean.Custom)
 	 */
 	@Override
-	public int insert(Employee bean) {
+	public int insert(Custom bean) {
 		return (Integer) getSession().save(bean);
 	}
 
 	@Override
-	public void delete(Employee bean) {
+	public void delete(Custom bean) {
 //		getSession().delete(bean);
 		getSession().delete(bean);
 //		return null;
@@ -53,24 +49,27 @@ public class EmployeeDaoImpl extends  EmployeeDao<Employee> {
 
 
 	@Override
-	public Employee select(int id) {
-//		List<Employee> list = getSession().createQuery(SELECT).
+	public Custom select(int id) {
+//		List<Custom> list = getSession().createQuery(SELECT).
 //				setInteger(1, id).list();
 		Session session = getSession();
-		Employee list = (Employee) session.get(Employee.class, new Integer(id));		
+		Custom list = (Custom) session.get(Custom.class, new Integer(id));		
 		return list;
 	}
 
 	@Override
-	public void update(Employee bean) {
+	public void update(Custom bean) {
 		Session session = getSession();
-		Employee updateEmployee = (Employee)session.load(bean.getClass(), bean.getEmployeeId());
-		updateEmployee.setEmployeeName(bean.getEmployeeName());
+//		Custom updateCustom = (Custom)session.load(bean.getClass(), bean.getCustomId());
+//		updateCustom.setCustomName(bean.getCustomName());
+		Transaction transaction = session.getTransaction();
+		session.update(bean);
+		transaction.commit();
 //		return null;
 	}
 
 	@Override
-	public List<Employee> queryForPage(String hql, int offset, int length) {
+	public List<Custom> queryForPage(String hql, int offset, int length) {
 		return null;
 	}
 

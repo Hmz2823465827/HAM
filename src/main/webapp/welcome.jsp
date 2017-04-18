@@ -82,15 +82,15 @@ pageEncoding="UTF-8"%>
 									<div class="tab-pane active" id="panel-657465">
 										<form class="form-horizontal" role="form" id="form1">
 											<div class="form-group">
-												<label for="inputEmail3" class="col-sm-2 control-label">用户:</label>
+												<label for="input1" class="col-sm-2 control-label">用户:</label>
 												<div class="col-sm-10">
-													<input class="form-control" id="inputEmail3" type="text" placeholder="请输入用户名" name="id"/>
+													<input class="form-control" id="input1" type="text" placeholder="请输入用户名" name="employeeId"/>
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="inputPassword3" class="col-sm-2 control-label">密码:</label>
+												<label for="input2" class="col-sm-2 control-label">密码:</label>
 												<div class="col-sm-10">
-													<input class="form-control" id="inputPassword3" type="password" placeholder="请输入密码" name="passWord"/>
+													<input class="form-control" id="input2" type="password" placeholder="请输入密码" name="passWord"/>
 												</div>
 											</div>
 											<div class="form-group">
@@ -102,7 +102,7 @@ pageEncoding="UTF-8"%>
 											</div>
 											<div class="form-group">
 												<div class="col-sm-offset-2 col-sm-10">
-													<button type="submit" class="btn btn-block btn-default btn-primary" id="Login">登陆</button>
+													<button type="submit" class="btn btn-block btn-default btn-primary" id="LoginButton">登陆</button>
 												</div>
 											</div>
 										</form>
@@ -135,29 +135,30 @@ pageEncoding="UTF-8"%>
    			/* $("#form1").attr({"action":"/springmvc_hibernate_demo/user/login.htmls","method":"POST"}).submit();
 			}) */
 			
-			$("#Login").click(function(e){
+			$("#LoginButton").click(function(e){
 				e.preventDefault();
 				$.ajax({
 					cache:true,
 				    type:"POST",
 				    datetype:"json",
 				    data:$("#form1").serializeArray(),
-				    url:"/HAM/employee/get.htmls",
-				    success:function(){
-				    	/* if(data.isLogin==true){
+				    url:"/HAM/index/login.htmls",
+				    success:function(data){
+				    	/* var dataJson = data.parseJSON(); */
+				    	var dataJson = JSON.parse(data);
+				    	if(dataJson.isLogin==true){
 				    		window.setTimeout("loginsuccess()", 500);
 				    	}
-				    	if(data.isLogin==false){
+				    	if(dataJson.isLogin==false){
 				    		alert(data.errorMsg);
-				    	} */
-				    	$("#form1").attr({"action":"/HAM/employee/login.htmls","method":"GET"}).submit();
-
+				    	}
+				    	
 				    }
 				});
 			});
 			
 			function loginsuccess(){
-				$("#form1").attr({"action":"/springmvc_hibernate_demo/user/toIndex.htmls","method":"POST"}).submit();
+				$("#form1").attr({"action":"/HAM/index.htmls","method":"POST"}).submit();
 			};
 	</script>
 </html>

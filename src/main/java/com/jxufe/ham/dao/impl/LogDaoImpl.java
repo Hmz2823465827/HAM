@@ -7,16 +7,17 @@ import javax.annotation.Resource;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.Log;
 import com.jxufe.ham.bean.Log;
 import com.jxufe.ham.dao.BaseDao;
-import com.jxufe.ham.dao.EmployeeDao;
+import com.jxufe.ham.dao.LogDao;
 
 @Repository
-public class EmployeeDaoImpl extends  EmployeeDao<Employee> {
+public class LogDaoImpl extends  LogDao<Log> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -37,15 +38,15 @@ public class EmployeeDaoImpl extends  EmployeeDao<Employee> {
 	* Description: 
 	* @param bean
 	* @return
-	* @see com.jxufe.ham.test.dao.EmployeeDao#insert(com.jxufe.ham.bean.Employee)
+	* @see com.jxufe.ham.test.dao.LogDao#insert(com.jxufe.ham.bean.Log)
 	 */
 	@Override
-	public int insert(Employee bean) {
+	public int insert(Log bean) {
 		return (Integer) getSession().save(bean);
 	}
 
 	@Override
-	public void delete(Employee bean) {
+	public void delete(Log bean) {
 //		getSession().delete(bean);
 		getSession().delete(bean);
 //		return null;
@@ -53,24 +54,27 @@ public class EmployeeDaoImpl extends  EmployeeDao<Employee> {
 
 
 	@Override
-	public Employee select(int id) {
-//		List<Employee> list = getSession().createQuery(SELECT).
+	public Log select(int id) {
+//		List<Log> list = getSession().createQuery(SELECT).
 //				setInteger(1, id).list();
 		Session session = getSession();
-		Employee list = (Employee) session.get(Employee.class, new Integer(id));		
+		Log list = (Log) session.get(Log.class, new Integer(id));		
 		return list;
 	}
 
 	@Override
-	public void update(Employee bean) {
+	public void update(Log bean) {
 		Session session = getSession();
-		Employee updateEmployee = (Employee)session.load(bean.getClass(), bean.getEmployeeId());
-		updateEmployee.setEmployeeName(bean.getEmployeeName());
+//		Log updateLog = (Log)session.load(bean.getClass(), bean.getLogId());
+//		updateLog.setLogName(bean.getLogName());
+		Transaction transaction = session.getTransaction();
+		session.update(bean);
+		transaction.commit();
 //		return null;
 	}
 
 	@Override
-	public List<Employee> queryForPage(String hql, int offset, int length) {
+	public List<Log> queryForPage(String hql, int offset, int length) {
 		return null;
 	}
 

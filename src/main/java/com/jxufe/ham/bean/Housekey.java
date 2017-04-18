@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.jxufe.ham.bean.House;
 import com.jxufe.ham.bean.Keycontroll;
-import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
+import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
  * @Description: 房屋钥匙
@@ -13,7 +13,7 @@ import com.jxufe.ham.bean.abstractBean.SerializeToJsonBean;
  * @author hmz
  * @date 2017年3月23日 下午3:39:28
  */
-public class Housekey extends SerializeToJsonBean{
+public class Housekey extends BaseBean{
 
 	//序列ID
 	private static final long serialVersionUID = 2489409115101982577L;

@@ -1,8 +1,5 @@
 package com.jxufe.ham.dao;
 
-import java.util.List;
-
-import com.jxufe.ham.bean.Employee;
 
 /**
  * 
@@ -37,7 +34,7 @@ public abstract class BaseDao<E> {
 	* @param e
 	* @return
 	 */
-	public abstract Employee select(int id);
+	public abstract E select(int id);
 	
 	/**
 	 * 
@@ -46,7 +43,7 @@ public abstract class BaseDao<E> {
 	* @param e
 	* @return
 	 */
-	public abstract Employee update(E e);
+	public abstract void update(E e);
 
 	
 
