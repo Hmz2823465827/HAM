@@ -3,13 +3,13 @@ package com.jxufe.ham.dao;
 import java.util.List;
 
 /**
- * @Description: 钥匙控制dao层接口
- * @ClassName: KeycontrollerDao
+ * @Description: 合同dao层接口
+ * @ClassName: PactDao
  * @author halu
  * @date 2017年3月30日 上午8:58:15
  */
 
-public abstract class KeycontrollerDao<E> extends BaseDao<E>{
+public abstract class PactDao<E> extends BaseDao<E>{
 	
 	/**
 	 * 

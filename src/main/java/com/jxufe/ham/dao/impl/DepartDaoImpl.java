@@ -7,17 +7,16 @@ import javax.annotation.Resource;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jxufe.ham.bean.Log;
+import com.jxufe.ham.bean.Depart;
 import com.jxufe.ham.bean.Log;
 import com.jxufe.ham.dao.BaseDao;
-import com.jxufe.ham.dao.LogDao;
+import com.jxufe.ham.dao.DepartDao;
 
 @Repository
-public class LogDaoImpl extends  LogDao<Log> {
+public class DepartDaoImpl extends  DepartDao<Depart> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -38,15 +37,15 @@ public class LogDaoImpl extends  LogDao<Log> {
 	* Description: 
 	* @param bean
 	* @return
-	* @see com.jxufe.ham.test.dao.LogDao#insert(com.jxufe.ham.bean.Log)
+	* @see com.jxufe.ham.test.dao.DepartDao#insert(com.jxufe.ham.bean.Depart)
 	 */
 	@Override
-	public int insert(Log bean) {
+	public int insert(Depart bean) {
 		return (Integer) getSession().save(bean);
 	}
 
 	@Override
-	public void delete(Log bean) {
+	public void delete(Depart bean) {
 //		getSession().delete(bean);
 		getSession().delete(bean);
 //		return null;
@@ -54,24 +53,23 @@ public class LogDaoImpl extends  LogDao<Log> {
 
 
 	@Override
-	public Log select(int id) {
-//		List<Log> list = getSession().createQuery(SELECT).
+	public Depart select(int id) {
+//		List<Depart> list = getSession().createQuery(SELECT).
 //				setInteger(1, id).list();
 		Session session = getSession();
-		Log list = (Log) session.get(Log.class, new Integer(id));		
+		Depart list = (Depart) session.get(Depart.class, new Integer(id));		
 		return list;
 	}
 
 	@Override
-	public void update(Log bean) {
+	public void update(Depart bean) {
 		Session session = getSession();
-		Transaction transaction = session.getTransaction();
-		session.update(bean);
-		transaction.commit();
+		Depart updateDepart = (Depart)session.load(bean.getClass(), bean.getDepartId());
+		updateDepart.setDepartName(bean.getDepartName());
 	}
 
 	@Override
-	public List<Log> queryForPage(String hql, int offset, int length) {
+	public List<Depart> queryForPage(String hql, int offset, int length) {
 		return null;
 	}
 

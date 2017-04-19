@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.service.EmployeeService;
-import com.jxufe.ham.service.impl.EmployeeServerImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring.xml",

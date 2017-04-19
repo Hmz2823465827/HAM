@@ -11,13 +11,13 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jxufe.ham.bean.Log;
+import com.jxufe.ham.bean.Housemap;
 import com.jxufe.ham.bean.Log;
 import com.jxufe.ham.dao.BaseDao;
-import com.jxufe.ham.dao.LogDao;
+import com.jxufe.ham.dao.HousemapDao;
 
 @Repository
-public class LogDaoImpl extends  LogDao<Log> {
+public class HousemapDaoImpl extends  HousemapDao<Housemap> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -38,15 +38,15 @@ public class LogDaoImpl extends  LogDao<Log> {
 	* Description: 
 	* @param bean
 	* @return
-	* @see com.jxufe.ham.test.dao.LogDao#insert(com.jxufe.ham.bean.Log)
+	* @see com.jxufe.ham.test.dao.HousemapDao#insert(com.jxufe.ham.bean.Housemap)
 	 */
 	@Override
-	public int insert(Log bean) {
+	public int insert(Housemap bean) {
 		return (Integer) getSession().save(bean);
 	}
 
 	@Override
-	public void delete(Log bean) {
+	public void delete(Housemap bean) {
 //		getSession().delete(bean);
 		getSession().delete(bean);
 //		return null;
@@ -54,16 +54,16 @@ public class LogDaoImpl extends  LogDao<Log> {
 
 
 	@Override
-	public Log select(int id) {
-//		List<Log> list = getSession().createQuery(SELECT).
+	public Housemap select(int id) {
+//		List<Housemap> list = getSession().createQuery(SELECT).
 //				setInteger(1, id).list();
 		Session session = getSession();
-		Log list = (Log) session.get(Log.class, new Integer(id));		
+		Housemap list = (Housemap) session.get(Housemap.class, new Integer(id));		
 		return list;
 	}
 
 	@Override
-	public void update(Log bean) {
+	public void update(Housemap bean) {
 		Session session = getSession();
 		Transaction transaction = session.getTransaction();
 		session.update(bean);
@@ -71,7 +71,7 @@ public class LogDaoImpl extends  LogDao<Log> {
 	}
 
 	@Override
-	public List<Log> queryForPage(String hql, int offset, int length) {
+	public List<Housemap> queryForPage(String hql, int offset, int length) {
 		return null;
 	}
 

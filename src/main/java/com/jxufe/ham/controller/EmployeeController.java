@@ -11,9 +11,11 @@ import org.hibernate.Session;
 import org.jboss.logging.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jxufe.ham.bean.Employee;
@@ -22,12 +24,12 @@ import com.jxufe.ham.service.EmployeeService;
 
 @Controller
 @RequestMapping("/employee")
-public class EmployeeContrllor {
+public class EmployeeController {
 
 	@Autowired
-	private EmployeeDao<Employee> eService;// 自动注入 employeeServer
+	private EmployeeService eService;// 自动注入 employeeServer
 
-	private Log log = LogFactory.getLog(EmployeeContrllor.class);
+	private Log log = LogFactory.getLog(EmployeeController.class);
 
 	private final String LOGIN_E = "loginEmployee";// session登入用户key
 
@@ -43,11 +45,18 @@ public class EmployeeContrllor {
 		return null;
 	}
 
+	/**
+	 * 
+	* @Title: quit 
+	* @Description:用户退出
+	* @param request
+	* @return 登入界面视图模型
+	 */
 	@RequestMapping("quit")
 	public ModelAndView quit(HttpServletRequest request) {
 		request.getSession().removeAttribute(LOGIN_E);
 		ModelAndView modelAndView = new ModelAndView("login.jsp");
-		return null;
+		return modelAndView;
 
 	}
 
@@ -62,12 +71,13 @@ public class EmployeeContrllor {
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		try {
 			Employee e = (Employee) getSessionValue(request, LOGIN_E);
-			Employee eFromData = eService.select(e.getEmployeeId());
+			Employee eFromData = eService.load(e.getEmployeeId());
 			if (eFromData == null) {
 				hashMap.put(ISDONE, false);
 				hashMap.put(ERROR_MSG, "该用户不存在");
 				throw new Exception("用户修改密码失败");
 			}
+			eFromData.setPassWord(passWord);
 			eService.update(e);
 			hashMap.put(ISDONE, true);
 			hashMap.put(MSG, "修改成功");
@@ -91,5 +101,16 @@ public class EmployeeContrllor {
 	// return new ModelAndView("test");
 	// else return new ModelAndView("index");
 	// }
+	
+	@RequestMapping("/loadWordrecord")
+	public HashMap<String, Object> loadWordrecord(HttpServletRequest request,@RequestParam int page,@RequestParam int row) {
+		Employee employee = (Employee)getSessionValue(request, LOGIN_E);
+		try {
+			eService.loadByWordrecord(employee,page,row);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		return null;
+	}
 
 }

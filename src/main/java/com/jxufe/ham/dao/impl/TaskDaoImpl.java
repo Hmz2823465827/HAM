@@ -2,22 +2,17 @@ package com.jxufe.ham.dao.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jxufe.ham.bean.Log;
-import com.jxufe.ham.bean.Log;
-import com.jxufe.ham.dao.BaseDao;
-import com.jxufe.ham.dao.LogDao;
+import com.jxufe.ham.bean.Task;
+import com.jxufe.ham.dao.TaskDao;
 
 @Repository
-public class LogDaoImpl extends  LogDao<Log> {
+public class TaskDaoImpl extends  TaskDao<Task> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -38,15 +33,15 @@ public class LogDaoImpl extends  LogDao<Log> {
 	* Description: 
 	* @param bean
 	* @return
-	* @see com.jxufe.ham.test.dao.LogDao#insert(com.jxufe.ham.bean.Log)
+	* @see com.jxufe.ham.test.dao.TaskDao#insert(com.jxufe.ham.bean.Task)
 	 */
 	@Override
-	public int insert(Log bean) {
+	public int insert(Task bean) {
 		return (Integer) getSession().save(bean);
 	}
 
 	@Override
-	public void delete(Log bean) {
+	public void delete(Task bean) {
 //		getSession().delete(bean);
 		getSession().delete(bean);
 //		return null;
@@ -54,24 +49,27 @@ public class LogDaoImpl extends  LogDao<Log> {
 
 
 	@Override
-	public Log select(int id) {
-//		List<Log> list = getSession().createQuery(SELECT).
+	public Task select(int id) {
+//		List<Task> list = getSession().createQuery(SELECT).
 //				setInteger(1, id).list();
 		Session session = getSession();
-		Log list = (Log) session.get(Log.class, new Integer(id));		
+		Task list = (Task) session.get(Task.class, new Integer(id));		
 		return list;
 	}
 
 	@Override
-	public void update(Log bean) {
+	public void update(Task bean) {
 		Session session = getSession();
+//		Task updateTask = (Task)session.load(bean.getClass(), bean.getTaskId());
+//		updateTask.setTaskName(bean.getTaskName());
 		Transaction transaction = session.getTransaction();
 		session.update(bean);
 		transaction.commit();
+//		return null;
 	}
 
 	@Override
-	public List<Log> queryForPage(String hql, int offset, int length) {
+	public List<Task> queryForPage(String hql, int offset, int length) {
 		return null;
 	}
 

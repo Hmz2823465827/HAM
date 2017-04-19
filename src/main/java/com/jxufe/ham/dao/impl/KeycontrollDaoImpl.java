@@ -11,13 +11,13 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jxufe.ham.bean.Log;
+import com.jxufe.ham.bean.Keycontroll;
 import com.jxufe.ham.bean.Log;
 import com.jxufe.ham.dao.BaseDao;
-import com.jxufe.ham.dao.LogDao;
+import com.jxufe.ham.dao.KeycontrollDao;
 
 @Repository
-public class LogDaoImpl extends  LogDao<Log> {
+public class KeycontrollDaoImpl extends  KeycontrollDao<Keycontroll> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -38,15 +38,15 @@ public class LogDaoImpl extends  LogDao<Log> {
 	* Description: 
 	* @param bean
 	* @return
-	* @see com.jxufe.ham.test.dao.LogDao#insert(com.jxufe.ham.bean.Log)
+	* @see com.jxufe.ham.test.dao.KeycontrollDao#insert(com.jxufe.ham.bean.Keycontroll)
 	 */
 	@Override
-	public int insert(Log bean) {
+	public int insert(Keycontroll bean) {
 		return (Integer) getSession().save(bean);
 	}
 
 	@Override
-	public void delete(Log bean) {
+	public void delete(Keycontroll bean) {
 //		getSession().delete(bean);
 		getSession().delete(bean);
 //		return null;
@@ -54,16 +54,16 @@ public class LogDaoImpl extends  LogDao<Log> {
 
 
 	@Override
-	public Log select(int id) {
-//		List<Log> list = getSession().createQuery(SELECT).
+	public Keycontroll select(int id) {
+//		List<Keycontroll> list = getSession().createQuery(SELECT).
 //				setInteger(1, id).list();
 		Session session = getSession();
-		Log list = (Log) session.get(Log.class, new Integer(id));		
+		Keycontroll list = (Keycontroll) session.get(Keycontroll.class, new Integer(id));		
 		return list;
 	}
 
 	@Override
-	public void update(Log bean) {
+	public void update(Keycontroll bean) {
 		Session session = getSession();
 		Transaction transaction = session.getTransaction();
 		session.update(bean);
@@ -71,7 +71,7 @@ public class LogDaoImpl extends  LogDao<Log> {
 	}
 
 	@Override
-	public List<Log> queryForPage(String hql, int offset, int length) {
+	public List<Keycontroll> queryForPage(String hql, int offset, int length) {
 		return null;
 	}
 

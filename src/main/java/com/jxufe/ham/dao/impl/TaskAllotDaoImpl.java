@@ -2,22 +2,17 @@ package com.jxufe.ham.dao.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jxufe.ham.bean.Log;
-import com.jxufe.ham.bean.Log;
-import com.jxufe.ham.dao.BaseDao;
-import com.jxufe.ham.dao.LogDao;
+import com.jxufe.ham.bean.TaskAllot;
+import com.jxufe.ham.dao.TaskAllotDao;
 
 @Repository
-public class LogDaoImpl extends  LogDao<Log> {
+public class TaskAllotDaoImpl extends  TaskAllotDao<TaskAllot> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -38,15 +33,15 @@ public class LogDaoImpl extends  LogDao<Log> {
 	* Description: 
 	* @param bean
 	* @return
-	* @see com.jxufe.ham.test.dao.LogDao#insert(com.jxufe.ham.bean.Log)
+	* @see com.jxufe.ham.test.dao.TaskAllotDao#insert(com.jxufe.ham.bean.TaskAllot)
 	 */
 	@Override
-	public int insert(Log bean) {
+	public int insert(TaskAllot bean) {
 		return (Integer) getSession().save(bean);
 	}
 
 	@Override
-	public void delete(Log bean) {
+	public void delete(TaskAllot bean) {
 //		getSession().delete(bean);
 		getSession().delete(bean);
 //		return null;
@@ -54,24 +49,27 @@ public class LogDaoImpl extends  LogDao<Log> {
 
 
 	@Override
-	public Log select(int id) {
-//		List<Log> list = getSession().createQuery(SELECT).
+	public TaskAllot select(int id) {
+//		List<TaskAllot> list = getSession().createQuery(SELECT).
 //				setInteger(1, id).list();
 		Session session = getSession();
-		Log list = (Log) session.get(Log.class, new Integer(id));		
+		TaskAllot list = (TaskAllot) session.get(TaskAllot.class, new Integer(id));		
 		return list;
 	}
 
 	@Override
-	public void update(Log bean) {
+	public void update(TaskAllot bean) {
 		Session session = getSession();
+//		TaskAllot updateTaskAllot = (TaskAllot)session.load(bean.getClass(), bean.getTaskAllotId());
+//		updateTaskAllot.setTaskAllotName(bean.getTaskAllotName());
 		Transaction transaction = session.getTransaction();
 		session.update(bean);
 		transaction.commit();
+//		return null;
 	}
 
 	@Override
-	public List<Log> queryForPage(String hql, int offset, int length) {
+	public List<TaskAllot> queryForPage(String hql, int offset, int length) {
 		return null;
 	}
 

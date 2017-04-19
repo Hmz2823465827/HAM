@@ -1,12 +1,17 @@
 package com.jxufe.ham.service.impl;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.Workrecord;
 import com.jxufe.ham.dao.EmployeeDao;
 import com.jxufe.ham.dao.impl.EmployeeDaoImpl;
 import com.jxufe.ham.service.EmployeeService;
+import com.jxufe.ham.util.PageCompare;
 
 /**
  * 
@@ -16,7 +21,7 @@ import com.jxufe.ham.service.EmployeeService;
  * @date 2017年4月5日 下午8:32:07
  */
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl extends BaseService implements EmployeeService {
 
 	@Autowired
 	private EmployeeDao<Employee> dao;//自动注入employeeDao层实现类
@@ -51,4 +56,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return null;
 	}
 
+	public ArrayList<Workrecord> loadByWordrecord(Employee employee, int page, int row) {
+		return loadByWordrecord(employee, "getWordrecord", page, row);
+	}
+
+	
+	public ArrayList<Workrecord> loadByWordrecord(Employee employee,String compareString,int page,int row){
+		Set<Workrecord> wordrecordSet = employee.getWorkrecords();
+		PageCompare<Workrecord> comparable = new PageCompare<Workrecord>(compareString);
+		ArrayList<Workrecord> arrayList = (ArrayList<Workrecord>)sortOnSet(wordrecordSet, page, row,comparable);
+		return arrayList;
+	}
 }
