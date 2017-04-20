@@ -1,9 +1,11 @@
 package com.jxufe.ham.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.Workrecord;
+import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
  * 
@@ -61,5 +63,5 @@ public interface EmployeeService {
 	* @param row 一页的数据量
 	* @return
 	 */
-	public abstract ArrayList<Workrecord> loadByWordrecord(Employee employee, int page, int row);
+	public abstract List<BaseBean> loadByWordrecord(Employee employee, int page, int row);
 }

@@ -1,6 +1,7 @@
 package com.jxufe.ham.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.abstractBean.BaseBean;
 import com.jxufe.ham.dao.EmployeeDao;
 import com.jxufe.ham.service.EmployeeService;
 
@@ -94,15 +97,22 @@ public class EmployeeController {
 
 	}
 	
-	@RequestMapping("/loadWordrecord")
-	public HashMap<String, Object> loadWordrecord(HttpServletRequest request,@RequestParam int page,@RequestParam int row) {
-		Employee employee = (Employee)getSessionValue(request, LOGIN_E);
+	@RequestMapping(value = "/loadWordrecord",method = RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> loadWordrecord(HttpServletRequest request, String pageSize,@RequestBody String pageNumber) {
+//		Employee employee = (Employee)getSessionValue(request, LOGIN_E);
+		Employee employee = eService.load(1);
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		try {
-			eService.loadByWordrecord(employee,page,row);
+			List<BaseBean> list = eService.loadByWordrecord(employee,Integer.parseInt(pageNumber),Integer.parseInt(pageSize));
+			hashMap.put("list", list);
+			hashMap.put(ISDONE, true);
+			hashMap.put(MSG, "获取成功");
 		} catch (Exception e) {
+			hashMap.put(ISDONE, false);
+			hashMap.put(MSG, "获取失败");
 			log.error(e.getMessage());
 		}
-		return null;
+		return hashMap;
 	}
 
 }

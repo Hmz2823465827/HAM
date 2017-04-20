@@ -137,28 +137,32 @@ pageEncoding="UTF-8"%>
 			
 			$("#LoginButton").click(function(e){
 				e.preventDefault();
-				$.ajax({
-					cache:true,
-				    type:"POST",
-				    datetype:"json",
-				    data:$("#form1").serializeArray(),
-				    url:"/HAM/index/login.htmls",
-				    success:function(data){
-				    	/* var dataJson = data.parseJSON(); */
-				    	var dataJson = JSON.parse(data);
-				    	if(dataJson.isLogin==true){
-				    		window.setTimeout("loginsuccess()", 500);
-				    	}
-				    	if(dataJson.isLogin==false){
-				    		alert(data.errorMsg);
-				    	}
-				    	
-				    }
-				});
+
+		$.ajax({
+				cache : true,
+				type : "POST",
+				datetype : "json",
+				data : $("#form1").serializeArray(),
+				url : "/HAM/index/login.htmls",
+				success : function(data) {
+					/* var dataJson = data.parseJSON(); */
+					var dataJson = JSON.parse(data);
+					if (dataJson.isLogin == true) {
+						window.setTimeout("loginsuccess()", 500);
+					}
+					if (dataJson.isLogin == false) {
+						alert(data.errorMsg);
+					}
+
+				}
 			});
-			
-			function loginsuccess(){
-				$("#form1").attr({"action":"/HAM/index/toIndex.htmls","method":"GET"}).submit();
-			};
+		});
+
+		function loginsuccess() {
+			$("#form1").attr({
+				"action" : "/HAM/index/toIndex.htmls",
+				"method" : "GET"
+			}).submit();
+		};
 	</script>
 </html>

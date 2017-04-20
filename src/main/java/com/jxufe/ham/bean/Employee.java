@@ -4,6 +4,9 @@
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jxufe.ham.bean.Depart;
 import com.jxufe.ham.bean.Followup;
 import com.jxufe.ham.bean.House;
@@ -43,24 +46,34 @@ public class Employee extends BaseBean {
 	
 	private int employeePosition;//员工职位
 	
+	@JsonIgnore
 	private Set<Leaveword> leavewords = new HashSet<Leaveword>(0);//员工留言
 	
+	@JsonIgnore
 	private Set<Performance> performances = new HashSet<Performance>(0);//员工绩效
 	
+	@JsonIgnore
 	private Set<House> houses = new HashSet<House>(0);//员工负责房屋集合
 	
+	@JsonIgnore
 	private Set<Followup> followups = new HashSet<Followup>(0);//员工跟进记录
 	
+	@JsonIgnore
 	private Set<Workrecord> workrecords = new HashSet<Workrecord>(0);//员工考勤集合
 	
+	@JsonIgnore
 	private Set<Log> logs = new HashSet<Log>(0);//员工登入日志集合
 	
+	@JsonIgnore
 	private Set<Keycontroll> keycontrolls = new HashSet<Keycontroll>(0);//员工钥匙接管记录集合
 	
+	@JsonIgnore
 	private Set<Task> tasks = new HashSet<Task>(0);//员工发布任务集合
 	
+	@JsonIgnore
 	private Set<Depart> departs = new HashSet<Depart>(0);//员工担任部门经理集合
 	
+	@JsonIgnore
 	private Set<TaskAllot> taskAllots = new HashSet<TaskAllot>();//员工接受任务集合
 	
 
