@@ -91,6 +91,6 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "toIndex",method = RequestMethod.GET)
 	public ModelAndView toIndex(){
-		return new ModelAndView("index");//返回WEB-INF下的view目录下index.jsp文件
+		return new ModelAndView("main2");//返回WEB-INF下的view目录下index.jsp文件
 	}
 }

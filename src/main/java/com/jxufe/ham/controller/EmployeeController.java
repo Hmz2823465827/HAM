@@ -93,14 +93,6 @@ public class EmployeeController {
 		return value;
 
 	}
-
-	// @RequestMapping("/log")
-	// public ModelAndView log(Employee e){
-	// Employee eLogin = eService.login(e);
-	// if(eLogin!=null)
-	// return new ModelAndView("test");
-	// else return new ModelAndView("index");
-	// }
 	
 	@RequestMapping("/loadWordrecord")
 	public HashMap<String, Object> loadWordrecord(HttpServletRequest request,@RequestParam int page,@RequestParam int row) {
