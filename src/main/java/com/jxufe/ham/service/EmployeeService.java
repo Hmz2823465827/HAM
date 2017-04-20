@@ -1,6 +1,9 @@
 package com.jxufe.ham.service;
 
+import java.util.ArrayList;
+
 import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.Workrecord;
 
 /**
  * 
@@ -48,4 +51,15 @@ public interface EmployeeService {
 	public void update(Employee e);
 	
 	public Employee login(Employee e);
+
+	/**
+	 * 
+	* @Title: loadByWordrecord 
+	* @Description:获得该员工的任务记录
+	* @param employee 员工
+	* @param page 页码
+	* @param row 一页的数据量
+	* @return
+	 */
+	public abstract ArrayList<Workrecord> loadByWordrecord(Employee employee, int page, int row);
 }

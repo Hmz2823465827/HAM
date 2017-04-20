@@ -2,22 +2,17 @@ package com.jxufe.ham.dao.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jxufe.ham.bean.Log;
-import com.jxufe.ham.bean.Log;
-import com.jxufe.ham.dao.BaseDao;
-import com.jxufe.ham.dao.LogDao;
+import com.jxufe.ham.bean.Workrecord;
+import com.jxufe.ham.dao.WorkrecordDao;
 
 @Repository
-public class LogDaoImpl extends  LogDao<Log> {
+public class WorkrecordDaoImpl extends  WorkrecordDao<Workrecord> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -38,15 +33,15 @@ public class LogDaoImpl extends  LogDao<Log> {
 	* Description: 
 	* @param bean
 	* @return
-	* @see com.jxufe.ham.test.dao.LogDao#insert(com.jxufe.ham.bean.Log)
+	* @see com.jxufe.ham.test.dao.WorkrecordDao#insert(com.jxufe.ham.bean.Workrecord)
 	 */
 	@Override
-	public int insert(Log bean) {
+	public int insert(Workrecord bean) {
 		return (Integer) getSession().save(bean);
 	}
 
 	@Override
-	public void delete(Log bean) {
+	public void delete(Workrecord bean) {
 //		getSession().delete(bean);
 		getSession().delete(bean);
 //		return null;
@@ -54,24 +49,27 @@ public class LogDaoImpl extends  LogDao<Log> {
 
 
 	@Override
-	public Log select(int id) {
-//		List<Log> list = getSession().createQuery(SELECT).
+	public Workrecord select(int id) {
+//		List<Workrecord> list = getSession().createQuery(SELECT).
 //				setInteger(1, id).list();
 		Session session = getSession();
-		Log list = (Log) session.get(Log.class, new Integer(id));		
+		Workrecord list = (Workrecord) session.get(Workrecord.class, new Integer(id));		
 		return list;
 	}
 
 	@Override
-	public void update(Log bean) {
+	public void update(Workrecord bean) {
 		Session session = getSession();
+//		Workrecord updateWorkrecord = (Workrecord)session.load(bean.getClass(), bean.getWorkrecordId());
+//		updateWorkrecord.setWorkrecordName(bean.getWorkrecordName());
 		Transaction transaction = session.getTransaction();
 		session.update(bean);
 		transaction.commit();
+//		return null;
 	}
 
 	@Override
-	public List<Log> queryForPage(String hql, int offset, int length) {
+	public List<Workrecord> queryForPage(String hql, int offset, int length) {
 		return null;
 	}
 

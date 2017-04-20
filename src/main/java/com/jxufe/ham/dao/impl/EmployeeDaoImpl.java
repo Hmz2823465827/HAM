@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -64,9 +65,9 @@ public class EmployeeDaoImpl extends  EmployeeDao<Employee> {
 	@Override
 	public void update(Employee bean) {
 		Session session = getSession();
-		Employee updateEmployee = (Employee)session.load(bean.getClass(), bean.getEmployeeId());
-		updateEmployee.setEmployeeName(bean.getEmployeeName());
-//		return null;
+		Transaction transaction = session.getTransaction();
+		session.update(bean);
+		transaction.commit();
 	}
 
 	@Override

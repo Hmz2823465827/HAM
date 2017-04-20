@@ -1,6 +1,10 @@
 package com.jxufe.ham.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.Workrecord;
 
 
 /**
@@ -31,5 +35,7 @@ public abstract class EmployeeDao<E> extends BaseDao<E>{
 	* @return
 	 */
 	public abstract int getCount(String hql);
-	
+
+
+		
 }
