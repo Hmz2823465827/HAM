@@ -11,12 +11,12 @@ pageEncoding="UTF-8"%>
 		<meta charset="UTF-8">
 		<title>HouseAgencyManagement</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href='<c:url value="js/bootstrap/css/bootstrap.min.css"/>'>
-		<link rel="stylesheet" href='<c:url value="js/bootstrap/css/bootstrap-theme.min.css"/>'>
-		<link rel="stylesheet" href='<c:url value="js/bootstrap/css/bootstrapValidator.min.css"/>'>
+		<link rel="stylesheet" href='<c:url value="plugin/js/bootstrap/css/bootstrap.min.css"/>'>
+		<link rel="stylesheet" href='<c:url value="plugin/js/bootstrap/css/bootstrap-theme.min.css"/>'>
+		<link rel="stylesheet" href='<c:url value="plugin/js/bootstrap/css/bootstrapValidator.min.css"/>'>
 		<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-		<script src='<c:url value="js/bootstrap/js/bootstrap.min.js"/>'></script>
-		<script src='<c:url value="js/bootstrap/js/bootstrapValidator.min.js"/>'></script>
+		<script src='<c:url value="plugin/js/bootstrap/js/bootstrap.min.js"/>'></script>
+		<script src='<c:url value="plugin/js/bootstrap/js/bootstrapValidator.min.js"/>'></script>
 <style>
 			* {
 				margin: 0;
@@ -137,28 +137,32 @@ pageEncoding="UTF-8"%>
 			
 			$("#LoginButton").click(function(e){
 				e.preventDefault();
-				$.ajax({
-					cache:true,
-				    type:"POST",
-				    datetype:"json",
-				    data:$("#form1").serializeArray(),
-				    url:"/HAM/index/login.htmls",
-				    success:function(data){
-				    	/* var dataJson = data.parseJSON(); */
-				    	var dataJson = JSON.parse(data);
-				    	if(dataJson.isLogin==true){
-				    		window.setTimeout("loginsuccess()", 500);
-				    	}
-				    	if(dataJson.isLogin==false){
-				    		alert(data.errorMsg);
-				    	}
-				    	
-				    }
-				});
+
+		$.ajax({
+				cache : true,
+				type : "POST",
+				datetype : "json",
+				data : $("#form1").serializeArray(),
+				url : "/HAM/index/login.htmls",
+				success : function(data) {
+					/* var dataJson = data.parseJSON(); */
+					var dataJson = JSON.parse(data);
+					if (dataJson.isLogin == true) {
+						window.setTimeout("loginsuccess()", 500);
+					}
+					if (dataJson.isLogin == false) {
+						alert(data.errorMsg);
+					}
+
+				}
 			});
-			
-			function loginsuccess(){
-				$("#form1").attr({"action":"/HAM/index.htmls","method":"POST"}).submit();
-			};
+		});
+
+		function loginsuccess() {
+			$("#form1").attr({
+				"action" : "/HAM/index/toIndex.htmls",
+				"method" : "GET"
+			}).submit();
+		};
 	</script>
 </html>

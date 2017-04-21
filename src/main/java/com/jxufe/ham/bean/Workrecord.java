@@ -2,6 +2,7 @@ package com.jxufe.ham.bean;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
 
@@ -18,6 +19,7 @@ public class Workrecord extends BaseBean{
 	
 	private int workRecordId;//考勤编号
 	
+	@JsonManagedReference
 	private Employee employee;//员工
 	
 	private Date workRecordDate;//考勤日期

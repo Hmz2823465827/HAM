@@ -14,6 +14,8 @@
 	<!-- <mvc:annotation-driven /> -->
 
 
+	<mvc:resources mapping="/plugin/**"  location="plugin/" />
+	
 	<!-- 以下为SpringMVC配置 -->
 	<mvc:annotation-driven>
 		<!-- 返回json数据，@response使用 -->
@@ -26,26 +28,25 @@
 						<value>application/json;charset=UTF-8</value>
 					</list>
 				</property>
-
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
-	<mvc:interceptors>
+	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<!--过滤全部请求 -->
+			过滤全部请求
 			<mvc:exclude-mapping path="/index" />
-			<!-- 除了hello这个请求 -->
+			除了hello这个请求
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/views" />
+		<property name="prefix" value="/WEB-INF/views/" />
 
 		<property name="suffix" value=".jsp" />
 	</bean>
