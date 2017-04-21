@@ -19,7 +19,8 @@
 	type="text/javascript" charset="utf-8"></script>
 <script src='<c:url value="plugin/js/bootstrap.js"/>'
 	type="text/javascript" charset="utf-8"></script>
-	<script src='<c:url value="plugin/js/bootstrap-table/bootstrap-table.js"/>'
+<script
+	src='<c:url value="plugin/js/bootstrap-table/bootstrap-table.js"/>'
 	type="text/javascript" charset="utf-8"></script>
 <script src='<c:url value="plugin/js/bootstrap-treeview.js"/>'
 	type="text/javascript" charset="utf-8"></script>
@@ -30,8 +31,7 @@
 	href='<c:url value="plugin/css/bootstrap.min.css"/>' />
 <link rel="stylesheet" type="text/css"
 	href='<c:url value="plugin/css/bootstrap-treeview.css"/>' />
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="plugin/css/main.css"/>' />
+
 
 </head>
 
@@ -84,7 +84,7 @@
 
 				<div class="list-group">
 					<button type="button" class="list-group-item"
-						onclick="loadWordRecord()">工作日志</button>
+						onclick="showWordRecord()">工作日志</button>
 					<button type="button" class="list-group-item">Dapibus ac
 						facilisis in</button>
 					<button type="button" class="list-group-item">Morbi leo
@@ -96,145 +96,66 @@
 				</div>
 			</div>
 
-			<div class="col-md-9 column" style="background-color: #fff;">
-
+			<div class="col-md-9 column" style="background-color: #fff;display:none;"
+				id="wordRecordPanel">
 				<div class="panel panel-default">
 					<!-- Default panel contents -->
-					<div class="panel-heading">Panel heading</div>
-					<!-- <div class="panel-body">
-						<p>...</p> -->
+					<div class="panel-heading">显示工作日志</div>
+					<div class="panel-body">
+						<table id="wordRecordTable" class="table table-hover"
+							data-toggle="table" data-search="true" data-pagination="true">
+							<thead>
+								<tr>
+									<th data-field="workRecordId">workRecordId</th>
+									<th data-field="workRecordDate">worRecordDate</th>
+									<th data-field="leaveSignIn">leaveSignIn</th>
+									<th data-field="actualSignIn">leaveSignIn</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+
 				</div>
 				<!-- Table -->
-				<table class="table tabletable-hover" id="wordRecordTable"
-					data-pagination="true" data-show-refresh="true"
-					data-show-toggle="true" data-showColumns="true">
-					<thead>
-						<tr>
-							<th data-field="workRecordId">workRecordId</th>
-							<th data-field="workRecordDate">workRecordDate</th>
-							<th data-field="actualSignIn">actualSignIn</th>
-							<th data-field="leaveSignIn">leaveSignIn</th>
-						</tr>
-					</thead>
-				</table>
+				<!--  -->
+
 			</div>
 		</div>
-
-	</div>
-
-	</div>
 </body>
 
 <script>
-	function loadWordRecord() {
-		/* 	$.ajax({
-				cache : true,
-				type : "POST",
-				datetype : "json",
-				url : "/HAM/employee/loadWordrecord.htmls",
-				success : function(data) {
-					var dataJson = data.parseJSON();
-					if (dataJson.isLogin == true) {
-						alter(dataJson.list);
-					}
-					if (dataJson.isLogin == false) {
-						alert(data.errorMsg);
-					}
-
-				}
-			}); */
-		$("#wordRecordTable").bootstrapTable({
-			method : "post", //使用get请求到服务器获取数据  
-			url : "/HAM/employee/loadWordrecord.htmls", //获取数据的Servlet地址  
-			striped : true, //表格显示条纹  
-			pagination : true, //启动分页  
-			pageSize : 10, //每页显示的记录数  
-			pageNumber : 0, //当前第几页  
-			pageList : [ 5, 10, 15, 20, 25 ], //记录数可选列表  
-			search : false, //是否启用查询  
-			showColumns : true, //显示下拉框勾选要显示的列  
-			showRefresh : true, //显示刷新按钮  
-			sidePagination : "server", //表示服务端请求  
-			//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
-			//设置为limit可以获取limit, offset, search, sort, order  
-			queryParamsType : "undefined",
-			/*queryParams : function queryParams(params) { //设置查询参数  
-				var param = {
-					pageNumber : params.pageNumber,
-					pageSize : params.pageSize,
-					orderNum : $("#orderNum").val()
-				};
-				return param;
-			} ,  
-				            onLoadSuccess: function(){  //加载成功时执行  
-				              layer.msg("加载成功");  
-				            },  
-				            onLoadError: function(){  //加载失败时执行  
-				              layer.msg("加载数据失败", {time : 1500, icon : 2});  
-				            }   */
-		});
-		/* } */
-	}
-	/* function getTree() {
-		var tree = [ {
-			text : "信息大厅",
-			icon : "glyphicon glyphicon-home",
-			selectedIcon : "glyphicon glyphicon-home",
-			color : "#000000",
-			backColor : "#FFFFFF",
-			href : "#node-1",
-			state : {
-				checked : true,
-				expanded : true,
-				selected : true
-			},
-			tags : [ 'available' ],
-			nodes : [ {
-				text : "child 1",
-				nodes : [ {
-					text : "Grandchild 1"
-				}, {
-					text : "Grandchild 2"
-				} ]
-			}, {
-				text : "child 2"
-			} ]
-		}, {
-			text : "parent 2",
-			nodes : [ {
-				text : "child 1",
-				nodes : [ {
-					text : "Grandchild 1"
-				}, {
-					text : "Grandchild 2"
-				} ]
-			}, {
-				text : "child 2"
-			} ]
-		}, {
-			text : "parent 3",
-			nodes : [ {
-				text : "child 1",
-				nodes : [ {
-					text : "Grandchild 1"
-				}, {
-					text : "Grandchild 2"
-				} ]
-			}, {
-				text : "child 2"
-			} ]
-		}, ];
-		return tree;
-	} */
-	/* 	$('#tree').treeview({
-	 data : getTree()
-	 }); */
-	$(document).ready(function() {
-		//调用函数，初始化表格  
+	function showWordRecord() {
+		var $wordRecordPanel = $('#wordRecordPanel');
+		//$wordRecordPanel.
+		$wordRecordPanel.css("display", "inherit");
 		loadWordRecord();
 
-/* 		//当点击查询按钮的时候执行  
-		$("#search").bind("click", initTable); */
+	}
+
+	function loadWordRecord() {
+		$
+				.ajax({
+					cache : true,
+					type : "GET",
+					datetype : "json",
+					url : "/HAM/employee/loadWordrecordAll.htmls",
+					success : function(data) {
+						var dataJson = eval('(' + data + ')');
+
+						if (dataJson.isDone == true) {
+
+							$("#wordRecordTable").bootstrapTable('load',
+									dataJson.list);
+						}
+						if (dataJson.isLogin == false) {
+							alert(data.errorMsg);
+						}
+
+					}
+				});
+	}
+
+	$(document).ready(function() {
 	});
 </script>
 </html>
