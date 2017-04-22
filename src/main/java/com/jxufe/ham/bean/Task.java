@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
@@ -31,6 +32,7 @@ public class Task extends BaseBean {
 	
 	private String taskInfo;//任务详情
 	
+	@JsonIgnore
 	private Set<Employee> employees = new HashSet<Employee>(0);
 	
 

@@ -118,13 +118,29 @@ public class EmployeeController {
 		return hashMap;
 	}
 	
-	@RequestMapping(value = "/loadWordrecordAll", method = RequestMethod.GET)
+	@RequestMapping(value = "/loadworkRecordAll", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> loadWordrecordALL(HttpServletRequest request
 		) {
 		Employee employee = eService.load(1);
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		try {
 					hashMap.put("list", employee.getWorkrecords());
+			hashMap.put(ISDONE, true);
+			hashMap.put(MSG, "获取成功");
+		} catch (Exception e) {
+			hashMap.put(ISDONE, false);
+			hashMap.put(MSG, "获取失败");
+			log.error(e.getMessage());
+		}
+		return hashMap;
+	}
+	
+	@RequestMapping(value = "/loadhouseAll",method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> loadHouse(HttpServletRequest request){
+		Employee employee = eService.load(1);
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		try {
+			hashMap.put("list", employee.getHouses());
 			hashMap.put(ISDONE, true);
 			hashMap.put(MSG, "获取成功");
 		} catch (Exception e) {

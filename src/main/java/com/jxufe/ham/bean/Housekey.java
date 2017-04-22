@@ -3,6 +3,7 @@ package com.jxufe.ham.bean;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jxufe.ham.bean.House;
 import com.jxufe.ham.bean.Keycontroll;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
@@ -22,8 +23,10 @@ public class Housekey extends BaseBean{
 	
 	private boolean houseKeyStatue;//房屋钥匙状态
 	
+	@JsonIgnore
 	private Set<Keycontroll> keycontrolls = new HashSet<Keycontroll>(0);//房屋钥匙关系集合
 	
+	@JsonIgnore
 	private Set<House> houses = new HashSet<House>(0);//钥匙所属房屋
 
 	public Housekey() {
@@ -52,7 +55,7 @@ public class Housekey extends BaseBean{
 		this.houseKey = houseKey;
 	}
 
-	public boolean isHouseKeyStatue() {
+	public boolean getHouseKeyStatue() {
 		return this.houseKeyStatue;
 	}
 

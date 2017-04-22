@@ -3,6 +3,7 @@ package com.jxufe.ham.bean;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
@@ -32,8 +33,10 @@ public class Custom extends BaseBean {
 	
 	private String purposePosition;//意向位置
 	
+	@JsonIgnore
 	private Set<Performance> performances = new HashSet<Performance>(0);//绩效
 	
+	@JsonIgnore
 	private Set<Followup> followups = new HashSet<Followup>(0);//跟进
 
 	public Custom() {

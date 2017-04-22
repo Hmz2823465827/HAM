@@ -3,6 +3,7 @@ package com.jxufe.ham.bean;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
@@ -26,6 +27,7 @@ public class Depart extends BaseBean{
 	
 	private int employeeId;//部门经理编号
 	
+	@JsonIgnore
 	private Set<Employee> employeesForDepartId = new HashSet<Employee>(0);//部门员工
 
 	public Depart() {
