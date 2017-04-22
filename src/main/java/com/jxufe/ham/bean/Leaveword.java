@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
 
@@ -30,6 +31,7 @@ public class Leaveword extends BaseBean{
 	
 	private Boolean anonymousStatue;//是否匿名
 	
+	@JsonIgnore
 	private Set<Leaveword> leavewords = new HashSet<Leaveword>(0);//留言回复
 
 	public Leaveword() {

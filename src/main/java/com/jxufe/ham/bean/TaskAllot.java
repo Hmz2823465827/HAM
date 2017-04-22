@@ -21,13 +21,9 @@ public class TaskAllot extends BaseBean {
 	
 	private Task task; //任务
 
-	
-	
 	public TaskAllot() {
 		super();
 	}
-
-	
 	
 	public TaskAllot(int taskAllotId,Employee employee, Task task) {
 		super();

@@ -3,6 +3,7 @@ package com.jxufe.ham.bean;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.Followup;
 import com.jxufe.ham.bean.Housekey;
@@ -41,10 +42,13 @@ public class House extends BaseBean {
 	
 	private String clientPhone;//房主联系方式
 	
+	@JsonIgnore
 	private Set<Pact> pacts = new HashSet<Pact>(0);//合同
 	
+	@JsonIgnore
 	private Set<Followup> followups = new HashSet<Followup>(0);//跟进记录
 	
+	@JsonIgnore
 	private Set<Housemap> housemaps = new HashSet<Housemap>(0);//房屋地图
 
 	public House() {

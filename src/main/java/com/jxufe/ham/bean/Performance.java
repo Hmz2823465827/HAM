@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jxufe.ham.bean.Custom;
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.Pact;
@@ -38,6 +39,7 @@ public class Performance extends BaseBean{
 	
 	private String performanceInfo;//绩效时间
 	
+	@JsonIgnore
 	private Set<Pact> pacts = new HashSet<Pact>(0);//绩效相关合同
 
 	public Performance() {
