@@ -126,6 +126,23 @@ public class EmployeeController {
 		return hashMap;
 	}
 	
+	@RequestMapping(value = "/loadSetbyParam",method = RequestMethod.POST)
+	public @ResponseBody HashMap<String, Object> loadSetByParam(HttpServletRequest request,String setName){
+		Employee employee = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		try {
+			hashMap.put("list", eService.loadSetByParam(employee,setName));
+			hashMap.put(ISDONE, true);
+			hashMap.put(MSG, "获取成功");
+		} catch (Exception e) {
+			hashMap.put(ISDONE, false);
+			hashMap.put(MSG, "获取失败");
+			log.error(e.getMessage());
+		}
+		return null;
+		
+	}
+	
 	/**
 	 * 
 	* @Title: loadWordrecordALL 
@@ -136,7 +153,8 @@ public class EmployeeController {
 	@RequestMapping(value = "/loadworkRecordAll", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> loadWordrecordALL(HttpServletRequest request
 		) {
-		Employee employee  = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
+		Employee employee = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
+//		Employee employee  = eService.load(1);
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		try {
 			hashMap.put("list", employee.getWorkrecords());

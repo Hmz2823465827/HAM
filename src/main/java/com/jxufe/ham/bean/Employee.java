@@ -74,7 +74,7 @@ public class Employee extends BaseBean {
 	private Set<Depart> departs = new HashSet<Depart>(0);//员工担任部门经理集合
 	
 	@JsonIgnore
-	private Set<TaskAllot> taskAllots = new HashSet<TaskAllot>();//员工接受任务集合
+	private Set<TaskAllot> taskAllots = new HashSet<TaskAllot>(0);//员工接受任务集合
 	
 
 	public Employee() {

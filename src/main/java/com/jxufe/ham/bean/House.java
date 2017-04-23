@@ -26,8 +26,7 @@ public class House extends BaseBean {
 	private int houseId;//房屋编号
 	
 	private Employee employee;//负责员工
-	
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 	private Housekey housekey;//房屋钥匙
 	
 	private boolean rentStatue;//租赁状态

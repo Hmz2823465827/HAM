@@ -27,15 +27,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!-- 配置Spring的OpenSessionInViewFilter过滤器，以解决Hibernate的懒加载异常（LazyInitializationException） -->
-	<filter>
-		<filter-name>OpenSessionInViewFilter</filter-name>
-		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>OpenSessionInViewFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 	
 	<!-- openSessionInView配置 作用是延迟session关闭到view层 -->
 	<filter>
@@ -47,6 +38,7 @@
 		</init-param>
 	</filter>
 
+	
 	<!-- 监听servletContext，启动contextConfigLocation中的spring配置信息 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
