@@ -3,10 +3,12 @@ package com.jxufe.ham.controller;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
 import com.jxufe.ham.service.EmployeeService;
+import com.jxufe.ham.util.StaticKey;
 
 /**
  * 
@@ -68,7 +71,7 @@ public class LoginController {
 					log.debug(employee.getEmployeeId()+":登入成功");
 				}else {
 					hashMap.put(isLogin, false);
-					hashMap.put(msg, "密码匹配失败");
+					hashMap.put(errMsg, "密码匹配失败");
 					log.debug(employee.getEmployeeId()+":登入失败");
 				} 
 			}
@@ -78,8 +81,9 @@ public class LoginController {
 		return hashMap;
 	}
 	
-	private void putSession(HttpServletRequest request, Employee eFromData) {
-		
+	private void putSession(HttpServletRequest request, BaseBean bean) {
+		HttpSession session = request.getSession();
+		session.setAttribute(StaticKey.LOGIN_E,bean);
 		
 	}
 
@@ -89,7 +93,7 @@ public class LoginController {
 	* @Description:登入成功返回ModelAndView视图模型跳转
 	* @return
 	 */
-	@RequestMapping(value = "toIndex",method = RequestMethod.GET)
+	@RequestMapping(value = "toIndex",method = RequestMethod.POST)
 	public ModelAndView toIndex(){
 		return new ModelAndView("index");//返回WEB-INF下的view目录下index.jsp文件
 	}

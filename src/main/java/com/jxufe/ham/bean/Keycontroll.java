@@ -2,6 +2,7 @@ package com.jxufe.ham.bean;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.Housekey;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
@@ -21,6 +22,7 @@ public class Keycontroll extends BaseBean {
 	
 	private Employee employee;//接管钥匙员工
 	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Housekey housekey;//房屋钥匙
 	
 	private boolean isApprove;//是否批准
