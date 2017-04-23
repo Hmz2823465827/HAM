@@ -11,6 +11,7 @@ pageEncoding="UTF-8"%>
 		<meta charset="UTF-8">
 		<title>HouseAgencyManagement</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
 		<link rel="stylesheet" href='<c:url value="plugin/bootstrap/css/bootstrap.min.css"/>'>
 		<link rel="stylesheet" href='<c:url value="plugin/bootstrap/css/bootstrap-theme.min.css"/>'>
 		<link rel="stylesheet" href='<c:url value="plugin/bootstrap/css/bootstrapValidator.min.css"/>'>

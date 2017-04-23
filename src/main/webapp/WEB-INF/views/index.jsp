@@ -25,17 +25,20 @@
 <script src='<c:url value="plugin/js/bootstrap-treeview.js"/>'
 	type="text/javascript" charset="utf-8"></script>
  --%>
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="plugin/css/bootstrap-theme.css"/>' charset="utf-8"/>
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="plugin/css/bootstrap.min.css"/>' />
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="plugin/css/bootstrap-treeview.css"/>' />
-<link rel="stylesheet" href='<c:url value="plugin/bootstrap/css/bootstrap.min.css"/>'>
+ 
+ 		<link rel="stylesheet" href='<c:url value="plugin/css/diycss.css"/>'>
+		<link rel="stylesheet" type="text/css"
+			href='<c:url value="plugin/bootstrap/css/bootstrap-theme.css"/>'>
+		<link rel="stylesheet" type="text/css"
+			href='<c:url value="plugin/bootstrap/css/bootstrap.min.css"/>'>
+		<link rel="stylesheet" type="text/css"
+			href='<c:url value="plugin/bootstrap/css/bootstrap-treeview.css"/>'>
 		<link rel="stylesheet" href='<c:url value="plugin/bootstrap-table/src/bootstrap-table.css"/>'>
+		<link rel="stylesheet" href='<c:url value="plugin/bootstrap/css/bootstrap-treeview.css"/>'>
 		<script src='<c:url value="plugin/jquery-1.11.0.js"/>'></script>
 		<script src='<c:url value="plugin/bootstrap/js/bootstrap.min.js"/>'></script>
 		<script src='<c:url value="plugin/bootstrap-table/src/bootstrap-table.js"/>'></script>
+		<script src='<c:url value="plugin/bootstrap/js/bootstrap-treeview.js"/>'></script>
 
 </head>
 
@@ -50,10 +53,10 @@
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
 							<li>
-								<a href="plugin/#">Link</a>
+								<a href="plugin/#">业绩排行</a>
 							</li>
 							<li>
-								<a href="plugin/#">Link</a>
+								<a href="plugin/#">留言板</a>
 							</li>
 
 						</ul>
@@ -64,33 +67,54 @@
 							<button type="submit" class="btn btn-default">搜索</button>
 						</form>
 						<ul class="nav navbar-nav navbar-right">
-							<li>
-								<a href="plugin/#">Link</a>
-							</li>
 							<li class="dropdown">
-								<a href="plugin/#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+								<a href="plugin/#" class="dropdown-toggle" data-toggle="dropdown">用户名
+								<strong class="caret"></strong>
+								</a>
+								<ul class="dropdown-menu">
+								<li>
+									 <a href="#">个人信息</a>
+								</li>
+								<li class="divider">
+								</li>
+								<li>
+									 <a href="#">登出</a>
+								</li>
+							</ul>
 							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 
-			<div id="board" class="container-fluid" style="padding-left: 0px; padding-right: 0px; background-color: #F5F5F5; border: #F1F1F1 2px solid; border-radius: 5px; margin-top: 12px;">
+			<div id="board" class="container-fluid" style="padding-left: 0px; padding-right: 0px;
+			 background-color: #F5F5F5; border: #F1F1F1 2px solid; border-radius: 5px; margin-top: 12px;">
+			 
 				<div id="personal" class="col-md-3 column" style="background-color: #;">
 					<div id="img1" style="height: 100px; width: 100px; float: left;">
-						<img src="plugin/img/img1.jpg" style="border: 1px solid #C1E2B3; border-radius: 50%; height: 80px; width: 80px; margin: 10px;" />
+						<img src="plugin/img/img1.jpg" style="border: 1px solid #C1E2B3; border-radius: 50%;
+						 height: 80px; width: 80px; margin: 10px;" />
+					</div>				
+					
+ 					<div id="information" style="height: 100px; width:100px; float:left;">
+ 						<div id="job" class = "infospan">
+ 							<p>职务</p>
+ 						</div>
+ 						<div id="grade" class = "infospan" >
+ 							<p>等级</p>
+ 						</div>
+ 						<div id="sign-in" class = "infospan">
+ 							<button type="button" class="btn btn-warning btn-sm">签到</button>
+ 						</div>
+					</div> 
 
-					</div>
-					<div id="information" style="height: 100px; text-align: center;">
-						<button type="button" class="btn btn-warning btn-sm" style="margin-top: 32px; margin-left: 100px;">签到</button>
-					</div>
-
-					<div class="list-group">
-						<button type="button" class="list-group-item" onclick="showPanel('workRecord')">显示工作日志</button>
+					<div class="list-group" id = "functions">
+						<div id="functiontree" class=""></div>
+<!-- 					<button type="button" class="list-group-item" onclick="showPanel('workRecord')">显示工作日志</button>
 						<button type="button" class="list-group-item" onclick="showPanel('house')">房源信息</button>
 						<button type="button" class="list-group-item" onclick="showPanel('keycontroller')">钥匙信息</button>
 						<button type="button" class="list-group-item" onclick="showPanel('followup')">跟进记录</button>
-						<button type="button" class="list-group-item" onclick="showPanel('task')">任务</button>
+						<button type="button" class="list-group-item" onclick="showPanel('task')">任务</button> -->
 					</div>
 				</div>
 
@@ -151,10 +175,11 @@
 		}
 
 		function loadTable(tableType) {
-			var ajaxUrl = "/HAM/employee/load" + tableType + "All.htmls";
+			var ajaxUrl = "/HAM/employee/loadSetbyParam";
 			$.ajax({
 				cache: true,
 				type: "GET",
+				data: {setName:tableType},
 				datetype: "json",
 				url: ajaxUrl,
 				success: function(data) {
@@ -260,6 +285,76 @@
 		}
 
 		$(function() {});
+
+		$(function() {
+			var defaultData = [{
+				text: '通用',
+				href: '#parent1',
+				tags: ['6'],
+				nodes: [{
+					text: '通讯录',
+					href: '#child1',
+					tags: ['0'],
+				}, {
+					text: '黑名单',
+					href: '#child2',
+					tags: ['0']
+				}, {
+					text: '工作日志',
+					href: '#child3',
+					tags: ['0']
+				}, {
+					text: '新闻',
+					href: '#child4',
+					tags: ['0']
+				}, {
+					text: '考勤统计',
+					href: '#child5',
+					tags: ['0']
+				}, {
+					text: '同比环比',
+					href: '#child6',
+					tags: ['0']
+				}]
+			}, {
+				text: '业务员',
+				href: '#parent2',
+				tags: ['4'],
+				nodes: [{
+					text: '房源信息',
+					href: '#child7',
+					tags: ['0'],
+				}, {
+					text: '任务',
+					href: '#child8',
+					tags: ['0']
+				}, {
+					text: '跟进记录',
+					href: '#child9',
+					tags: ['0']
+				}, {
+					text: '钥匙信息',
+					href: '#child10',
+					tags: ['0']
+				}]		
+			}, {
+				text: '部门经理',
+				href: '#parent3',
+				tags: ['0']
+			}, {
+				text: '总经理',
+				href: '#parent4',
+				tags: ['0']
+			}, {
+				text: '钥匙管理员',
+				href: '#parent5',
+				tags: ['0']
+			}];
+		
+			$('#functiontree').treeview({
+				data: defaultData
+			});
+		});
 	</script>
 
 
