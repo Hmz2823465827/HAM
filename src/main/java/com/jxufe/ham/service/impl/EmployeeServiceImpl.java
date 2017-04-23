@@ -1,5 +1,7 @@
 package com.jxufe.ham.service.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +16,7 @@ import com.jxufe.ham.dao.EmployeeDao;
 import com.jxufe.ham.dao.impl.EmployeeDaoImpl;
 import com.jxufe.ham.service.EmployeeService;
 import com.jxufe.ham.util.PageCompare;
+import com.sun.tools.internal.ws.wsdl.document.jaxws.Exception;
 
 /**
  * 
@@ -68,5 +71,30 @@ public class EmployeeServiceImpl extends BaseService implements EmployeeService 
 		PageCompare<BaseBean> comparable = new PageCompare<BaseBean>(compareString);
 		List<BaseBean> arrayList = sortOnSet(wordrecordSet, page, row,comparable);
 		return arrayList;
+	}
+	
+	/**
+	* 
+	* @Title: loadSetByParam 
+	* @Description:通过参数加载相关数据集合
+	* @return
+	*/
+	public Set<BaseBean> loadSetByParam(BaseBean bean,String param) throws java.lang.Exception{
+//		param.Character.toUpperCase(param.charAt(0));
+		Method getIdMethod = bean.getClass().getDeclaredMethod("getEmployeeId");
+		int beanId = (Integer) getIdMethod.invoke(bean);
+		Employee loadBean = load(beanId);
+		StringBuilder builder = new StringBuilder(param);
+		builder.replace(0, 1, Character.toUpperCase(param.charAt(0))+"");
+		builder.append("s");
+		String methodName = "get"+ builder.toString();
+		Method method = loadBean.getClass().getDeclaredMethod(methodName);
+		Object objectSet = method.invoke(loadBean);
+		if(objectSet instanceof Set){
+			@SuppressWarnings("unchecked")
+			Set<BaseBean> paramSet = (Set<BaseBean>)objectSet;
+			return paramSet;
+		}
+		return null;
 	}
 }

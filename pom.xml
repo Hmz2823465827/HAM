@@ -185,7 +185,7 @@
 			<version>1.8</version>
 			<scope>system</scope>
 			<!-- systemPath属性需要根据系统修改 -->
-			<systemPath>C:/Program Files/Java/jdk1.8.0_121/lib/tools.jar</systemPath>
+			<systemPath>C:/Program Files/Java/jdk1.8.0_60/lib/tools.jar</systemPath>
 		</dependency>
 
 	</dependencies>

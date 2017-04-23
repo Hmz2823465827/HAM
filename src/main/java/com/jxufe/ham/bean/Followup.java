@@ -20,12 +20,10 @@ public class Followup implements java.io.Serializable {
 	
 	private int followUpId;//跟进记录编号
 	
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})		
 	private Custom custom;//客户
 	
 	private Employee employee;//员工
 	
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})	
 	private House house;//房屋
 	
 	private int followUpStatue;//跟进状态

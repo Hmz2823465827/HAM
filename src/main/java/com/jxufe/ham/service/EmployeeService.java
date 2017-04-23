@@ -2,6 +2,7 @@ package com.jxufe.ham.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.Workrecord;
@@ -64,4 +65,6 @@ public interface EmployeeService {
 	* @return
 	 */
 	public abstract List<BaseBean> loadByWordrecord(Employee employee, int page, int row);
+	
+	public Set<BaseBean> loadSetByParam(BaseBean bean,String param) throws Exception;
 }
