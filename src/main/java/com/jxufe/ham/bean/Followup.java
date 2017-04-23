@@ -2,6 +2,7 @@ package com.jxufe.ham.bean;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jxufe.ham.bean.Custom;
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.House;
@@ -19,10 +20,12 @@ public class Followup implements java.io.Serializable {
 	
 	private int followUpId;//跟进记录编号
 	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})		
 	private Custom custom;//客户
 	
 	private Employee employee;//员工
 	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})	
 	private House house;//房屋
 	
 	private int followUpStatue;//跟进状态

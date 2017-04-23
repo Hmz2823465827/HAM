@@ -11,12 +11,12 @@ pageEncoding="UTF-8"%>
 		<meta charset="UTF-8">
 		<title>HouseAgencyManagement</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href='<c:url value="plugin/js/bootstrap/css/bootstrap.min.css"/>'>
-		<link rel="stylesheet" href='<c:url value="plugin/js/bootstrap/css/bootstrap-theme.min.css"/>'>
-		<link rel="stylesheet" href='<c:url value="plugin/js/bootstrap/css/bootstrapValidator.min.css"/>'>
-		<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-		<script src='<c:url value="plugin/js/bootstrap/js/bootstrap.min.js"/>'></script>
-		<script src='<c:url value="plugin/js/bootstrap/js/bootstrapValidator.min.js"/>'></script>
+		<link rel="stylesheet" href='<c:url value="plugin/bootstrap/css/bootstrap.min.css"/>'>
+		<link rel="stylesheet" href='<c:url value="plugin/bootstrap/css/bootstrap-theme.min.css"/>'>
+		<link rel="stylesheet" href='<c:url value="plugin/bootstrap/css/bootstrapValidator.min.css"/>'>
+		<script type="text/javascript" src='<c:url value="plugin/jquery-1.11.0.js"/>'></script>
+		<script src='<c:url value="plugin/bootstrap/js/bootstrap.min.js"/>'></script>
+		<script src='<c:url value="plugin/bootstrap/js/bootstrapValidator.min.js"/>'></script>
 <style>
 			* {
 				margin: 0;
@@ -122,18 +122,6 @@ pageEncoding="UTF-8"%>
 		</div>
 	</body>
 	<script type="text/javascript">
-	/*$("#Login").click(function(e){
-			  $.ajax({
-				cache:true,
-			    datetype:"json",
-			    data:$("#form1").serializeArray(),
-			    url:"/localhost:8081/springmvc_hibernate_demo/user/login",
-
-			});  */
-			/* $.post("springmvc_hibernate_demo/user/login",$("#form1").serializeArray(),
-					function(result){alert("test");}) */
-   			/* $("#form1").attr({"action":"/springmvc_hibernate_demo/user/login.htmls","method":"POST"}).submit();
-			}) */
 			
 			$("#LoginButton").click(function(e){
 				e.preventDefault();
@@ -161,8 +149,9 @@ pageEncoding="UTF-8"%>
 		function loginsuccess() {
 			$("#form1").attr({
 				"action" : "/HAM/index/toIndex.htmls",
-				"method" : "GET"
+				"method" : "POST"
 			}).submit();
+			/* $.post("/HAM/index/toIndex.htmls"); */
 		};
 	</script>
 </html>

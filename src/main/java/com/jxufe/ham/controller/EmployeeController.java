@@ -27,6 +27,7 @@ import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
 import com.jxufe.ham.dao.EmployeeDao;
 import com.jxufe.ham.service.EmployeeService;
+import com.jxufe.ham.util.StaticKey;
 
 @Controller
 @RequestMapping("/employee")
@@ -37,8 +38,6 @@ public class EmployeeController {
 
 	private Log log = LogFactory.getLog(EmployeeController.class);
 
-	private final String LOGIN_E = "loginEmployee";// session登入用户key
-
 	private final String ISDONE = "isDone";// 操作是否成功
 
 	private final String MSG = "msg";// 操作成功信息
@@ -47,7 +46,7 @@ public class EmployeeController {
 
 	@RequestMapping("/load")
 	public HashMap<String, Object> load(HttpServletRequest request) {
-		Employee e = (Employee) getSessionValue(request, LOGIN_E);
+		Employee e = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
 		return null;
 	}
 
@@ -60,7 +59,7 @@ public class EmployeeController {
 	 */
 	@RequestMapping("quit")
 	public ModelAndView quit(HttpServletRequest request) {
-		request.getSession().removeAttribute(LOGIN_E);
+		request.getSession().removeAttribute(StaticKey.LOGIN_E);
 		ModelAndView modelAndView = new ModelAndView("login.jsp");
 		return modelAndView;
 
@@ -76,7 +75,7 @@ public class EmployeeController {
 	public HashMap<String, Object> modify(HttpServletRequest request, @Param String passWord) {
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		try {
-			Employee e = (Employee) getSessionValue(request, LOGIN_E);
+			Employee e = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
 			Employee eFromData = eService.load(e.getEmployeeId());
 			if (eFromData == null) {
 				hashMap.put(ISDONE, false);
@@ -100,10 +99,19 @@ public class EmployeeController {
 
 	}
 
+	/**
+	 * 
+	* @Title: loadWordrecord 
+	* @Description:动态加载雇员相关工作日志
+	* @param request
+	* @param pageSize 页面的数据量
+	* @param pageNumber 页码
+	* @return
+	 */
 	@RequestMapping(value = "/loadWordrecord", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> loadWordrecord(HttpServletRequest request,
 			@RequestParam Integer pageSize, @RequestParam Integer pageNumber) {
-		Employee employee = eService.load(1);
+		Employee employee  = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		try {
 			List<BaseBean> list = eService.loadByWordrecord(employee, pageNumber, pageSize);
@@ -118,13 +126,20 @@ public class EmployeeController {
 		return hashMap;
 	}
 	
+	/**
+	 * 
+	* @Title: loadWordrecordALL 
+	* @Description:加载雇员任务日志
+	* @param request
+	* @return
+	 */
 	@RequestMapping(value = "/loadworkRecordAll", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> loadWordrecordALL(HttpServletRequest request
 		) {
-		Employee employee = eService.load(1);
+		Employee employee  = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		try {
-					hashMap.put("list", employee.getWorkrecords());
+			hashMap.put("list", employee.getWorkrecords());
 			hashMap.put(ISDONE, true);
 			hashMap.put(MSG, "获取成功");
 		} catch (Exception e) {
@@ -135,9 +150,16 @@ public class EmployeeController {
 		return hashMap;
 	}
 	
+	/**
+	 * 
+	* @Title: loadHouse 
+	* @Description:加载雇员管理的房屋信息
+	* @param request
+	* @return
+	 */
 	@RequestMapping(value = "/loadhouseAll",method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> loadHouse(HttpServletRequest request){
-		Employee employee = eService.load(1);
+		Employee employee  = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		try {
 			hashMap.put("list", employee.getHouses());
@@ -151,4 +173,65 @@ public class EmployeeController {
 		return hashMap;
 	}
 	
+	/**
+	 * 
+	* @Title: loadTask 
+	* @Description:加载雇员相关的任务信息
+	* @param request
+	* @return
+	 */
+	@RequestMapping(value = "/loadtaskAll",method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> loadTask(HttpServletRequest request){
+		Employee employee  = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		try {
+			hashMap.put("list", employee.getTasks());
+			hashMap.put(ISDONE, true);
+			hashMap.put(MSG, "获取成功");
+		} catch (Exception e) {
+			hashMap.put(ISDONE, false);
+			hashMap.put(MSG, "获取失败");
+			log.error(e.getMessage());
+		}
+		return hashMap;
+	}
+	
+	/**
+	 * 
+	* @Title: loadKeycontroller 
+	* @Description:加载雇员相关的房屋管理
+	* @param request
+	* @return
+	 */
+	@RequestMapping(value = "/loadkeycontrollerAll",method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> loadKeycontroller(HttpServletRequest request){
+		Employee employee  = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		try {
+			hashMap.put("list", employee.getKeycontrolls());
+			hashMap.put(ISDONE, true);
+			hashMap.put(MSG, "获取成功");
+		} catch (Exception e) {
+			hashMap.put(ISDONE, false);
+			hashMap.put(MSG, "获取失败");
+			log.error(e.getMessage());
+		}
+		return hashMap;
+	}
+	
+	@RequestMapping(value = "/loadfollowupAll",method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> loadFollowup(HttpServletRequest request){
+		Employee employee  = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		try {
+			hashMap.put("list", employee.getFollowups());
+			hashMap.put(ISDONE, true);
+			hashMap.put(MSG, "获取成功");
+		} catch (Exception e) { 
+			hashMap.put(ISDONE, false);
+			hashMap.put(MSG, "获取失败");
+			log.error(e.getMessage());
+		}
+		return hashMap;
+	}
 }

@@ -39,86 +39,77 @@
 
 </head>
 
-<body>
-	<div id="all" class="container-fluid" style="background-color: #fff;">
-		<div id="topall" class="container-fluid"
-			style="background-color: #F5F5F5; border: #F1F1F1 2px solid; border-radius: 5px;">
+	<body>
+		<div id="all" class="container-fluid" style="background-color: #fff;">
+			<div id="topall" class="container-fluid" style="background-color: #F5F5F5; border: #F1F1F1 2px solid; border-radius: 5px;">
 
-			<div id="top" class="col-md-12 column">
-				<div class="navbar-header">
-					<a class="navbar-brand">HAM</a>
-				</div>
-				<div class="collapse navbar-collapse"
-					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li><a href="plugin/#">Link</a></li>
-						<li><a href="plugin/#">Link</a></li>
+				<div id="top" class="col-md-12 column">
+					<div class="navbar-header">
+						<a class="navbar-brand">HAM</a>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li>
+								<a href="plugin/#">Link</a>
+							</li>
+							<li>
+								<a href="plugin/#">Link</a>
+							</li>
 
-					</ul>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" />
-						</div>
-						<button type="submit" class="btn btn-default">搜索</button>
-					</form>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="plugin/#">Link</a></li>
-						<li class="dropdown"><a href="plugin/#"
-							class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong
-								class="caret"></strong></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div id="board" class="container-fluid"
-			style="padding-left: 0px; padding-right: 0px; background-color: #F5F5F5; border: #F1F1F1 2px solid; border-radius: 5px; margin-top: 12px;">
-			<div id="personal" class="col-md-3 column"
-				style="background-color: #;">
-				<div id="img1" style="height: 100px; width: 100px; float: left;">
-					<img 
-						src="plugin/img/img1.jpg"
-						style="border: 1px solid #C1E2B3; border-radius: 50%; height: 80px; width: 80px; margin: 10px;" />
-
-				</div>
-				<div id="information" style="height: 100px; text-align: center;">
-					<button type="button" class="btn btn-warning btn-sm"
-						style="margin-top: 32px; margin-left: 100px;">签到</button>
-				</div>
-
-				<div class="list-group">
-					<button type="button" class="list-group-item"
-						onclick="showPanel('workRecord')">显示工作日志</button>
-					<button type="button" class="list-group-item"
-						onclick="showPanel('house')">房源信息</button>
-					<button type="button" class="list-group-item">Morbi leo
-						risus</button>
-					<button type="button" class="list-group-item">Porta ac
-						consectetur ac</button>
-					<button type="button" class="list-group-item">Vestibulum
-						at eros</button>
+						</ul>
+						<form class="navbar-form navbar-left" role="search">
+							<div class="form-group">
+								<input type="text" class="form-control" />
+							</div>
+							<button type="submit" class="btn btn-default">搜索</button>
+						</form>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="plugin/#">Link</a>
+							</li>
+							<li class="dropdown">
+								<a href="plugin/#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 
-			<div class="col-md-9 column" style="background-color: #fff"
-				id="Panel">
-				<div class="panel panel-default">
-					<!-- Default panel contents -->
-					<div class="panel-heading">显示工作日志</div>
-					<div class="panel-body">
-					<!-- style="display: table; -->
-						<table id="table" class="table table-hover " 
-							data-show-columns="true" data-search="true" 
-							data-pagination="true"></table>
+			<div id="board" class="container-fluid" style="padding-left: 0px; padding-right: 0px; background-color: #F5F5F5; border: #F1F1F1 2px solid; border-radius: 5px; margin-top: 12px;">
+				<div id="personal" class="col-md-3 column" style="background-color: #;">
+					<div id="img1" style="height: 100px; width: 100px; float: left;">
+						<img src="plugin/img/img1.jpg" style="border: 1px solid #C1E2B3; border-radius: 50%; height: 80px; width: 80px; margin: 10px;" />
+
+					</div>
+					<div id="information" style="height: 100px; text-align: center;">
+						<button type="button" class="btn btn-warning btn-sm" style="margin-top: 32px; margin-left: 100px;">签到</button>
 					</div>
 
+					<div class="list-group">
+						<button type="button" class="list-group-item" onclick="showPanel('workRecord')">显示工作日志</button>
+						<button type="button" class="list-group-item" onclick="showPanel('house')">房源信息</button>
+						<button type="button" class="list-group-item" onclick="showPanel('keycontroller')">钥匙信息</button>
+						<button type="button" class="list-group-item" onclick="showPanel('followup')">跟进记录</button>
+						<button type="button" class="list-group-item" onclick="showPanel('task')">任务</button>
+					</div>
 				</div>
-				<!-- Table -->
-				<!--  -->
 
-			</div>
+				<div class="col-md-9 column" style="background-color: #fff" id="Panel">
+					<div class="panel panel-default">
+						<!-- Default panel contents -->
+						<div class="panel-heading">显示工作日志</div>
+						<div class="panel-body">
+							<!-- style="display: table; -->
+							<table id="table" class="table table-hover " data-show-columns="true" data-search="true" data-pagination="true"></table>
+						</div>
 
-			<!--			<div class="col-md-9 column" style="background-color: #fff;display: none;"
+					</div>
+					<!-- Table -->
+					<!--  -->
+
+				</div>
+
+				<!--			<div class="col-md-9 column" style="background-color: #fff;display: none;"
 				id="housePanel">
 				<div class="panel panel-default">
 					
@@ -140,23 +131,23 @@
 					</div>
 
 				</div>-->
-			<!-- Table -->
-			<!--  -->
+				<!-- Table -->
+				<!--  -->
+
+			</div>
 
 		</div>
+	</body>
 
-	</div>
-</body>
-
-<script>
-
+	<script>
 		function showPanel(tableType) {
 			var $table = $('#table');
- 			var $panelDisplay = $('.table');
- 			var display = $table.css("display");
-			$panelDisplay.css("diplay", "none");  
+			var $panelDisplay = $('.table');
+			var panelHeading = $(".panel-heading");
+			var panelHeadingVal = panelHeading.html("show   "+tableType);
+			$panelDisplay.css("diplay", "none");
 			loadTable(tableType);
- 			$table.css("display", "table");
+			$table.css("display", "table");
 		}
 
 		function loadTable(tableType) {
@@ -222,12 +213,51 @@
 				title: '下班打卡时间',
 			}];
 
+			var task = [{
+				field: 'taskId',
+				title: '任务编号',
+				sortable: true
+			}, {
+				field: 'planDo',
+				title: '计划完成时间',
+			}, {
+				field: 'publishDate',
+				title: '发布时间',
+			}, {
+				field: 'taskLevel;',
+				title: '任务优先级',
+			}, {
+				field: 'taskInfo',
+				title: '任务详情',
+			}, {
+				field: 'taskStatue',
+				title: '任务状态',
+			}];
+
+			var keycontroller = [{
+				field: 'keyControllId',
+				title: '钥匙接管记录编号',
+				sortable: true
+			}, {
+				field: 'isApprove',
+				title: '是否批准',
+			}, {
+				field: 'approveDate',
+				title: '接管时间',
+			}, {
+				field: 'planReturnDate;',
+				title: '计划归还时间',
+			}, {
+				field: 'actualReturnDate',
+				title: '实际归还时间',
+			}];
 			filedlist['workRecord'] = workRecordColumns;
-			filedlist["house"] = houseColumns;
+			filedlist['house'] = houseColumns;
+			filedlist['task'] = task;
+			filedlist['keycontroller'] = keycontroller;
+
 			return filedlist[tableType];
 		}
-
-
 
 		$(function() {});
 	</script>
