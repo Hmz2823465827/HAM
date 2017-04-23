@@ -22,6 +22,7 @@ public class Keycontroll extends BaseBean {
 	
 	private Employee employee;//接管钥匙员工
 	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Housekey housekey;//房屋钥匙
 	
 	private boolean isApprove;//是否批准
