@@ -110,11 +110,11 @@
 
 					<div class="list-group" id = "functions">
 						<div id="functiontree" class=""></div>
-<!-- 					<button type="button" class="list-group-item" onclick="showPanel('workRecord')">显示工作日志</button>
+					<button type="button" class="list-group-item" onclick="showPanel('workrecord')">显示工作日志</button>
 						<button type="button" class="list-group-item" onclick="showPanel('house')">房源信息</button>
 						<button type="button" class="list-group-item" onclick="showPanel('keycontroller')">钥匙信息</button>
 						<button type="button" class="list-group-item" onclick="showPanel('followup')">跟进记录</button>
-						<button type="button" class="list-group-item" onclick="showPanel('task')">任务</button> -->
+						<button type="button" class="list-group-item" onclick="showPanel('task')">任务</button> 
 					</div>
 				</div>
 
@@ -175,7 +175,7 @@
 		}
 
 		function loadTable(tableType) {
-			var ajaxUrl = "/HAM/employee/loadSetbyParam";
+			var ajaxUrl = "/HAM/employee/loadSetbyParam.htmls";
 			$.ajax({
 				cache: true,
 				type: "GET",
