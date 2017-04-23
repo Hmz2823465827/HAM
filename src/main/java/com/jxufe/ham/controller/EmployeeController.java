@@ -23,12 +23,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.jxufe.ham.Interceptor.AutoAuthorizationClass;
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
 import com.jxufe.ham.dao.EmployeeDao;
+import com.jxufe.ham.myInterface.AutoAuthorization;
 import com.jxufe.ham.service.EmployeeService;
 import com.jxufe.ham.util.StaticKey;
 
+@AutoAuthorizationClass
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {

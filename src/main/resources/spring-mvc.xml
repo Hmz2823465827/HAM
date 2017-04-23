@@ -10,12 +10,15 @@
 		http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 
 	<!-- 自动扫描注解注入为Controller -->
-	<context:component-scan base-package="com.jxufe.ham"/>
+	<context:component-scan base-package="com.jxufe.ham" />
 	<!-- <mvc:annotation-driven /> -->
 
 
-	<mvc:resources mapping="/plugin/**"  location="plugin/" />
+	<mvc:resources mapping="/plugin/**" location="plugin/" />
+
+	<bean id="exceptionResolver" class="com.jxufe.ham.Interceptor.OverallExceptionResolver"></bean>
 	
+
 	<!-- 以下为SpringMVC配置 -->
 	<mvc:annotation-driven>
 		<!-- 返回json数据，@response使用 -->
@@ -31,16 +34,7 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-
-	<!-- <mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			过滤全部请求
-			<mvc:exclude-mapping path="/index" />
-			除了hello这个请求
-		</mvc:interceptor>
-	</mvc:interceptors> -->
-
+	
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -51,4 +45,10 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<mvc:interceptors>
+		<!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+		<!-- 如果不定义 mvc:mapping path 将拦截所有的URL请求 -->
+		<bean class="com.jxufe.ham.Interceptor.AuthorizationInterceptor"></bean>
+	</mvc:interceptors>
 </beans>

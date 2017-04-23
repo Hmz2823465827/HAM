@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
+import com.jxufe.ham.myInterface.AutoAuthorization;
 import com.jxufe.ham.service.EmployeeService;
 import com.jxufe.ham.util.StaticKey;
 
@@ -93,6 +94,7 @@ public class LoginController {
 	* @Description:登入成功返回ModelAndView视图模型跳转
 	* @return
 	 */
+	@AutoAuthorization
 	@RequestMapping(value = "toIndex",method = RequestMethod.POST)
 	public ModelAndView toIndex(){
 		return new ModelAndView("index");//返回WEB-INF下的view目录下index.jsp文件
