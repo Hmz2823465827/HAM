@@ -68,7 +68,8 @@
 						</form>
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
-								<a href="plugin/#" class="dropdown-toggle" data-toggle="dropdown">用户名
+								<a href="plugin/#" class="dropdown-toggle" data-toggle="dropdown">
+								${loginEmployee.employeeName}
 								<strong class="caret"></strong>
 								</a>
 								<ul class="dropdown-menu">
@@ -110,11 +111,6 @@
 
 					<div class="list-group" id = "functions">
 						<div id="functiontree" class=""></div>
-					<button type="button" class="list-group-item" onclick="showPanel('workrecord')">显示工作日志</button>
-						<button type="button" class="list-group-item" onclick="showPanel('house')">房源信息</button>
-						<button type="button" class="list-group-item" onclick="showPanel('keycontroll')">钥匙信息</button>
-						<button type="button" class="list-group-item" onclick="showPanel('followup')">跟进记录</button>
-						<button type="button" class="list-group-item" onclick="showPanel('task')">任务</button> 
 					</div>
 				</div>
 
@@ -276,10 +272,10 @@
 				field: 'actualReturnDate',
 				title: '实际归还时间',
 			}];
-			filedlist['workRecord'] = workRecordColumns;
+			filedlist['workrecord'] = workRecordColumns;
 			filedlist['house'] = houseColumns;
 			filedlist['task'] = task;
-			filedlist['keycontroller'] = keycontroller;
+			filedlist['keycontroll'] = keycontroller;
 
 			return filedlist[tableType];
 		}
@@ -317,42 +313,56 @@
 					tags: ['0']
 				}]
 			}, {
-				text: '业务员',
+				text: '任务',
 				href: '#parent2',
-				tags: ['4'],
+				tags: ['2'],
 				nodes: [{
-					text: '房源信息',
+					text: '查看任务',
 					href: '#child7',
 					tags: ['0'],
 				}, {
-					text: '任务',
+					text: '申请完成任务',
 					href: '#child8',
-					tags: ['0']
-				}, {
-					text: '跟进记录',
-					href: '#child9',
-					tags: ['0']
-				}, {
-					text: '钥匙信息',
-					href: '#child10',
 					tags: ['0']
 				}]		
 			}, {
-				text: '部门经理',
+				text: '房源信息',
 				href: '#parent3',
 				tags: ['0']
 			}, {
-				text: '总经理',
+				text: '跟进记录',
 				href: '#parent4',
 				tags: ['0']
 			}, {
-				text: '钥匙管理员',
+				text: '钥匙信息',
 				href: '#parent5',
 				tags: ['0']
 			}];
 		
 			$('#functiontree').treeview({
 				data: defaultData
+			});
+
+			function setTableType(data){
+				switch(data.text){
+					case "工作日志":
+						return "workrecord";
+						break;
+					case "查看任务":
+						return "task";
+						break;
+					case "房源信息":
+						return "house";
+						break;
+					case "钥匙信息":
+						return "keycontroll";
+						break;
+				}
+			}
+
+			$('#functiontree').on('nodeSelected',function(event, data) {
+				var tableType = setTableType(data);
+			    showPanel(tableType);
 			});
 		});
 	</script>
