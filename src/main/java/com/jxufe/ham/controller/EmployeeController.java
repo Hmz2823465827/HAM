@@ -116,88 +116,10 @@ public class EmployeeController {
 		
 	}
 	
-	/**
-	 * 
-	* @Title: loadHouse 
-	* @Description:加载雇员管理的房屋信息
-	* @param request
-	* @return
-	 */
-	@RequestMapping(value = "/loadhouseAll",method = RequestMethod.GET)
-	public @ResponseBody HashMap<String, Object> loadHouse(HttpServletRequest request){
-		Employee employee  = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
-		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		try {
-			hashMap.put("list", employee.getHouses());
-			hashMap.put(ISDONE, true);
-			hashMap.put(MSG, "获取成功");
-		} catch (Exception e) {
-			hashMap.put(ISDONE, false);
-			hashMap.put(MSG, "获取失败");
-			log.error(e.getMessage());
-		}
-		return hashMap;
-	}
+
 	
-	/**
-	 * 
-	* @Title: loadTask 
-	* @Description:加载雇员相关的任务信息
-	* @param request
-	* @return
-	 */
-	@RequestMapping(value = "/loadtaskAll",method = RequestMethod.GET)
-	public @ResponseBody HashMap<String, Object> loadTask(HttpServletRequest request){
-		Employee employee  = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
-		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		try {
-			hashMap.put("list", employee.getTasks());
-			hashMap.put(ISDONE, true);
-			hashMap.put(MSG, "获取成功");
-		} catch (Exception e) {
-			hashMap.put(ISDONE, false);
-			hashMap.put(MSG, "获取失败");
-			log.error(e.getMessage());
-		}
-		return hashMap;
-	}
 	
-	/**
-	 * 
-	* @Title: loadKeycontroller 
-	* @Description:加载雇员相关的房屋管理
-	* @param request
-	* @return
-	 */
-	@RequestMapping(value = "/loadkeycontrollerAll",method = RequestMethod.GET)
-	public @ResponseBody HashMap<String, Object> loadKeycontroller(HttpServletRequest request){
-		Employee employee  = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
-		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		try {
-			hashMap.put("list", employee.getKeycontrolls());
-			hashMap.put(ISDONE, true);
-			hashMap.put(MSG, "获取成功");
-		} catch (Exception e) {
-			hashMap.put(ISDONE, false);
-			hashMap.put(MSG, "获取失败");
-			log.error(e.getMessage());
-		}
-		return hashMap;
-	}
+
 	
-	@RequestMapping(value = "/loadfollowupAll",method = RequestMethod.GET)
-	public @ResponseBody HashMap<String, Object> loadFollowup(HttpServletRequest request){
-		Employee employee  = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
-		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		try {
-			hashMap.put("list", employee.getFollowups());
-			hashMap.put(ISDONE, true);
-			hashMap.put(MSG, "获取成功");
-		} catch (Exception e) { 
-			hashMap.put(ISDONE, false);
-			hashMap.put(MSG, "获取失败");
-			log.error(e.getMessage());
-		}
-		return hashMap;
-	}
+
 }

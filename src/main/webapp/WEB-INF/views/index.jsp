@@ -112,7 +112,7 @@
 						<div id="functiontree" class=""></div>
 					<button type="button" class="list-group-item" onclick="showPanel('workrecord')">显示工作日志</button>
 						<button type="button" class="list-group-item" onclick="showPanel('house')">房源信息</button>
-						<button type="button" class="list-group-item" onclick="showPanel('keycontroller')">钥匙信息</button>
+						<button type="button" class="list-group-item" onclick="showPanel('keycontroll')">钥匙信息</button>
 						<button type="button" class="list-group-item" onclick="showPanel('followup')">跟进记录</button>
 						<button type="button" class="list-group-item" onclick="showPanel('task')">任务</button> 
 					</div>
