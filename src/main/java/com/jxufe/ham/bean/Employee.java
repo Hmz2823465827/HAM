@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jxufe.ham.bean.Depart;
 import com.jxufe.ham.bean.Followup;
@@ -32,6 +33,7 @@ public class Employee extends BaseBean {
 
 	private int employeeId;//员工编号
 	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Depart departByDepartId;//所属部门
 	
 	private Task task;//任务
