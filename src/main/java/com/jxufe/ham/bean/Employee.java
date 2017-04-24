@@ -34,8 +34,10 @@ public class Employee extends BaseBean {
 	private int employeeId;//员工编号
 	
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//	@JsonIgnore
 	private Depart departByDepartId;//所属部门
 	
+//	@JsonIgnore
 	private Task task;//任务
 	
 	private String employeeName;//员工名称

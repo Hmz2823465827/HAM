@@ -26,9 +26,9 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		if(handler.getClass().isAssignableFrom(HandlerMethod.class)){
 			Object object = ((HandlerMethod)handler).getBean();
-			AutoAuthorizationClass authorizationClass = object.getClass().getAnnotation(AutoAuthorizationClass.class);
+//			AutoAuthorizationClass authorizationClass = object.getClass().getAnnotation(AutoAuthorizationClass.class);
 			AutoAuthorization authorization = ((HandlerMethod)handler).getMethodAnnotation(AutoAuthorization.class);
-			if((authorization != null && authorization.validate() == true)||(authorizationClass != null && authorizationClass.validate() == true)){
+			if((authorization != null && authorization.validate() == true)/*||(authorizationClass != null && authorizationClass.validate() == true)*/){
 				if(request.getSession().getAttribute(StaticKey.LOGIN_E)!=null){
 					return true;
 //					throw new SessionOutException();

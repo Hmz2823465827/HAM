@@ -20,8 +20,8 @@ import com.jxufe.ham.exception.SessionOutException;
  * @author halu
  * @date 2017年4月23日 下午7:25:21
  */
-@Controller
-public class OverallExceptionResolver implements HandlerExceptionResolver{
+//@Controller
+public class OverallExceptionResolver /*implements HandlerExceptionResolver*/{
 
 	//日志输出类
 	private Logger logger = Logger.getLogger(OverallExceptionResolver.class);
