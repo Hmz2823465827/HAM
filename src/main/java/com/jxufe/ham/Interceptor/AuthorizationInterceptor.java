@@ -8,6 +8,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.jxufe.ham.exception.SessionOutException;
 import com.jxufe.ham.myInterface.AutoAuthorization;
+import com.jxufe.ham.myInterface.AutoAuthorizationClass;
 import com.jxufe.ham.util.StaticKey;
 
 
@@ -30,6 +31,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter{
 			if((authorization != null && authorization.validate() == true)||(authorizationClass != null && authorizationClass.validate() == true)){
 				if(request.getSession().getAttribute(StaticKey.LOGIN_E)!=null){
 					return true;
+//					throw new SessionOutException();
 				} 
 				else throw new SessionOutException();
 			}

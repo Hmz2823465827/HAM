@@ -1,4 +1,4 @@
-package com.jxufe.ham.Interceptor;
+package com.jxufe.ham.myInterface;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
