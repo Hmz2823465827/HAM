@@ -14,12 +14,12 @@ import com.jxufe.ham.bean.abstractBean.BaseBean;
  * @author hmz
  * @date 2017年3月23日 下午4:06:21
  */
-public class Keycontroll extends BaseBean {
+public class Keymanagement extends BaseBean {
 
 	//序列ID
 	private static final long serialVersionUID = -4165822806960168304L;
 
-	private int keyControllId;//钥匙接管记录编号
+	private int keymanagementId;//钥匙接管记录编号
 	
 	@JsonIgnore
 	private Employee employee;//接管钥匙员工
@@ -35,23 +35,23 @@ public class Keycontroll extends BaseBean {
 	
 	private Date actualReturnDate;//实际归还时间
 
-	public Keycontroll() {
+	public Keymanagement() {
 		super();
 	}
 
-	public Keycontroll(int keyControllId, Employee employee, Housekey housekey, boolean isApprove, Date approveDate) {
+	public Keymanagement(int keymanagementId, Employee employee, Housekey housekey, boolean isApprove, Date approveDate) {
 		super();
-		this.keyControllId = keyControllId;
+		this.keymanagementId = keymanagementId;
 		this.employee = employee;
 		this.housekey = housekey;
 		this.isApprove = isApprove;
 		this.approveDate = approveDate;
 	}
 
-	public Keycontroll(int keyControllId, Employee employee, Housekey housekey, boolean isApprove, Date approveDate,
+	public Keymanagement(int keymanagementId, Employee employee, Housekey housekey, boolean isApprove, Date approveDate,
 			Date planReturnDate, Date actualReturnDate) {
 		super();
-		this.keyControllId = keyControllId;
+		this.keymanagementId = keymanagementId;
 		this.employee = employee;
 		this.housekey = housekey;
 		this.isApprove = isApprove;
@@ -60,12 +60,12 @@ public class Keycontroll extends BaseBean {
 		this.actualReturnDate = actualReturnDate;
 	}
 
-	public int getKeyControllId() {
-		return this.keyControllId;
+	public int getKeymanagementId() {
+		return this.keymanagementId;
 	}
 
-	public void setKeyControllId(int keyControllId) {
-		this.keyControllId = keyControllId;
+	public void setKeymanagementId(int keymanagementId) {
+		this.keymanagementId = keymanagementId;
 	}
 
 	public Employee getEmployee() {
@@ -118,7 +118,7 @@ public class Keycontroll extends BaseBean {
 	
 	@Override
 	public String toString() {
-		return "Keycontroll [keyControllId=" + keyControllId + ", employee=" + employee.getEmployeeName() +
+		return "Keycontroll [keymanagementId=" + keymanagementId + ", employee=" + employee.getEmployeeName() +
 				",housekey=" + housekey.getHouseKey() + ", isApprove=" + isApprove + ", approveDate=" + approveDate + 
 				",planReturnDate="+ planReturnDate + ",actualReturnDate="+actualReturnDate+"]";
 	}

@@ -8,13 +8,13 @@
             <generator class="assigned" />
         </id>
         <many-to-one name="custom" class="com.jxufe.ham.bean.Custom" fetch="select">
-            <column name="customID" />
+            <column name="custom" />
         </many-to-one>
         <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" fetch="select">
-            <column name="employeeID" not-null="true" />
+            <column name="employee" not-null="true" />
         </many-to-one>
         <many-to-one name="pact" class="com.jxufe.ham.bean.Pact" fetch="select">
-            <column name="pactID" />
+            <column name="pact" />
         </many-to-one>
         <property name="employeeCoustomState" type="int">
             <column name="employeeCoustomState" not-null="true" />

@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jxufe.ham.bean.House;
-import com.jxufe.ham.bean.Keycontroll;
+import com.jxufe.ham.bean.Keymanagement;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
@@ -24,7 +24,7 @@ public class Housekey extends BaseBean{
 	private boolean houseKeyStatue;//房屋钥匙状态
 	
 	@JsonIgnore
-	private Set<Keycontroll> keycontrolls = new HashSet<Keycontroll>(0);//房屋钥匙关系集合
+	private Set<Keymanagement> keymanagements = new HashSet<Keymanagement>(0);//房屋钥匙关系集合
 	
 	@JsonIgnore
 	private Set<House> houses = new HashSet<House>(0);//钥匙所属房屋
@@ -39,11 +39,11 @@ public class Housekey extends BaseBean{
 		this.houseKeyStatue = houseKeyStatue;
 	}
 
-	public Housekey(int houseKey, boolean houseKeyStatue, Set<Keycontroll> keycontrolls, Set<House> houses) {
+	public Housekey(int houseKey, boolean houseKeyStatue, Set<Keymanagement> keymanagements, Set<House> houses) {
 		super();
 		this.houseKey = houseKey;
 		this.houseKeyStatue = houseKeyStatue;
-		this.keycontrolls = keycontrolls;
+		this.keymanagements = keymanagements;
 		this.houses = houses;
 	}
 
@@ -63,12 +63,12 @@ public class Housekey extends BaseBean{
 		this.houseKeyStatue = houseKeyStatue;
 	}
 
-	public Set<Keycontroll> getKeycontrolls() {
-		return this.keycontrolls;
+	public Set<Keymanagement> getKeymanagements() {
+		return this.keymanagements;
 	}
 
-	public void setKeycontrolls(Set<Keycontroll> keycontrolls) {
-		this.keycontrolls = keycontrolls;
+	public void setKeymanagements(Set<Keymanagement> keymanagements) {
+		this.keymanagements = keymanagements;
 	}
 
 	public Set<House> getHouses() {
@@ -82,7 +82,7 @@ public class Housekey extends BaseBean{
 	@Override
 	public String toString() {
 		return "HouseKey [houseKey=" + houseKey + ", houseKeyStatue=" + houseKeyStatue +
-				",keycontrolls=" + keycontrolls.toString() + ", houses="+
+				",keymanagements=" + keymanagements.toString() + ", houses="+
 				houses.toString() +"]";
 	}
 

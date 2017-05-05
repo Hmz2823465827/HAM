@@ -19,15 +19,15 @@ public class Leaveword extends BaseBean{
 	//序列ID
 	private static final long serialVersionUID = 6237758949904689739L;
 
-	private int leaveWordId;//留言编号
+	private int leavewordId;//留言编号
 	
 	private Employee employee;//留言员工
 	
 	private Leaveword leaveword;//父留言
 	
-	private String leaveWordContent;//留言内容
+	private String leavewordContent;//留言内容
 	
-	private Date leaveWordDate;//留言日期
+	private Date leavewordDate;//留言日期
 	
 	private Boolean anonymousStatue;//是否匿名
 	
@@ -38,32 +38,32 @@ public class Leaveword extends BaseBean{
 		super();
 	}
 
-	public Leaveword(int leaveWordId, Employee employee, String leaveWordContent, Date leaveWordDate) {
+	public Leaveword(int leavewordId, Employee employee, String leavewordContent, Date leavewordDate) {
 		super();
-		this.leaveWordId = leaveWordId;
+		this.leavewordId = leavewordId;
 		this.employee = employee;
-		this.leaveWordContent = leaveWordContent;
-		this.leaveWordDate = leaveWordDate;
+		this.leavewordContent = leavewordContent;
+		this.leavewordDate = leavewordDate;
 	}
 
-	public Leaveword(int leaveWordId, Employee employee, Leaveword leaveword, String leaveWordContent,
-			Date leaveWordDate, Boolean anonymousStatue, Set<Leaveword> leavewords) {
+	public Leaveword(int leavewordId, Employee employee, Leaveword leaveword, String leavewordContent,
+			Date leavewordDate, Boolean anonymousStatue, Set<Leaveword> leavewords) {
 		super();
-		this.leaveWordId = leaveWordId;
+		this.leavewordId = leavewordId;
 		this.employee = employee;
 		this.leaveword = leaveword;
-		this.leaveWordContent = leaveWordContent;
-		this.leaveWordDate = leaveWordDate;
+		this.leavewordContent = leavewordContent;
+		this.leavewordDate = leavewordDate;
 		this.anonymousStatue = anonymousStatue;
 		this.leavewords = leavewords;
 	}
 
-	public int getLeaveWordId() {
-		return this.leaveWordId;
+	public int getLeavewordId() {
+		return this.leavewordId;
 	}
 
-	public void setLeaveWordId(int leaveWordId) {
-		this.leaveWordId = leaveWordId;
+	public void setLeavewordId(int leavewordId) {
+		this.leavewordId = leavewordId;
 	}
 
 	public Employee getEmployee() {
@@ -82,20 +82,20 @@ public class Leaveword extends BaseBean{
 		this.leaveword = leaveword;
 	}
 
-	public String getLeaveWordContent() {
-		return this.leaveWordContent;
+	public String getLeavewordContent() {
+		return this.leavewordContent;
 	}
 
-	public void setLeaveWordContent(String leaveWordContent) {
-		this.leaveWordContent = leaveWordContent;
+	public void setLeavewordContent(String leavewordContent) {
+		this.leavewordContent = leavewordContent;
 	}
 
-	public Date getLeaveWordDate() {
-		return this.leaveWordDate;
+	public Date getLeavewordDate() {
+		return this.leavewordDate;
 	}
 
-	public void setLeaveWordDate(Date leaveWordDate) {
-		this.leaveWordDate = leaveWordDate;
+	public void setLeavewordDate(Date leavewordDate) {
+		this.leavewordDate = leavewordDate;
 	}
 
 	public Boolean getAnonymousStatue() {
@@ -116,8 +116,8 @@ public class Leaveword extends BaseBean{
 	
 	@Override
 	public String toString() {
-		return "Leaveword [leaveWordId=" + leaveWordId + ", employee=" + employee.getEmployeeName() +
-				",leaveword=" + leaveword.leaveWordId + ",leaveWordContent=" + leaveWordContent +
+		return "Leaveword [leavewordId=" + leavewordId + ", employee=" + employee.getEmployeeName() +
+				",leaveword=" + leaveword.leavewordId + ",leavewordContent=" + leavewordContent +
 				", anonymousStatue=" + anonymousStatue + 
 				",leavewords="+ leavewords.toString() +"]";
 	}

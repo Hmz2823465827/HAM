@@ -6,42 +6,42 @@ import com.jxufe.ham.bean.abstractBean.BaseBean;
 
 /**
  * @Description: 任务分配实体类
- * @ClassName: TaskAllot
+ * @ClassName: Taskmanagement
  * @author halu
  * @date 2017年3月23日 下午5:47:39
  */
-public class TaskAllot extends BaseBean {
+public class Taskmanagement extends BaseBean {
 
 	//序列化ID
 	private static final long serialVersionUID = -3011993280777513510L;
 
-	private int taskAllotId;//任务分配编号
+	private int taskmanagementId;//任务分配编号
 	
 	private Employee employee; //执行任务员工
 	
 	private Task task; //任务
 
-	public TaskAllot() {
+	public Taskmanagement() {
 		super();
 	}
 	
-	public TaskAllot(int taskAllotId,Employee employee, Task task) {
+	public Taskmanagement(int taskmanagementId,Employee employee, Task task) {
 		super();
-		this.taskAllotId = taskAllotId;
+		this.taskmanagementId = taskmanagementId;
 		this.employee = employee;
 		this.task = task;
 	}
 
 	
 
-	public int getTaskAllotId() {
-		return taskAllotId;
+	public int getTaskmanagementId() {
+		return taskmanagementId;
 	}
 
 
 
-	public void setTaskAllotId(int taskAllotId) {
-		this.taskAllotId = taskAllotId;
+	public void setTaskmanagementId(int taskmanagementId) {
+		this.taskmanagementId = taskmanagementId;
 	}
 
 
@@ -64,7 +64,7 @@ public class TaskAllot extends BaseBean {
 	
 	@Override
 	public String toString() {
-		return "TaskAllot [taskAllotId=" + taskAllotId + ", employee=" + employee.getEmployeeName() +
+		return "Taskmanagement [taskmanagementId=" + taskmanagementId + ", employee=" + employee.getEmployeeName() +
 				",task=" + task.getTaskId() +"]";
 	}
 	

@@ -94,7 +94,7 @@ public class LoginController {
 	* @Description:登入成功返回ModelAndView视图模型跳转
 	* @return
 	 */
-//	@AutoAuthorization
+	@AutoAuthorization
 	@RequestMapping(value = "toIndex",method = RequestMethod.POST)
 	public ModelAndView toIndex(){
 		return new ModelAndView("index");//返回WEB-INF下的view目录下index.jsp文件

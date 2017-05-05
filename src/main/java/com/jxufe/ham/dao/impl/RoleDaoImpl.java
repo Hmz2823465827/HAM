@@ -7,22 +7,22 @@ import javax.annotation.Resource;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jxufe.ham.bean.Depart;
+import com.jxufe.ham.bean.Role;
 import com.jxufe.ham.bean.Log;
 import com.jxufe.ham.dao.BaseDao;
-import com.jxufe.ham.dao.DepartDao;
+import com.jxufe.ham.dao.RoleDao;
 
 @Repository
-public class DepartDaoImpl extends  DepartDao<Depart> {
+public class RoleDaoImpl extends  RoleDao<Role> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-     
-	public Session getSession()  
+    
+    public Session getSession()  
     {  
         return sessionFactory.getCurrentSession();  
     } 
@@ -32,35 +32,36 @@ public class DepartDaoImpl extends  DepartDao<Depart> {
 	* Description: 
 	* @param bean
 	* @return
-	* @see com.jxufe.ham.test.dao.DepartDao#insert(com.jxufe.ham.bean.Depart)
+	* @see com.jxufe.ham.test.dao.RoleDao#insert(com.jxufe.ham.bean.Role)
 	 */
 	@Override
-	public int insert(Depart bean) {
+	public int insert(Role bean) {
 		return (Integer) getSession().save(bean);
 	}
 
 	@Override
-	public void delete(Depart bean) {
+	public void delete(Role bean) {
 		getSession().delete(bean);
 	}
 
 
 	@Override
-	public Depart select(int id) {
+	public Role select(int id) {
 		Session session = getSession();
-		Depart list = (Depart) session.get(Depart.class, new Integer(id));		
+		Role list = (Role) session.get(Role.class, new Integer(id));		
 		return list;
 	}
 
 	@Override
-	public void update(Depart bean) {
+	public void update(Role bean) {
 		Session session = getSession();
-		Depart updateDepart = (Depart)session.load(bean.getClass(), bean.getDepartId());
-		updateDepart.setDepartName(bean.getDepartName());
+		Transaction transaction = session.getTransaction();
+		session.update(bean);
+		transaction.commit();
 	}
 
 	@Override
-	public List<Depart> queryForPage(String hql, int offset, int length) {
+	public List<Role> queryForPage(String hql, int offset, int length) {
 		return null;
 	}
 

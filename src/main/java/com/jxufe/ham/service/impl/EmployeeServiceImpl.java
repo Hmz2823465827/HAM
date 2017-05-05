@@ -97,4 +97,9 @@ public class EmployeeServiceImpl extends BaseService implements EmployeeService 
 		}
 		return null;
 	}
+
+	public BaseBean findByName(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

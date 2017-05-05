@@ -20,6 +20,7 @@ public class Task extends BaseBean {
 	
 	private int taskId;//任务编号
 	
+	@JsonIgnore
 	private Employee employee;//发布任务员工
 	
 	private Date planDo;//计划完成时间

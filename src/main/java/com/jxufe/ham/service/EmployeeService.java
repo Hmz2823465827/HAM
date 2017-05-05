@@ -67,4 +67,6 @@ public interface EmployeeService {
 	public abstract List<BaseBean> loadByWordrecord(Employee employee, int page, int row);
 	
 	public Set<BaseBean> loadSetByParam(BaseBean bean,String param) throws Exception;
+
+	public BaseBean findByName(String username);
 }

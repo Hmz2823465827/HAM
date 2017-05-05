@@ -3,28 +3,28 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.jxufe.ham.bean.Leaveword" table="leaveword" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
-        <id name="leaveWordId" type="int">
-            <column name="leaveWordID" />
+        <id name="leavewordId" type="int">
+            <column name="leavewordID" />
             <generator class="assigned" />
         </id>
         <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" fetch="select">
-            <column name="employeeID" not-null="true" />
+            <column name="employee" not-null="true" />
         </many-to-one>
         <many-to-one name="leaveword" class="com.jxufe.ham.bean.Leaveword" fetch="select">
-            <column name="lea_leaveWordID" />
+            <column name="sonLeaveword" />
         </many-to-one>
-        <property name="leaveWordContent" type="string">
-            <column name="leaveWordContent" length="250" not-null="true" />
+        <property name="leavewordContent" type="string">
+            <column name="leavewordContent" length="250" not-null="true" />
         </property>
-        <property name="leaveWordDate" type="date">
-            <column name="leaveWordDate" length="10" not-null="true" />
+        <property name="leavewordDate" type="date">
+            <column name="leavewordDate" length="10" not-null="true" />
         </property>
         <property name="anonymousStatue" type="java.lang.Boolean">
             <column name="anonymousStatue" />
         </property>
         <set name="leavewords" table="leaveword" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="lea_leaveWordID" />
+                <column name="leavewordID" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.Leaveword" />
         </set>

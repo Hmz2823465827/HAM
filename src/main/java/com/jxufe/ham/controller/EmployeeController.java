@@ -31,7 +31,7 @@ import com.jxufe.ham.myInterface.AutoAuthorizationClass;
 import com.jxufe.ham.service.EmployeeService;
 import com.jxufe.ham.util.StaticKey;
 
-//@AutoAuthorizationClass
+@AutoAuthorizationClass
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {

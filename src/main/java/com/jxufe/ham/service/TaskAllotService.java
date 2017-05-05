@@ -1,6 +1,6 @@
 package com.jxufe.ham.service;
 
-import com.jxufe.ham.bean.TaskAllot;
+import com.jxufe.ham.bean.Taskmanagement;
 
 /**
  * 
@@ -18,7 +18,7 @@ public interface TaskAllotService {
 	* @param id
 	* @return 是否添加成功
 	 */
-	public TaskAllot load(int id);
+	public Taskmanagement load(int id);
 	
 	/**
 	 * 
@@ -27,7 +27,7 @@ public interface TaskAllotService {
 	* @param e 
 	* @return 实体类主键
 	 */
-	public int sava(TaskAllot e);
+	public int sava(Taskmanagement e);
 	
 	/**
 	 * 
@@ -36,7 +36,7 @@ public interface TaskAllotService {
 	* @param id
 	* @return
 	 */
-	public void delete(TaskAllot e);
+	public void delete(Taskmanagement e);
 	
 	/**
 	 * 
@@ -45,6 +45,6 @@ public interface TaskAllotService {
 	* @param e
 	* @return
 	 */
-	public void update(TaskAllot e);
+	public void update(Taskmanagement e);
 	
 }

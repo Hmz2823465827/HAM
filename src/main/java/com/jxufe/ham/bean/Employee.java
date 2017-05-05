@@ -1,22 +1,20 @@
-﻿package com.jxufe.ham.bean;
+package com.jxufe.ham.bean;
 
 
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jxufe.ham.bean.Depart;
 import com.jxufe.ham.bean.Followup;
 import com.jxufe.ham.bean.House;
-import com.jxufe.ham.bean.Keycontroll;
+import com.jxufe.ham.bean.Keymanagement;
 import com.jxufe.ham.bean.Leaveword;
 import com.jxufe.ham.bean.Log;
 import com.jxufe.ham.bean.Performance;
 import com.jxufe.ham.bean.Task;
-import com.jxufe.ham.bean.TaskAllot;
+import com.jxufe.ham.bean.Taskmanagement;
 import com.jxufe.ham.bean.Workrecord;
 import com.jxufe.ham.bean.abstractBean.BaseBean;
 
@@ -38,6 +36,7 @@ public class Employee extends BaseBean {
 	private Depart departByDepartId;//所属部门
 	
 //	@JsonIgnore
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Task task;//任务
 	
 	private String employeeName;//员工名称
@@ -69,7 +68,7 @@ public class Employee extends BaseBean {
 	private Set<Log> logs = new HashSet<Log>(0);//员工登入日志集合
 	
 	@JsonIgnore
-	private Set<Keycontroll> keycontrolls = new HashSet<Keycontroll>(0);//员工钥匙接管记录集合
+	private Set<Keymanagement> keymanagements = new HashSet<Keymanagement>(0);//员工钥匙接管记录集合
 	
 	@JsonIgnore
 	private Set<Task> tasks = new HashSet<Task>(0);//员工发布任务集合
@@ -78,9 +77,10 @@ public class Employee extends BaseBean {
 	private Set<Depart> departs = new HashSet<Depart>(0);//员工担任部门经理集合
 	
 	@JsonIgnore
-	private Set<TaskAllot> taskAllots = new HashSet<TaskAllot>(0);//员工接受任务集合
+	private Set<Taskmanagement> taskAllots = new HashSet<Taskmanagement>(0);//员工接受任务集合
 	
-
+	private Set<Rolemanagement> rolemanagements = new HashSet<Rolemanagement>(0);//角色集合
+	
 	public Employee() {
 		super();
 	}
@@ -94,7 +94,7 @@ public class Employee extends BaseBean {
 
 	public Employee(int employeeId, Depart departByDepartId, Depart departByDepDepartId, Task task, String employeeName,
 			Boolean employeeSex, String employeePhone, int employeePosition, Set<Leaveword> leavewords, Set<Performance> performances,
-			Set<House> houses, Set<Followup> followups, Set<Workrecord> workrecords, Set<Log> logs, Set<Keycontroll> keycontrolls, Set<Task> tasks,Set<TaskAllot> taskAllots) {
+			Set<House> houses, Set<Followup> followups, Set<Workrecord> workrecords, Set<Log> logs, Set<Keymanagement> keymanagements, Set<Task> tasks,Set<Taskmanagement> taskAllots) {
 		super();
 		this.employeeId = employeeId;
 		this.departByDepartId = departByDepartId;
@@ -109,7 +109,7 @@ public class Employee extends BaseBean {
 		this.followups = followups;
 		this.workrecords = workrecords;
 		this.logs = logs;
-		this.keycontrolls = keycontrolls;
+		this.keymanagements = keymanagements;
 		this.tasks = tasks;
 		this.taskAllots = taskAllots;
 	}
@@ -228,12 +228,12 @@ public class Employee extends BaseBean {
 		this.logs = logs;
 	}
 
-	public Set<Keycontroll> getKeycontrolls() {
-		return this.keycontrolls;
+	public Set<Keymanagement> getKeymanagements() {
+		return this.keymanagements;
 	}
 
-	public void setKeycontrolls(Set<Keycontroll> keycontrolls) {
-		this.keycontrolls = keycontrolls;
+	public void setKeymanagements(Set<Keymanagement> keymanagements) {
+		this.keymanagements = keymanagements;
 	}
 
 	public Set<Task> getTasks() {
@@ -252,12 +252,20 @@ public class Employee extends BaseBean {
 		this.departs = departs;
 	}
 
-	public Set<TaskAllot> getTaskAllots() {
+	public Set<Taskmanagement> getTaskAllots() {
 		return taskAllots;
 	}
 
-	public void setTaskAllots(Set<TaskAllot> taskAllots) {
+	public void setTaskAllots(Set<Taskmanagement> taskAllots) {
 		this.taskAllots = taskAllots;
+	}
+
+	public Set<Rolemanagement> getRolemanagements() {
+		return rolemanagements;
+	}
+
+	public void setRolemanagements(Set<Rolemanagement> rolemanagements) {
+		this.rolemanagements = rolemanagements;
 	}
 
 	
