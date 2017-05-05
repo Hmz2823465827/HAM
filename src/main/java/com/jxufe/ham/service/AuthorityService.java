@@ -1,42 +1,42 @@
 package com.jxufe.ham.service;
 
-import com.jxufe.ham.bean.Keymanagement;
+import com.jxufe.ham.bean.Authority;
 
 /**
  * 
- * @Description: 钥匙控制service接口
- * @ClassName: KeycontrollService
+ * @Description: 权限管理service接口
+ * @ClassName: AuthorityService
  * @author halu
  * @date 2017年4月16日 下午5:15:19
  */
-public interface KeycontrollService {
+public interface AuthorityService {
 	
 	/**
 	 * 
 	* @Title: load 
-	* @Description: 通过id加载钥匙控制
+	* @Description: 通过id加载权限管理
 	* @param id
 	* @return 是否添加成功
 	 */
-	public Keymanagement load(int id);
+	public Authority load(int id);
 	
 	/**
 	 * 
 	* @Title: sava 
-	* @Description: 保存钥匙控制数据
+	* @Description: 保存权限管理数据
 	* @param e 
 	* @return 实体类主键
 	 */
-	public int sava(Keymanagement e);
+	public int sava(Authority e);
 	
 	/**
 	 * 
 	* @Title: delete 
-	* @Description:删除钥匙控制
+	* @Description:删除权限管理
 	* @param id
 	* @return
 	 */
-	public void delete(Keymanagement e);
+	public void delete(Authority e);
 	
 	/**
 	 * 
@@ -45,6 +45,6 @@ public interface KeycontrollService {
 	* @param e
 	* @return
 	 */
-	public void update(Keymanagement e);
+	public void update(Authority e);
 	
 }

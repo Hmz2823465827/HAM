@@ -8,7 +8,7 @@
             <generator class="assigned" />
         </id>
         <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" fetch="select">
-            <column name="employeeID" />
+            <column name="employee" />
         </many-to-one>
         <many-to-one name="housekey" class="com.jxufe.ham.bean.Housekey" fetch="select">
             <column name="houseKey" not-null="true" />

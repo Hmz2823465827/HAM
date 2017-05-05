@@ -20,7 +20,7 @@ public class Workrecord extends BaseBean{
 	
 	private int workRecordId;//考勤编号
 	
-	@JsonIgnore
+//	@JsonIgnore
 	private Employee employee;//员工
 	
 	private Date workRecordDate;//考勤日期

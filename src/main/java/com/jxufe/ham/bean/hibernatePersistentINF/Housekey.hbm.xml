@@ -10,11 +10,11 @@
         <property name="houseKeyStatue" type="boolean">
             <column name="houseKeyStatue" not-null="true" />
         </property>
-        <set name="keycontrolls" table="keycontroll" inverse="true" lazy="true" fetch="select">
+        <set name="keymanagements" table="keymanagement" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="houseKey" not-null="true" />
             </key>
-            <one-to-many class="com.jxufe.ham.bean.Keycontroll" />
+            <one-to-many class="com.jxufe.ham.bean.Keymanagement" />
         </set>
         <set name="houses" table="house" inverse="true" lazy="true" fetch="select">
             <key>

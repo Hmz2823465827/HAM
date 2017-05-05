@@ -11,17 +11,17 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jxufe.ham.bean.Followup;
+import com.jxufe.ham.bean.Authoritymanagement;
 import com.jxufe.ham.bean.Log;
 import com.jxufe.ham.dao.BaseDao;
-import com.jxufe.ham.dao.FollowupDao;
+import com.jxufe.ham.dao.AuthoritymanagementDao;
 
 @Repository
-public class FollowupDaoImpl extends  FollowupDao<Followup> {
+public class AuthoritymanagementDaoImpl extends  AuthoritymanagementDao<Authoritymanagement> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
-    
+	
     public Session getSession()  
     {  
         return sessionFactory.getCurrentSession();  
@@ -32,28 +32,32 @@ public class FollowupDaoImpl extends  FollowupDao<Followup> {
 	* Description: 
 	* @param bean
 	* @return
-	* @see com.jxufe.ham.test.dao.FollowupDao#insert(com.jxufe.ham.bean.Followup)
+	* @see com.jxufe.ham.test.dao.AuthoritymanagementDao#insert(com.jxufe.ham.bean.Authoritymanagement)
 	 */
 	@Override
-	public int insert(Followup bean) {
+	public int insert(Authoritymanagement bean) {
 		return (Integer) getSession().save(bean);
 	}
 
 	@Override
-	public void delete(Followup bean) {
+	public void delete(Authoritymanagement bean) {
+//		getSession().delete(bean);
 		getSession().delete(bean);
+//		return null;
 	}
 
 
 	@Override
-	public Followup select(int id) {
+	public Authoritymanagement select(int id) {
+//		List<Authoritymanagement> list = getSession().createQuery(SELECT).
+//				setInteger(1, id).list();
 		Session session = getSession();
-		Followup list = (Followup) session.get(Followup.class, new Integer(id));		
+		Authoritymanagement list = (Authoritymanagement) session.get(Authoritymanagement.class, new Integer(id));		
 		return list;
 	}
 
 	@Override
-	public void update(Followup bean) {
+	public void update(Authoritymanagement bean) {
 		Session session = getSession();
 		Transaction transaction = session.getTransaction();
 		session.update(bean);
@@ -61,12 +65,13 @@ public class FollowupDaoImpl extends  FollowupDao<Followup> {
 	}
 
 	@Override
-	public List<Followup> queryForPage(String hql, int offset, int length) {
+	public List<Authoritymanagement> queryForPage(String hql, int offset, int length) {
 		return null;
 	}
 
 	@Override
 	public int getCount(String hql) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 

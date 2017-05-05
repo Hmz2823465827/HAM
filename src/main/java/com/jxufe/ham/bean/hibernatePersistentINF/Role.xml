@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jxufe.ham.bean.Rolemanagement" table="role" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
+        <id name="roleId" type="int">
+            <column name="roleID"/>
+            <generator class="assigned" />
+        </id>
+        <property name="roleName" type="string">
+            <column name="roleName" length="25" not-null="true" />
+        </property>
+        <set name="rolemanagements" table="rolemanagement" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="roleID" />
+            </key>
+            <one-to-many class="com.jxufe.ham.bean.Rolemanagement" />
+        </set>
+    </class>
+</hibernate-mapping>

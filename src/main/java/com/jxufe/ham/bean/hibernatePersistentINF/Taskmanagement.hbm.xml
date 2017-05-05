@@ -2,16 +2,16 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.jxufe.ham.bean.TaskAllot" table="taskAllot" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
-		<id name ="taskAllotId" type ="int">
-			<column name="taskAlloteID"/>
+	<class name="com.jxufe.ham.bean.Taskmanagement" table="taskmanagement" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
+		<id name ="taskmanagementId" type ="int">
+			<column name="taskmanagementeID"/>
 			<generator class="assigned"/>
 		</id>
 		<many-to-one name="employee" class="com.jxufe.ham.bean.Employee" fetch="select">
-			<column name = "employeeID"></column>
+			<column name = "employee"></column>
 		</many-to-one>
 		<many-to-one name="task" class="com.jxufe.ham.bean.Task" fetch="select">
-			<column name="taskID"></column>
+			<column name="task"></column>
 		</many-to-one>
 	</class>
 </hibernate-mapping>
