@@ -98,11 +98,11 @@
 					</div>				
 					
  					<div id="information" style="height: 100px; width:100px; float:left;">
- 						<div id="job" class = "infospan">
- 							<p>职务</p>
+ 						<div id="depart" class = "infospan">
+ 							<p>部门</p>
  						</div>
- 						<div id="grade" class = "infospan" >
- 							<p>等级</p>
+ 						<div id="duties" class = "infospan" >
+ 							
  						</div>
  						<div id="sign-in" class = "infospan">
  							<button type="button" class="btn btn-warning btn-sm">签到</button>
@@ -364,6 +364,25 @@
 				var tableType = setTableType(data);
 			    showPanel(tableType);
 			});
+
+			function setEmployeePosition(data){
+				switch(data){
+					case 0:
+						return "试用人员";
+						break;
+					case 1:
+						return "正式员工";
+						break;
+					case 2:
+						return "经理";
+						break;
+					case 3:
+						return "总经理";
+						break;
+				}			
+			}
+
+			document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});			
 		});
 	</script>
 
