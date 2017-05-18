@@ -1,19 +1,30 @@
 package com.jxufe.ham.shiro;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.config.Ini;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.expression.spel.ast.Selection;
+import org.springframework.stereotype.Component;
 
-import com.jxufe.ham.bean.Authoritymanagement;
+import com.jxufe.ham.bean.Authority;
+import com.jxufe.ham.bean.Employee;
 import com.jxufe.ham.bean.Function;
-import com.jxufe.ham.service.AuthoritymanagementService;
+import com.jxufe.ham.bean.Role;
+import com.jxufe.ham.service.EmployeeService;
 import com.jxufe.ham.service.FunctionService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 /**
  * 
@@ -22,16 +33,37 @@ import java.util.Map;
  * @author halu
  * @date 2017年5月5日 上午10:19:59
  */
+//@Component
 public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section> {
+
+	Log log = LogFactory.getLog(ChainDefinitionSectionMetaSource.class);
 
 	@Autowired
 	private FunctionService functionService;
+	
+	@Autowired
+	private EmployeeService employeeService;
+	
+//	@Inject
+//	public void setFunctionService(FunctionService functionService){
+//		this.functionService = functionService;
+//	}
+//	@Autowired
+//	private EmployeeService employeeService;
 
 	// 静态资源访问权限
 	private String filterChainDefinitions = "/plugin/**=anon";
 
 	public Ini.Section getObject() throws Exception {
-		List<Function> list = functionService.findAll();
+//		List<Function> list = functionService.findAll();
+//		@SuppressWarnings("unused")
+//		Employee employee = employeeService.load(1);
+		List list = functionService.findAll();
+		Function testFunction = functionService.load(3);
+		Employee employee = employeeService.load(2);
+//		employee.getDepartByDepartId()
+//		Hibernate.
+//		log.debug(testFunction.getAuthority().getAuthorityId());
 		Ini ini = new Ini();
 		// 加载默认的url
 		ini.load(filterChainDefinitions);
@@ -40,6 +72,7 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 		// 里面的键就是链接URL,值就是存在什么条件才能访问该链接
 		for (Iterator<Function> it = list.iterator(); it.hasNext();) {
 			Function function = it.next();
+			Hibernate.initialize(function);
 			// 构成permission字符串
 			if (StringUtils.isNotEmpty(function.getValue()) && StringUtils.isNotEmpty(function.getType())) {
 				String permission = "";
@@ -52,10 +85,17 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 					permission = "anon";
 					break;
 				case 2:
-					permission = "perms[" + function.getAuthority().getAuthorityname() + "]";
+					
+					Authority authority = function.getAuthorityID();
+					Hibernate.initialize(authority);
+					log.debug("过滤器中实体类是否初始化:"+Hibernate.isInitialized(authority));
+					permission = "perms[" + authority.getAuthorityname() + "]";
 					break;
 				case 3:
-					permission = "roles[" + function.getRole().getRolename() + "]";
+					Role role = function.getRole();
+					Hibernate.initialize(role);
+					log.debug("过滤器中实体类是否初始化:"+Hibernate.isInitialized(role));
+					permission = "roles[" + role.getRolename() + "]";
 					break;
 				default:
 					break;
@@ -67,6 +107,10 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 		// 所有资源的访问权限，必须放在最后
 		section.put("/**", "authc");
 		return section;
+		/*Ini ini = new Ini();
+		// 加载默认的url
+		ini.load(filterChainDefinitions);
+		return ini.getSection(Ini.DEFAULT_SECTION_NAME);*/
 	}
 
 	public Class<?> getObjectType() {

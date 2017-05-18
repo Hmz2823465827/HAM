@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.jxufe.ham.bean.Log" 
-    table="log" catalog="houseagencymanagement" 
+    table="log" catalog="ham" 
     dynamic-update="true"
     optimistic-lock="version">
         <id name="logId" type="int">

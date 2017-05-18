@@ -40,9 +40,7 @@ public class MyRealm extends AuthorizingRealm{
 
     @Inject
     private EmployeeService employeeService;
-    /**
-     * <span style="font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.2000007629395px;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.2000007629395px;">获取授权信息</span></span>
-     */
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         //获取登录时输入的用户名  

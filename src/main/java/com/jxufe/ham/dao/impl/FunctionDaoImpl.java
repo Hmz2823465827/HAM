@@ -2,11 +2,13 @@ package com.jxufe.ham.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jxufe.ham.bean.Function;
 import com.jxufe.ham.dao.FunctionDao;
@@ -17,6 +19,7 @@ public class FunctionDaoImpl extends FunctionDao<Function> {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
@@ -43,6 +46,7 @@ public class FunctionDaoImpl extends FunctionDao<Function> {
 	}
 
 	@Override
+	@Transactional
 	public Function select(int id) {
 		Session session = getSession();
 		Function list = (Function) session.get(Function.class, new Integer(id));
@@ -65,6 +69,16 @@ public class FunctionDaoImpl extends FunctionDao<Function> {
 	@Override
 	public int getCount(String hql) {
 		return 0;
+	}
+
+	@Override
+	public List findAll() {
+		Session session = getSession();
+//		Transaction transaction = session.beginTransaction();
+		
+		Query query = session.createQuery("from Function");
+//		transaction.commit();
+		return query.list();
 	}
 
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.jxufe.ham.bean.Rolemanagement" table="role" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
+    <class name="com.jxufe.ham.bean.Role" table="role" dynamic-update="true" catalog="ham" optimistic-lock="version">
         <id name="roleId" type="int">
             <column name="roleID"/>
             <generator class="assigned" />

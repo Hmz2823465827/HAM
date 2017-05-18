@@ -2,23 +2,23 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.jxufe.ham.bean.Housekey" table="housekey" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
-        <id name="houseKey" type="int">
-            <column name="houseKey" />
+    <class name="com.jxufe.ham.bean.Housekey" table="housekey" dynamic-update="true" catalog="ham" optimistic-lock="version">
+        <id name="housekeyID" type="int">
+            <column name="housekeyID" />
             <generator class="assigned" />
         </id>
-        <property name="houseKeyStatue" type="boolean">
-            <column name="houseKeyStatue" not-null="true" />
+        <property name="housekeyStatue" type="boolean">
+            <column name="housekeyStatue" not-null="true" />
         </property>
         <set name="keymanagements" table="keymanagement" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="houseKey" not-null="true" />
+                <column name="housekeyID" not-null="true" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.Keymanagement" />
         </set>
         <set name="houses" table="house" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="houseKey" not-null="true" />
+                <column name="housekeyID" not-null="true" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.House" />
         </set>

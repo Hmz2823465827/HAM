@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.jxufe.ham.bean.Followup;
 import com.jxufe.ham.dao.FollowupDao;
-import com.jxufe.ham.dao.impl.FollowupDaoImpl;
 import com.jxufe.ham.service.FollowupService;
 
 /**

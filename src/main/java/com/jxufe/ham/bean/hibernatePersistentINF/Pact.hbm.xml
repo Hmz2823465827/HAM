@@ -2,13 +2,13 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.jxufe.ham.bean.Pact" table="pact" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
+    <class name="com.jxufe.ham.bean.Pact" table="pact" dynamic-update="true" catalog="ham" optimistic-lock="version">
         <id name="pactId" type="int">
             <column name="pactID" />
             <generator class="assigned" />
         </id>
         <many-to-one name="house" class="com.jxufe.ham.bean.House" fetch="select">
-            <column name="house" not-null="true" />
+            <column name="houseID" not-null="true" />
         </many-to-one>
 <!--         <many-to-one name="performance" class="com.jxufe.ham.bean.Performance" fetch="select">
             <column name="performanceID" />

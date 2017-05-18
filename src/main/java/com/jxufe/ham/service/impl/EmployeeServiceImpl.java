@@ -69,6 +69,7 @@ public class EmployeeServiceImpl extends BaseService implements EmployeeService 
 	public List<BaseBean> loadByWordrecord(Employee employee,String compareString,int page,int row){
 		Set<Workrecord> wordrecordSet = employee.getWorkrecords();
 		PageCompare<BaseBean> comparable = new PageCompare<BaseBean>(compareString);
+		@SuppressWarnings("unchecked")
 		List<BaseBean> arrayList = sortOnSet(wordrecordSet, page, row,comparable);
 		return arrayList;
 	}
@@ -99,6 +100,11 @@ public class EmployeeServiceImpl extends BaseService implements EmployeeService 
 	}
 
 	public BaseBean findByName(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Employee> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
