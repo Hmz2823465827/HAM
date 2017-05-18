@@ -25,7 +25,7 @@ public class Depart extends BaseBean{
 	
 	private Integer departRank;//部门等级
 	
-	private int employeeId;//部门经理编号
+	private Employee employeeId;//部门经理编号
 	
 	@JsonIgnore
 	private Set<Employee> employeesForDepartId = new HashSet<Employee>(0);//部门员工
@@ -90,11 +90,11 @@ public class Depart extends BaseBean{
 		this.employeesForDepartId = employeesForDepartId;
 	}
 
-	public int getEmployeeId() {
+	public Employee getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(Employee employeeId) {
 		this.employeeId = employeeId;
 	}
 	

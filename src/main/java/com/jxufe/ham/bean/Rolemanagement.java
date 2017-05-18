@@ -8,19 +8,13 @@ public class Rolemanagement extends BaseBean{
 
 	private static final long serialVersionUID = -6321765075213299243L;
 	
-	private int RolemanagementID;//角色控制编号
+	private int RolemanagementId;//角色控制编号
 	
 	private Role role;//角色
 	
 	private Employee employee;//用户
-
-	public int getRolemanagementID() {
-		return RolemanagementID;
-	}
-
-	public void setRolemanagementID(int RolemanagementID) {
-		this.RolemanagementID = RolemanagementID;
-	}
+	
+	
 
 	public Role getRole() {
 		return role;
@@ -36,6 +30,14 @@ public class Rolemanagement extends BaseBean{
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+
+	public int getRolemanagementId() {
+		return RolemanagementId;
+	}
+
+	public void setRolemanagementId(int rolemanagementId) {
+		RolemanagementId = rolemanagementId;
 	}
 	
 }

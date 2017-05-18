@@ -2,16 +2,16 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.jxufe.ham.bean.Leaveword" table="leaveword" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
+    <class name="com.jxufe.ham.bean.Leaveword" table="leaveword" dynamic-update="true" catalog="ham" optimistic-lock="version">
         <id name="leavewordId" type="int">
             <column name="leavewordID" />
             <generator class="assigned" />
         </id>
         <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" fetch="select">
-            <column name="employee" not-null="true" />
+            <column name="employeeID" not-null="true" />
         </many-to-one>
         <many-to-one name="leaveword" class="com.jxufe.ham.bean.Leaveword" fetch="select">
-            <column name="sonLeaveword" />
+            <column name="lea_leaveword" />
         </many-to-one>
         <property name="leavewordContent" type="string">
             <column name="leavewordContent" length="250" not-null="true" />

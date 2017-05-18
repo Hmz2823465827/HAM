@@ -2,19 +2,19 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.jxufe.ham.bean.Authoritymanagement" table="authoritymanagement"
-		dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
-		<id name="authoritymanagementId" type="int">
-			<column name="authoritymanagementID" />
+	<class name="com.jxufe.ham.bean.Rolemanagement" table="rolemanagement"
+		dynamic-update="true" catalog="ham" optimistic-lock="version">
+		<id name="rolemanagementId" type="int">
+			<column name="rolemanagementID" />
 			<generator class="assigned" />
 		</id>
 		<many-to-one name="role" class="com.jxufe.ham.bean.Role"
 			fetch="select">
-			<column name="role" />
+			<column name="roleID" />
 		</many-to-one>
-		<many-to-one name="authority" class="com.jxufe.ham.bean.Authority"
+		<many-to-one name="employee" class="com.jxufe.ham.bean.Employee"
 			fetch="select">
-			<column name="authority" />
+			<column name="employee" />
 		</many-to-one>
 	</class>
 </hibernate-mapping>

@@ -68,5 +68,7 @@ public interface EmployeeService {
 	
 	public Set<BaseBean> loadSetByParam(BaseBean bean,String param) throws Exception;
 
-	public BaseBean findByName(String username);
+//	public BaseBean findByName(String username);
+
+	public List<Employee> findAll();
 }

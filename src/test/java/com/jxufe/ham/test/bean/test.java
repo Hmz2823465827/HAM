@@ -58,7 +58,7 @@ public class test {
 		log.setHouseId(1);
 		log.setClientPhone("test");
 		Housekey employee = (Housekey)session.get(Housekey.class, 1);
-		System.out.println(employee.getHouseKey());
+//		System.out.println(employee.getHouseKey());
 		transaction.commit();
 //        // 关闭会话
 //        session.close();

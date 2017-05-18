@@ -2,16 +2,16 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.jxufe.ham.bean.House" table="house" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
+    <class name="com.jxufe.ham.bean.House" table="house" dynamic-update="true" catalog="ham" optimistic-lock="version">
         <id name="houseId" type="int">
             <column name="houseID" />
             <generator class="assigned" />
         </id>
         <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" fetch="select">
-            <column name="employee" />
+            <column name="employeeID" />
         </many-to-one>
         <many-to-one name="housekey" class="com.jxufe.ham.bean.Housekey" fetch="select">
-            <column name="houseKey" not-null="true" />
+            <column name="houseKeyID" not-null="true" />
         </many-to-one>
         <property name="rentStatue" type="boolean">
             <column name="rentStatue" not-null="true" />

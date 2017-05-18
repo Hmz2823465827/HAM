@@ -20,9 +20,6 @@ public class Task extends BaseBean {
 	
 	private int taskId;//任务编号
 	
-	@JsonIgnore
-	private Employee employee;//发布任务员工
-	
 	private Date planDo;//计划完成时间
 	
 	private Date publishDate;//发布时间
@@ -34,33 +31,32 @@ public class Task extends BaseBean {
 	private String taskInfo;//任务详情
 	
 	@JsonIgnore
-	private Set<Employee> employees = new HashSet<Employee>(0);
+	private Set<Taskmanagement> taskmanagements = new HashSet<Taskmanagement>(0);
 	
 
 	public Task() {
 		super();
 	}
 
-	public Task(int taskId, Employee employee, Date planDo, Date publishDate, boolean taskStatue) {
+	public Task(int taskId, Date planDo, Date publishDate, boolean taskStatue) {
 		super();
 		this.taskId = taskId;
-		this.employee = employee;
 		this.planDo = planDo;
 		this.publishDate = publishDate;
 		this.taskStatue = taskStatue;
 	}
 
-	public Task(int taskId, Employee employee, Date planDo, Date publishDate, boolean taskStatue, Integer taskLevel,
-			String taskInfo, Set<Employee> employees) {
+	public Task(int taskId, Taskmanagement taskmanagement, Date planDo, Date publishDate, boolean taskStatue, Integer taskLevel,
+			String taskInfo, Set<Taskmanagement> taskmanagements) {
 		super();
 		this.taskId = taskId;
-		this.employee = employee;
+		this.taskmanagements = taskmanagements;
 		this.planDo = planDo;
 		this.publishDate = publishDate;
 		this.taskStatue = taskStatue;
 		this.taskLevel = taskLevel;
 		this.taskInfo = taskInfo;
-		this.employees = employees;
+		this.taskmanagements = taskmanagements;
 	}
 
 	public int getTaskId() {
@@ -69,14 +65,6 @@ public class Task extends BaseBean {
 
 	public void setTaskId(int taskId) {
 		this.taskId = taskId;
-	}
-
-	public Employee getEmployee() {
-		return this.employee; 
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
 	}
 
 	public Date getPlanDo() {
@@ -118,21 +106,22 @@ public class Task extends BaseBean {
 	public void setTaskInfo(String taskInfo) {
 		this.taskInfo = taskInfo;
 	}
-
-	public Set<Employee> getEmployees() {
-		return this.employees;
-	}
-
-	public void setEmployees(Set<Employee> employees) {
-		this.employees = employees;
-	}
 	
+	
+	public Set<Taskmanagement> getTaskmanagements() {
+		return taskmanagements;
+	}
+
+	public void setTaskmanagements(Set<Taskmanagement> taskmanagements) {
+		this.taskmanagements = taskmanagements;
+	}
+
 	@Override
 	public String toString() {
-		return "Task [taskId= " + taskId + ", employee= " + employee.getEmployeeName() +
+		return "Task [taskId= " + taskId +
 				",planDo= " + planDo + ", publishDate= " + publishDate + ", taskStatue= " + taskStatue + 
 				",taskLevel= "+ taskLevel + ",taskInfo="+taskInfo+
-				",employees = "+employees.toString() +"]";
+				",taskmanagements = "+taskmanagements.toString() +"]";
 	}
 
 }

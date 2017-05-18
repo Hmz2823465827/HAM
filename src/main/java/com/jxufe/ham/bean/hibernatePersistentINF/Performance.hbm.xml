@@ -2,19 +2,19 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.jxufe.ham.bean.Performance" table="performance" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
+    <class name="com.jxufe.ham.bean.Performance" table="performance" dynamic-update="true" catalog="ham" optimistic-lock="version">
         <id name="performanceId" type="int">
             <column name="performanceID" />
             <generator class="assigned" />
         </id>
         <many-to-one name="custom" class="com.jxufe.ham.bean.Custom" fetch="select">
-            <column name="custom" />
+            <column name="customID" />
         </many-to-one>
         <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" fetch="select">
-            <column name="employee" not-null="true" />
+            <column name="employeeID" not-null="true" />
         </many-to-one>
         <many-to-one name="pact" class="com.jxufe.ham.bean.Pact" fetch="select">
-            <column name="pact" />
+            <column name="pactID" />
         </many-to-one>
         <property name="employeeCoustomState" type="int">
             <column name="employeeCoustomState" not-null="true" />

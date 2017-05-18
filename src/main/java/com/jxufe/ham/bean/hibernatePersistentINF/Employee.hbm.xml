@@ -2,16 +2,13 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.jxufe.ham.bean.Employee" table="employee" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
+    <class name="com.jxufe.ham.bean.Employee" table="employee" dynamic-update="true" catalog="ham" optimistic-lock="version">
         <id name="employeeId" type="int">
             <column name="employeeID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="departByDepartId" class="com.jxufe.ham.bean.Depart" fetch="select">
-            <column name="depart" />
-        </many-to-one>
-        <many-to-one name="task" class="com.jxufe.ham.bean.Task" fetch="select">
-            <column name="task" />
+        <many-to-one name="departID" class="com.jxufe.ham.bean.Depart" fetch="select">
+        	<column name="departID"/>
         </many-to-one>
         <property name="employeeName" type="string">
             <column name="employeeName" length="10" not-null="true" />
@@ -70,11 +67,11 @@
             </key>
             <one-to-many class="com.jxufe.ham.bean.Keymanagement" />
         </set>
-        <set name="tasks" table="task" inverse="true" lazy="true" fetch="select">
+        <set name="taskmanagements" table="taskmanagement" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="employeeID" not-null="true" />
             </key>
-            <one-to-many class="com.jxufe.ham.bean.Task" />
+            <one-to-many class="com.jxufe.ham.bean.Taskmanagement" />
         </set>
     </class>
 </hibernate-mapping>

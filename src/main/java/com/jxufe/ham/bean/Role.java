@@ -9,7 +9,7 @@ public class Role extends BaseBean{
 
 	private static final long serialVersionUID = -7573667182853507192L;
 
-	private Role role;//编号ID
+	private int roleId;//编号ID
 	
 	private String roleName;//角色名
 	
@@ -17,13 +17,6 @@ public class Role extends BaseBean{
 
 	private Set<Authoritymanagement> authoritymanagements = new HashSet<Authoritymanagement>(0);
 	
-	public Role getRoleID() {
-		return role;
-	}
-
-	public void setRoleID(Role role) {
-		this.role = role;
-	}
 
 	public String getRoleName() {
 		return roleName;
@@ -52,6 +45,14 @@ public class Role extends BaseBean{
 
 	public void setAuthoritymanagements(Set<Authoritymanagement> authoritymanagements) {
 		this.authoritymanagements = authoritymanagements;
+	}
+
+	public int getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
 
 	

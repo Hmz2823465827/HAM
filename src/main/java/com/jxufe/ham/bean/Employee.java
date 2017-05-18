@@ -31,13 +31,9 @@ public class Employee extends BaseBean {
 
 	private int employeeId;//员工编号
 	
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 //	@JsonIgnore
-	private Depart departByDepartId;//所属部门
-	
-//	@JsonIgnore
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Task task;//任务
+	private Depart departID;//所属部门
 	
 	private String employeeName;//员工名称
 	
@@ -71,13 +67,10 @@ public class Employee extends BaseBean {
 	private Set<Keymanagement> keymanagements = new HashSet<Keymanagement>(0);//员工钥匙接管记录集合
 	
 	@JsonIgnore
-	private Set<Task> tasks = new HashSet<Task>(0);//员工发布任务集合
-	
-	@JsonIgnore
 	private Set<Depart> departs = new HashSet<Depart>(0);//员工担任部门经理集合
 	
 	@JsonIgnore
-	private Set<Taskmanagement> taskAllots = new HashSet<Taskmanagement>(0);//员工接受任务集合
+	private Set<Taskmanagement> taskmanagements = new HashSet<Taskmanagement>(0);//员工接受任务集合
 	
 	private Set<Rolemanagement> rolemanagements = new HashSet<Rolemanagement>(0);//角色集合
 	
@@ -92,13 +85,12 @@ public class Employee extends BaseBean {
 		this.employeePosition = employeePosition;
 	}
 
-	public Employee(int employeeId, Depart departByDepartId, Depart departByDepDepartId, Task task, String employeeName,
+	public Employee(int employeeId, Depart departID, Depart departByDepDepartId, Task task, String employeeName,
 			Boolean employeeSex, String employeePhone, int employeePosition, Set<Leaveword> leavewords, Set<Performance> performances,
-			Set<House> houses, Set<Followup> followups, Set<Workrecord> workrecords, Set<Log> logs, Set<Keymanagement> keymanagements, Set<Task> tasks,Set<Taskmanagement> taskAllots) {
+			Set<House> houses, Set<Followup> followups, Set<Workrecord> workrecords, Set<Log> logs, Set<Keymanagement> keymanagements, Set<Task> tasks,Set<Taskmanagement> taskmanagements) {
 		super();
 		this.employeeId = employeeId;
-		this.departByDepartId = departByDepartId;
-		this.task = task;
+		this.departID = departID;
 		this.employeeName = employeeName;
 		this.employeeSex = employeeSex;
 		this.employeePhone = employeePhone;
@@ -110,8 +102,7 @@ public class Employee extends BaseBean {
 		this.workrecords = workrecords;
 		this.logs = logs;
 		this.keymanagements = keymanagements;
-		this.tasks = tasks;
-		this.taskAllots = taskAllots;
+		this.taskmanagements = taskmanagements;
 	}
 
 	
@@ -132,20 +123,12 @@ public class Employee extends BaseBean {
 		this.employeeId = employeeId;
 	}
 
-	public Depart getDepartByDepartId() {
-		return this.departByDepartId;
+	public Depart getDepartID() {
+		return this.departID;
 	}
 
-	public void setDepartByDepartId(Depart departByDepartId) {
-		this.departByDepartId = departByDepartId;
-	}
-
-	public Task getTask() {
-		return this.task;
-	}
-
-	public void setTask(Task task) {
-		this.task = task;
+	public void setDepartID(Depart departID) {
+		this.departID = departID;
 	}
 
 	public String getEmployeeName() {
@@ -236,14 +219,6 @@ public class Employee extends BaseBean {
 		this.keymanagements = keymanagements;
 	}
 
-	public Set<Task> getTasks() {
-		return this.tasks;
-	}
-
-	public void setTasks(Set<Task> tasks) {
-		this.tasks = tasks;
-	}
-
 	public Set<Depart> getDeparts() {
 		return departs;
 	}
@@ -251,13 +226,14 @@ public class Employee extends BaseBean {
 	public void setDeparts(Set<Depart> departs) {
 		this.departs = departs;
 	}
+	
 
-	public Set<Taskmanagement> getTaskAllots() {
-		return taskAllots;
+	public Set<Taskmanagement> getTaskmanagements() {
+		return taskmanagements;
 	}
 
-	public void setTaskAllots(Set<Taskmanagement> taskAllots) {
-		this.taskAllots = taskAllots;
+	public void setTaskmanagements(Set<Taskmanagement> taskmanagements) {
+		this.taskmanagements = taskmanagements;
 	}
 
 	public Set<Rolemanagement> getRolemanagements() {

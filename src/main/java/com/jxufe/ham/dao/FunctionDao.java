@@ -2,6 +2,8 @@ package com.jxufe.ham.dao;
 
 import java.util.List;
 
+import com.jxufe.ham.bean.Function;
+
 /**
  * @Description: 权限过滤dao层接口
  * @ClassName: FunctionDao
@@ -30,5 +32,13 @@ public abstract class FunctionDao<E> extends BaseDao<E>{
 	* @return
 	 */
 	public abstract int getCount(String hql);
+
+	/**
+	 * 
+	* @Title: findAll 
+	* @Description:获取所有记录
+	* @return
+	 */
+	public abstract List<Function> findAll();
 
 }

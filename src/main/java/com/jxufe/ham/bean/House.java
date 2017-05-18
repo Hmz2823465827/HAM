@@ -195,7 +195,7 @@ public class House extends BaseBean {
 	
 	@Override
 	public String toString() {
-		return "House [houseId=" + houseId + ", housekey=" + housekey.getHouseKey() +
+		return "House [houseId=" + houseId  +
 				",rentStatue=" + rentStatue + ", saleStatue=" + saleStatue + ", houseArea=" + houseArea + 
 				",unitRentPrice="+ unitRentPrice + ",unitSalePrice="+unitSalePrice+
 				",clientName=" + clientName + ",clientPhone="+clientPhone+"]";

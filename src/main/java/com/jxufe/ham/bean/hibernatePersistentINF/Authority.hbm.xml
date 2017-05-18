@@ -2,20 +2,17 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.jxufe.ham.bean.Authority" table="authority" dynamic-update="true" catalog="houseagencymanagement" optimistic-lock="version">
+    <class name="com.jxufe.ham.bean.Authority" table="authority" dynamic-update="true" catalog="ham" optimistic-lock="version">
         <id name="authorityId" type="int">
-            <column name="authorityID"/>
+            <column name="authorityid"/>
             <generator class="assigned" />
         </id>
-        <property name="table" type="string">
-            <column name="table" length="10" not-null="true" />
-        </property>
         <property name="operation" type="string">
-            <column name="operation" length="10" not-null="true" />
+            <column name="operation" length="10"  />
         </property>
         <set name="authoritymanagements" table="authoritymanagement" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="authorityID" />
+                <column name="authorityid" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.Authoritymanagement" />
         </set>
