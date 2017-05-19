@@ -7,7 +7,7 @@
             <column name="workRecordID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" fetch="select">
+        <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" >
             <column name="employeeID" not-null="true" />
         </many-to-one>
         <property name="workRecordDate" type="date">

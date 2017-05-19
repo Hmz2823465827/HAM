@@ -28,13 +28,13 @@
         <property name="purposePosition" type="string">
             <column name="purposePosition" length="50" />
         </property>
-        <set name="performances" table="performance" inverse="true" lazy="true" fetch="select">
+        <set name="performances" table="performance" inverse="true" lazy="true" >
             <key>
                 <column name="customID" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.Performance" />
         </set>
-        <set name="followups" table="followup" inverse="true" lazy="true" fetch="select">
+        <set name="followups" table="followup" inverse="true" lazy="true" >
             <key>
                 <column name="customID" not-null="true" />
             </key>

@@ -5,6 +5,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.config.Ini;
 import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -12,10 +14,14 @@ import org.springframework.expression.spel.ast.Selection;
 import org.springframework.stereotype.Component;
 
 import com.jxufe.ham.bean.Authority;
+import com.jxufe.ham.bean.Custom;
 import com.jxufe.ham.bean.Employee;
+import com.jxufe.ham.bean.Followup;
 import com.jxufe.ham.bean.Function;
 import com.jxufe.ham.bean.Role;
+import com.jxufe.ham.service.AuthorityService;
 import com.jxufe.ham.service.EmployeeService;
+import com.jxufe.ham.service.FollowupService;
 import com.jxufe.ham.service.FunctionService;
 
 import java.util.ArrayList;
@@ -39,31 +45,17 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 	Log log = LogFactory.getLog(ChainDefinitionSectionMetaSource.class);
 
 	@Autowired
-	private FunctionService functionService;
+	private SessionFactory sessionFactory;
 	
 	@Autowired
-	private EmployeeService employeeService;
-	
-//	@Inject
-//	public void setFunctionService(FunctionService functionService){
-//		this.functionService = functionService;
-//	}
-//	@Autowired
-//	private EmployeeService employeeService;
-
-	// 静态资源访问权限
+	private FunctionService functionService;
+		// 静态资源访问权限
 	private String filterChainDefinitions = "/plugin/**=anon";
 
 	public Ini.Section getObject() throws Exception {
-//		List<Function> list = functionService.findAll();
-//		@SuppressWarnings("unused")
-//		Employee employee = employeeService.load(1);
+//		Session session = sessionFactory.Session();
+//		session.beginTransaction();
 		List list = functionService.findAll();
-		Function testFunction = functionService.load(3);
-		Employee employee = employeeService.load(2);
-//		employee.getDepartByDepartId()
-//		Hibernate.
-//		log.debug(testFunction.getAuthority().getAuthorityId());
 		Ini ini = new Ini();
 		// 加载默认的url
 		ini.load(filterChainDefinitions);

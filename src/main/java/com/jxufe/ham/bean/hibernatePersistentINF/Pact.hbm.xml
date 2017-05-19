@@ -7,10 +7,10 @@
             <column name="pactID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="house" class="com.jxufe.ham.bean.House" fetch="select">
+        <many-to-one name="house" class="com.jxufe.ham.bean.House" >
             <column name="houseID" not-null="true" />
         </many-to-one>
-<!--         <many-to-one name="performance" class="com.jxufe.ham.bean.Performance" fetch="select">
+<!--         <many-to-one name="performance" class="com.jxufe.ham.bean.Performance" >
             <column name="performanceID" />
         </many-to-one> -->
         <property name="pactStatue" type="int">
@@ -22,7 +22,7 @@
         <property name="pactInfo" type="string">
             <column name="pactInfo" length="250" />
         </property>
-        <set name="performances" table="performance" inverse="true" lazy="true" fetch="select">
+        <set name="performances" table="performance" inverse="true" lazy="true" >
             <key>
                 <column name="pactID" />
             </key>

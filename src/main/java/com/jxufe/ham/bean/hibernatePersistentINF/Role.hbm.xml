@@ -10,7 +10,7 @@
         <property name="roleName" type="string">
             <column name="roleName" length="25" not-null="true" />
         </property>
-        <set name="rolemanagements" table="rolemanagement" inverse="true" lazy="true" fetch="select">
+        <set name="rolemanagements" table="rolemanagement" inverse="true" lazy="true" >
             <key>
                 <column name="roleID" />
             </key>

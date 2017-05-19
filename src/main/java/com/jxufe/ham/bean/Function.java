@@ -20,6 +20,22 @@ public class Function extends BaseBean{
 	
 	private String type;//类型
 
+	
+	
+	public Function() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Function(int functionId, String value, Authority authorityID, Role role, String type) {
+		super();
+		this.functionId = functionId;
+		this.value = value;
+		this.authorityID = authorityID;
+		this.role = role;
+		this.type = type;
+	}
+	
 	public String getValue() {
 		return value;
 	}

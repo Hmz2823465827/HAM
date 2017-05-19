@@ -7,7 +7,7 @@
             <column name="houseMapID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="house" class="com.jxufe.ham.bean.House" fetch="select">
+        <many-to-one name="house" class="com.jxufe.ham.bean.House" >
             <column name="houseID" not-null="true" />
         </many-to-one>
         <property name="position" type="string">

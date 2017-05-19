@@ -7,13 +7,13 @@
             <column name="performanceID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="custom" class="com.jxufe.ham.bean.Custom" fetch="select">
+        <many-to-one name="custom" class="com.jxufe.ham.bean.Custom" >
             <column name="customID" />
         </many-to-one>
-        <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" fetch="select">
+        <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" >
             <column name="employeeID" not-null="true" />
         </many-to-one>
-        <many-to-one name="pact" class="com.jxufe.ham.bean.Pact" fetch="select">
+        <many-to-one name="pact" class="com.jxufe.ham.bean.Pact" >
             <column name="pactID" />
         </many-to-one>
         <property name="employeeCoustomState" type="int">
@@ -31,7 +31,7 @@
         <property name="performanceInfo" type="string">
             <column name="performanceInfo" length="250" />
         </property>
-        <set name="pacts" table="pact" inverse="true" lazy="true" fetch="select">
+        <set name="pacts" table="pact" inverse="true" lazy="true" >
             <key>
                 <column name="performanceID" />
             </key>

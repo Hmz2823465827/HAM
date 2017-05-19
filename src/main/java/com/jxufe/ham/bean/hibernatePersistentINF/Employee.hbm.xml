@@ -7,7 +7,7 @@
             <column name="employeeID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="departID" class="com.jxufe.ham.bean.Depart" fetch="select">
+        <many-to-one name="departID" class="com.jxufe.ham.bean.Depart" >
         	<column name="departID"/>
         </many-to-one>
         <property name="employeeName" type="string">
@@ -25,49 +25,49 @@
         <property name="passWord" type="string">
         	<column name="passWord" length="25"/>
         </property>
-        <set name="leavewords" table="leaveword" inverse="true" lazy="true" fetch="select">
+        <set name="leavewords" table="leaveword" inverse="true" lazy="true" >
             <key>
                 <column name="employeeID" not-null="true" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.Leaveword" />
         </set>
-        <set name="performances" table="performance" inverse="true" lazy="true" fetch="select">
+        <set name="performances" table="performance" inverse="true" lazy="true" >
             <key>
                 <column name="employeeID" not-null="true" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.Performance" />
         </set>
-        <set name="houses" table="house" inverse="true" lazy="true" fetch="select">
+        <set name="houses" table="house" inverse="true" lazy="true" >
             <key>
                 <column name="employeeID" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.House" />
         </set>
-        <set name="followups" table="followup" inverse="true" lazy="true" fetch="select">
+        <set name="followups" table="followup" inverse="true" lazy="true" >
             <key>
                 <column name="employeeID" not-null="true" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.Followup" />
         </set>
-        <set name="workrecords" table="workrecord" inverse="true" lazy="true" fetch="select">
+        <set name="workrecords" table="workrecord" inverse="true" lazy="true" >
             <key>
                 <column name="employeeID" not-null="true" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.Workrecord" />
         </set>
-        <set name="logs" table="log" inverse="true" lazy="true" fetch="select">
+        <set name="logs" table="log" inverse="true" lazy="true" >
             <key>
                 <column name="employeeID" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.Log" />
         </set>
-        <set name="keymanagements" table="keymanagement" inverse="true" lazy="true" fetch="select">
+        <set name="keymanagements" table="keymanagement" inverse="true" lazy="true" >
             <key>
                 <column name="employeeID" not-null="true" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.Keymanagement" />
         </set>
-        <set name="taskmanagements" table="taskmanagement" inverse="true" lazy="true" fetch="select">
+        <set name="taskmanagements" table="taskmanagement" inverse="true" lazy="true" >
             <key>
                 <column name="employeeID" not-null="true" />
             </key>
