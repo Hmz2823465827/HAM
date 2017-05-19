@@ -7,10 +7,10 @@
             <column name="functionID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="authorityID" class="com.jxufe.ham.bean.Authority" fetch="select">
+        <many-to-one name="authorityID" class="com.jxufe.ham.bean.Authority" >
             <column name="authorityid"  />
         </many-to-one>
-        <many-to-one name="role" class="com.jxufe.ham.bean.Role" fetch="select">
+        <many-to-one name="role" class="com.jxufe.ham.bean.Role" >
             <column name="roleID"/>
         </many-to-one>
         <property name="value" type="string">

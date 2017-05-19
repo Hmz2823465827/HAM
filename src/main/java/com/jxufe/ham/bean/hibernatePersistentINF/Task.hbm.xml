@@ -22,7 +22,7 @@
         <property name="taskInfo" type="string">
             <column name="taskInfo" length="250" />
         </property>
-        <set name="taskmanagements" table="taskmanagement" inverse="true" lazy="true" fetch="select">
+        <set name="taskmanagements" table="taskmanagement" inverse="true" lazy="true" >
             <key>
                 <column name="taskID" not-null="true" />
             </key>

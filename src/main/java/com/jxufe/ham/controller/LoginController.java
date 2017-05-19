@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,10 @@ public class LoginController {
 	
 	private Log log = LogFactory.getLog(LoginController.class);
 	
+	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public String login(){
+		return "/welcome";
+	}
 	
 	/**
 	 * 
@@ -58,6 +64,7 @@ public class LoginController {
 				hashMap.put(errMsg, "账户为空登录失败");
 				log.debug("账户为空登录失败");
 			}
+			SecurityUtils.getSubject().login(new UsernamePasswordToken(employee.getEmployeeName(), employee.getPassWord()));
 			Employee eFromData = employeeService.load(employee.getEmployeeId());
 			if(eFromData==null){
 				hashMap.put(isLogin, false);
@@ -76,6 +83,7 @@ public class LoginController {
 					log.debug(employee.getEmployeeId()+":登入失败");
 				} 
 			}
+			
 		} catch (Exception e) {
 			log.equals(e.getMessage());
 		} 

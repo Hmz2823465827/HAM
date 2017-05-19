@@ -16,7 +16,7 @@
         <property name="departRank" type="java.lang.Integer">
             <column name="departRank" />
         </property>
-        <set name="employeesForDepartId" table="employee" inverse="true" lazy="true" fetch="select">
+        <set name="employeesForDepartId" table="employee" inverse="true" lazy="true" >
             <key>
                 <column name="departID" />
             </key>

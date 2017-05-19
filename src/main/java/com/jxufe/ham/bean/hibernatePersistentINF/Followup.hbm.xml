@@ -7,13 +7,13 @@
             <column name="followUpID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="custom" class="com.jxufe.ham.bean.Custom" fetch="select">
+        <many-to-one name="custom" class="com.jxufe.ham.bean.Custom" >
             <column name="customID" not-null="true"  />
         </many-to-one>
-        <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" fetch="select">
+        <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" >
             <column name="employeeID" not-null="true"  />
         </many-to-one>
-        <many-to-one name="house" class="com.jxufe.ham.bean.House" fetch="select">
+        <many-to-one name="house" class="com.jxufe.ham.bean.House" >
             <column name="houseID" not-null="true" />
         </many-to-one>
         <property name="followUpStatue" type="int">

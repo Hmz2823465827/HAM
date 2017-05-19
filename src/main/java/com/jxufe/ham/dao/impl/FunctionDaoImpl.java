@@ -1,7 +1,14 @@
 package com.jxufe.ham.dao.impl;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,11 +17,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jxufe.ham.bean.Authority;
 import com.jxufe.ham.bean.Function;
+import com.jxufe.ham.bean.Role;
 import com.jxufe.ham.dao.FunctionDao;
 
 @Repository
 public class FunctionDaoImpl extends FunctionDao<Function> {
+	
+	private Log log = LogFactory.getLog(FunctionDaoImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -78,7 +89,20 @@ public class FunctionDaoImpl extends FunctionDao<Function> {
 		
 		Query query = session.createQuery("from Function");
 //		transaction.commit();
-		return query.list();
+		query.setCacheable(true);
+		List list = query.list();
+		//Hiberate 懒加载 在session未关闭的dao层 实例化关联对象
+		Iterator<Object> iterable = list.iterator();
+		for (Object object : list) {
+			Function function = (Function)object;
+			if (function.getType().equals("perms")) {
+				Hibernate.initialize(function.getAuthorityID());
+			} else if (function.getType().equals("roles")) {
+				Hibernate.initialize(function.getRole());
+			}
+			
+		}
+		return list;
 	}
 
 }

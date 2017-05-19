@@ -15,14 +15,31 @@ public class Authority extends BaseBean{
 	
 	private String operation;//操作
 	
+	
 	private Set<Authoritymanagement> authoritymanagements = new HashSet<Authoritymanagement>(0);
-		
+	
+	
+	
+	public Authority() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Authority(int authorityId, String operation, Set<Authoritymanagement> authoritymanagements) {
+		super();
+		this.authorityId = authorityId;
+		this.operation = operation;
+		this.authoritymanagements = authoritymanagements;
+	}
+
+
 	public Set<Authoritymanagement> getAuthoritymanagements() {
 		return authoritymanagements;
 	}
 
 
-	public void setAuthoritymanagements(HashSet<Authoritymanagement> authoritymanagements) {
+	public void setAuthoritymanagements(Set<Authoritymanagement> authoritymanagements) {
 		this.authoritymanagements = authoritymanagements;
 	}
 

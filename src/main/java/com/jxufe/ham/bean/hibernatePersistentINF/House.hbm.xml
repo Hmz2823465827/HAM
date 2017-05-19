@@ -7,10 +7,10 @@
             <column name="houseID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" fetch="select">
+        <many-to-one name="employee" class="com.jxufe.ham.bean.Employee" >
             <column name="employeeID" />
         </many-to-one>
-        <many-to-one name="housekey" class="com.jxufe.ham.bean.Housekey" fetch="select">
+        <many-to-one name="housekey" class="com.jxufe.ham.bean.Housekey" >
             <column name="houseKeyID" not-null="true" />
         </many-to-one>
         <property name="rentStatue" type="boolean">
@@ -34,19 +34,19 @@
         <property name="clientPhone" type="string">
             <column name="clientPhone" length="12" />
         </property>
-        <set name="pacts" table="pact" inverse="true" lazy="true" fetch="select">
+        <set name="pacts" table="pact" inverse="true" lazy="true" >
             <key>
                 <column name="houseID" not-null="true" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.Pact" />
         </set>
-        <set name="followups" table="followup" inverse="true" lazy="true" fetch="select">
+        <set name="followups" table="followup" inverse="true" lazy="true" >
             <key>
                 <column name="houseID" not-null="true" />
             </key>
             <one-to-many class="com.jxufe.ham.bean.Followup" />
         </set>
-        <set name="housemaps" table="housemap" inverse="true" lazy="true" fetch="select">
+        <set name="housemaps" table="housemap" inverse="true" lazy="true" >
             <key>
                 <column name="houseID" not-null="true" />
             </key>
