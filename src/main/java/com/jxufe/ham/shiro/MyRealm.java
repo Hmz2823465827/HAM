@@ -44,7 +44,7 @@ public class MyRealm extends AuthorizingRealm{
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         //获取登录时输入的用户名  
-        String loginName=(String) principalCollection.fromRealm(getName()).iterator().next();
+        String loginName= principalCollection.fromRealm(getName()).iterator().next()+"";
         //到数据库获取此用户
         Employee employee=employeeService.load(Integer.parseInt(loginName));
         if(employee!=null){
