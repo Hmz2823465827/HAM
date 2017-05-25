@@ -139,9 +139,7 @@
 			datetype : "json",
 			data : $("#form1").serializeArray(),
 			url : "/HAM/index/login.htmls",
-			success : function(data) {
-				/* var dataJson = data.parseJSON(); */
-				var dataJson = JSON.parse(data);
+			success : function(dataJson) {
 				if (dataJson.isLogin == true) {
 					window.setTimeout("loginsuccess()", 500);
 				}
@@ -158,7 +156,6 @@
 			"action" : "/HAM/index/toIndex.htmls",
 			"method" : "POST"
 		}).submit();
-		/* $.post("/HAM/index/toIndex.htmls"); */
 	};
 </script>
 </html>

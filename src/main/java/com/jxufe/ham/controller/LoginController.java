@@ -1,6 +1,7 @@
 package com.jxufe.ham.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -53,10 +54,10 @@ public class LoginController {
 	* @return
 	 */
 	@RequestMapping(value ="/login",method = RequestMethod.POST)
-	public @ResponseBody HashMap<String, Object> login(Employee employee,HttpServletRequest request){
+	public @ResponseBody Map login(Employee employee,HttpServletRequest request){
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		final String isLogin = "isLogin";//是否登入成功
-		final String errMsg = "errorMsg";//错误信息
+		final String errMsg = "errorMsg";//错误信息 q
 		final String msg ="msg";//信息
 		try {
 			if(employee==null){
@@ -64,7 +65,7 @@ public class LoginController {
 				hashMap.put(errMsg, "账户为空登录失败");
 				log.debug("账户为空登录失败");
 			}
-			SecurityUtils.getSubject().login(new UsernamePasswordToken(employee.getEmployeeName(), employee.getPassWord()));
+			SecurityUtils.getSubject().login(new UsernamePasswordToken(employee.getEmployeeId()+"", employee.getPassWord()));
 			Employee eFromData = employeeService.load(employee.getEmployeeId());
 			if(eFromData==null){
 				hashMap.put(isLogin, false);
@@ -88,6 +89,7 @@ public class LoginController {
 			log.equals(e.getMessage());
 		} 
 		return hashMap;
+//		return new ModelAndView("index");
 	}
 	
 	private void putSession(HttpServletRequest request, BaseBean bean) {
@@ -102,9 +104,14 @@ public class LoginController {
 	* @Description:登入成功返回ModelAndView视图模型跳转
 	* @return
 	 */
-	@AutoAuthorization
+//	@AutoAuthorization
 	@RequestMapping(value = "toIndex",method = RequestMethod.POST)
 	public ModelAndView toIndex(){
 		return new ModelAndView("index");//返回WEB-INF下的view目录下index.jsp文件
+	}
+	
+	@RequestMapping("403")
+	public ModelAndView error(){
+		return new ModelAndView("403");
 	}
 }
