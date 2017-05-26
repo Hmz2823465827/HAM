@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.inject.Inject;
 
 import com.jxufe.ham.service.EmployeeService;
+import com.sun.tools.internal.ws.processor.model.Request;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -43,7 +44,8 @@ public class MyRealm extends AuthorizingRealm{
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        //获取登录时输入的用户名  
+        //获取登录时输入的用户名 
+//    	Request request = new Request(entity, receiver).getSession
         String loginName= principalCollection.fromRealm(getName()).iterator().next()+"";
         //到数据库获取此用户
         Employee employee=employeeService.load(Integer.parseInt(loginName));
@@ -58,10 +60,10 @@ public class MyRealm extends AuthorizingRealm{
 			} catch (Exception e) {
 				log.error(e.getMessage());
 			}//从管理表中获取属性中的属性
+//			System.out.println(roleNameSet);
             info.setRoles(roleNameSet);
             //用户的角色对应的所有权限，如果只使用角色定义访问权限
             Set<Rolemanagement> roleMangementSet= employee.getRolemanagements();
-            
             for (Rolemanagement rolemanagement : roleMangementSet) {
                 try {
 					info.addStringPermissions(getParamFromManagement(rolemanagement.getRole().getAuthoritymanagements(),"authority","authorityName"));
@@ -102,6 +104,7 @@ public class MyRealm extends AuthorizingRealm{
 		}
 		return sonParamSet;
 	}
+    
     
     /** 
      * 首字母大写 

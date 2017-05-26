@@ -1,3 +1,8 @@
+<%-- <%@page import="org.apache.shiro.subject.Subject"%>
+<%@page import="javax.security.auth.Subject"%> --%>
+<%@page import="org.apache.shiro.subject.Subject"%>
+<%@page import="org.apache.shiro.SecurityUtils"%>
+<%@page import="com.jxufe.ham.bean.Employee"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -11,6 +16,8 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	Subject subject = SecurityUtils.getSubject();
+	System.out.println(subject.hasRole("employee"));
 %>
 <base href="<%=basePath%>">
 <meta charset="utf-8" />
@@ -36,6 +43,8 @@
 </head>
 
 <body>
+	<shiro:hasPermission name="user:del">不具有user:add权限用户显示此内容</shiro:hasPermission>
+	<br />
 	<div id="all" class="container-fluid" style="background-color: #fff;">
 		<div id="topall" class="container-fluid"
 			style="background-color: #F5F5F5; border: #F1F1F1 2px solid; border-radius: 5px;">
@@ -67,7 +76,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="#">个人信息</a></li>
 								<li class="divider"></li>
-								<li><a href="#">登出</a></li>
+								<li><a href="#">${role}</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -77,7 +86,7 @@
 		<div id="board" class="container-fluid"
 			style="padding-left: 0px; padding-right: 0px; background-color: #F5F5F5; border: #F1F1F1 2px solid; border-radius: 5px; margin-top: 12px;">
 
-			<div id="personal" class="col-md-3 column"
+			<div id="personal" class="col-md-2 column"
 				style="background-color: #;">
 				<div id="img1" style="height: 100px; width: 100px; float: left;">
 					<img src="plugin/img/img1.jpg"
@@ -94,34 +103,39 @@
 						<button type="button" class="btn btn-warning btn-sm">签到</button>
 					</div>
 				</div>
-
-				<div class="list-group">
-	<!-- 				<a href="#" class="list-group-item active"> Cras justo odio </a>  -->
-					<shiro:hasRole name="employee"><a href="#" class="list-group-item" onclick="showPanel()">通讯录</a></shiro:hasRole>
-					<shiro:hasRole name="departManager"><a href="#" class="list-group-item" onclick="showPanel('house')">departManagerTest</a></shiro:hasRole>
-					<shiro:hasRole name="employee"><a href="#" class="list-group-item" onclick="showPanel('house')">房源信息</a></shiro:hasRole>
-					<shiro:hasRole name="employee"><a href="#" class="list-group-item"onclick="showPanel(workrecord)">工作日志</a></shiro:hasRole>
-					<a href="#" class="list-group-item" onclick="showPanel()">通讯录</a>
-					<!-- <a href="#" class="list-group-item">Vestibulum at eros</a> -->
-				</div>
+				<shiro:hasRole name="employee">
+					<div class="list-group roleTree" id="employeeTree">
+				</shiro:hasRole>
+				<shiro:hasRole name="departManage">
+					<div class="list-group roleTree " id="departManageTree"></div>
+				</shiro:hasRole>
+				<shiro:hasRole name="manager">
+					<div class="list-group roleTree " id="managerTree"></div>
+				</shiro:hasRole>
+				<shiro:hasRole name="admin">
+					<div class="list-group roleTree " id="adminTree"></div>
+				</shiro:hasRole>
 			</div>
 		</div>
 
-		<div class="col-md-9 column" style="background-color: #fff" id="Panel">
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-				<div class="panel-heading">显示工作日志</div>
-				<div class="panel-body">
-					<!-- style="display: table; -->
-					<table id="table" class="table table-hover "
-						data-show-columns="true" data-search="true" data-pagination="true"></table>
-				</div>
+	</div>
 
+
+	<div class="col-md-9 column" style="background-color: #fff" id="Panel">
+		<div class="panel panel-default">
+			<!-- Default panel contents -->
+			<div class="panel-heading">显示工作日志</div>
+			<div class="panel-body">
+				<!-- style="display: table; -->
+				<table id="table" class="table table-hover "
+					data-show-columns="true" data-search="true" data-pagination="true"></table>
 			</div>
-			<!-- Table -->
-			<!--  -->
 
 		</div>
+		<!-- Table -->
+		<!--  -->
+
+	</div>
 
 	</div>
 
@@ -129,6 +143,122 @@
 </body>
 
 <script>
+		
+//角色为employee时的ul
+var anonyUl = {
+		text: '通用',
+		href: '#parent1',
+		tags: ['6'],
+		nodes: [{
+			text: '通讯录',
+			href: '#child1',
+			tags: ['0'],
+		}, {
+			text: '黑名单',
+			href: '#child2',
+			tags: ['0']
+		}, {
+			text: '工作日志',
+			href: '#child3',
+			tags: ['0']
+		}, {
+			text: '新闻',
+			href: '#child4',
+			tags: ['0']
+		}, {
+			text: '考勤统计',
+			href: '#child5',
+			tags: ['0']
+		}, {
+			text: '同比环比',
+			href: '#child6',
+			tags: ['0']
+		}]
+	};
+ var employeeUl = [anonyUl, {
+	text: '任务',
+	href: '#parent2',
+	tags: ['2'],
+	nodeId:22,
+	role:'employee',
+	nodes: [{
+		text: '查看任务',
+		href: '#child7',
+		tags: ['0'],
+	}, {
+		text: '申请完成任务',
+		href: '#child8',
+		tags: ['0']
+	}]		
+}, {
+	text: '房源信息',
+	href: '#parent3',
+	tags: ['0'],
+	role:'employee'
+}, {
+	text: '跟进记录',
+	href: '#parent4',
+	tags: ['0']
+}, {
+	text: '钥匙信息',
+	href: '#parent5',
+	tags: ['0']
+},{
+	text:'房屋管理',
+	href:'#parent6',
+	tags:['0']
+},{
+	text:'权限管理',
+	href:'#parent6',
+	tags:['0']
+}]; 
+
+ var departManageUl=[anonyUl, {
+	text: '任务',
+	href: '#parent2',
+	tags: ['2'],
+	nodeId:22,
+	role:'employee',
+	nodes: [{
+		text: '查看任务',
+		href: '#child7',
+		tags: ['0'],
+	}, {
+		text: '申请完成任务',
+		href: '#child8',
+		tags: ['0']
+	},{
+		text: '发布任务',
+		href: '#child8',
+		tags: ['0']
+	}]		
+}, {
+	text: '员工管理',
+	href: '#parent3',
+	tags: ['0']
+}, {
+	text:'房屋管理',
+	href:'#parent6',
+	tags:['0']
+},{
+	text:'权限管理',
+	href:'#parent6',
+	tags:['0']
+}]; 
+ 
+var managerUl = [anonyUl,{
+	text:'部门管理',
+	href:'#parent6',
+	tags:['0']
+},{
+	text:'权限管理',
+}];
+
+var adminUl = [{
+	text:'用户管理'
+}]
+
+ var manageUl 
 		function showPanel(tableType) {
 			var $table = $('#table');
 			var $panelDisplay = $('.table');
@@ -250,75 +380,17 @@
 		}
 
 		$(function() {
-			var defaultData = [{
-				text: '通用',
-				/* href: '#parent1', */
-				tags: ['6'],
-				nodes: [{
-					text: '通讯录',
-					href: '#child1',
-					tags: ['0'],
-				}, {
-					text: '黑名单',
-					href: '#child2',
-					tags: ['0']
-				}, {
-					text: '工作日志',
-					href: '#child3',
-					tags: ['0']
-				}, {
-					text: '新闻',
-					href: '#child4',
-					tags: ['0']
-				}, {
-					text: '考勤统计',
-					href: '#child5',
-					tags: ['0']
-				}, {
-					text: '同比环比',
-					href: '#child6',
-					tags: ['0']
-				}]
-			}, {
-				text: '任务',
-				href: '#parent2',
-				tags: ['2'],
-				nodeId:22,
-				role:'employee',
-				nodes: [{
-					text: '查看任务',
-					href: '#child7',
-					tags: ['0'],
-				}, {
-					text: '申请完成任务',
-					href: '#child8',
-					tags: ['0']
-				}]		
-			}, {
-				text: '房源信息',
-				href: '#parent3',
-				tags: ['0'],
-				role:'employee'
-			}, {
-				text: '跟进记录',
-				href: '#parent4',
-				tags: ['0']
-			}, {
-				text: '钥匙信息',
-				href: '#parent5',
-				tags: ['0']
-			},{
-				text:'房屋管理',
-				href:'#parent6',
-				role:'departManager',
-				tags:['0']
-			}];
+			
 		
-			$('#functiontree').treeview({
-				data: defaultData
+			$('#employeeTree').treeview({
+				data:employeeUl
+			});
+			
+			$('#manageTree').treeview({
+				data:manageUl
 			});
 
-/* 			function setTableType(data){
+ 			function setTableType(data){
 				switch(data.text){
 					case "工作日志":
 						return "workrecord";
@@ -333,9 +405,9 @@
 						return "keycontroll";
 						break;
 				}
-			} */
+			} 
 
-			$('#functiontree').on('nodeSelected',function(event, data) {
+			$('#employeeTree').on('nodeSelected',function(event, data) {
 				var tableType = setTableType(data);
 			    showPanel(tableType);
 			});
@@ -366,8 +438,8 @@
 			/* var functionTree = $('#functiontree').treeview('checkNode', [ '1', { state.role: 'employee' } ]); */
 		
 			
-			 document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});	
-		});
+			  document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});	
+ 		});
 		
 /* 		function addRoleToLi(){
 			var lsList = $('.list-group-item');
@@ -379,11 +451,11 @@
 			}
 		} */
 		
-		$('#functiontree').on('nodeChecked',function(event, data) {
+		/* $('#functiontree').on('nodeChecked',function(event, data) {
 			/* var tableType = setTableType(data);
 		    showPanel(tableType); */
-			alert("nodeChecked");
-		});
+			/* alert("nodeChecked");
+		});  */
 	</script>
 
 

@@ -73,5 +73,11 @@
             </key>
             <one-to-many class="com.jxufe.ham.bean.Taskmanagement" />
         </set>
+        <set name="rolemanagements" table="rolemanagement" inverse="true" lazy="true" >
+            <key>
+                <column name="employeeID" not-null="true" />
+            </key>
+            <one-to-many class="com.jxufe.ham.bean.Rolemanagement" />
+        </set>
     </class>
 </hibernate-mapping>
