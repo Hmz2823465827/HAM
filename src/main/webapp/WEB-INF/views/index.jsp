@@ -389,16 +389,16 @@
  			function setTableType(data){
 				switch(data.text){
 					case "工作日志":
-						return "workrecord";
+						return "workrecords";
 						break;
 					case "查看任务":
-						return "task";
+						return "tasks";
 						break;
 					case "房源信息":
-						return "house";
+						return "houses";
 						break;
 					case "钥匙信息":
-						return "keycontroll";
+						return "keycontrolls";
 						break;
 				}
 			} 

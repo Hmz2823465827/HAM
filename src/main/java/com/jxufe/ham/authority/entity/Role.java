@@ -3,6 +3,7 @@ package com.jxufe.ham.authority.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jxufe.ham.common.entity.BaseBean;
 
 public class Role extends BaseBean{
@@ -13,10 +14,13 @@ public class Role extends BaseBean{
 	
 	private String roleName;//角色名
 	
+	@JsonIgnore
 	private Set<Rolemanagement> rolemanagements = new HashSet<Rolemanagement>(0);
-
+	
+	@JsonIgnore
 	private Set<Authoritymanagement> authoritymanagements = new HashSet<Authoritymanagement>(0);
 	
+	@JsonIgnore
 	private Set<Function> functions = new HashSet<Function>(0);
 	
 	

@@ -6,6 +6,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.jboss.logging.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jxufe.ham.common.entity.BaseBean;
 import com.jxufe.ham.system.entity.Employee;
 import com.jxufe.ham.system.myInterface.AutoAuthorizationClass;
 import com.jxufe.ham.system.service.EmployeeService;
@@ -93,10 +98,11 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/loadSetbyParam",method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> loadSetByParam(HttpServletRequest request,@RequestParam String setName){
-		Employee employee = (Employee) getSessionValue(request, StaticKey.LOGIN_E);
+//		Employee employee = (Employee) getSessionValue(request, StaticKey.LOGIN_E); 
+		Integer id =(Integer)SecurityUtils.getSubject().getPrincipal();
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		try {
-			hashMap.put("list", eService.loadSetByParam(employee,setName));
+			hashMap.put("list", eService.loadSetByParam(id,setName));
 			hashMap.put(ISDONE, true);
 			hashMap.put(MSG, "获取成功");
 		} catch (Exception e) {
@@ -108,10 +114,4 @@ public class EmployeeController {
 		
 	}
 	
-
-	
-	
-
-	
-
 }

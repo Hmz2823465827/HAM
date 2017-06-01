@@ -73,28 +73,21 @@ public class Employee extends BaseBean {
 	@JsonIgnore
 	private Set<Taskmanagement> taskmanagements = new HashSet<Taskmanagement>(0);//员工接受任务集合
 	
+	@JsonIgnore
 	private Set<Rolemanagement> rolemanagements = new HashSet<Rolemanagement>(0);//角色集合
 	
-	public Employee() {
-		super();
-	}
-
-	public Employee(int employeeId, String employeeName, int employeePosition) {
-		super();
-		this.employeeId = employeeId;
-		this.employeeName = employeeName;
-		this.employeePosition = employeePosition;
-	}
-
-	public Employee(int employeeId, Depart departID, Depart departByDepDepartId, Task task, String employeeName,
-			Boolean employeeSex, String employeePhone, int employeePosition, Set<Leaveword> leavewords, Set<Performance> performances,
-			Set<House> houses, Set<Followup> followups, Set<Workrecord> workrecords, Set<Log> logs, Set<Keymanagement> keymanagements, Set<Task> tasks,Set<Taskmanagement> taskmanagements) {
+	public Employee(int employeeId, Depart departID, String employeeName, Boolean employeeSex, String employeePhone,
+			String passWord, int employeePosition, Set<Leaveword> leavewords, Set<Performance> performances,
+			Set<House> houses, Set<Followup> followups, Set<Workrecord> workrecords, Set<Log> logs,
+			Set<Keymanagement> keymanagements, Set<Depart> departs, Set<Taskmanagement> taskmanagements,
+			Set<Rolemanagement> rolemanagements) {
 		super();
 		this.employeeId = employeeId;
 		this.departID = departID;
 		this.employeeName = employeeName;
 		this.employeeSex = employeeSex;
 		this.employeePhone = employeePhone;
+		this.passWord = passWord;
 		this.employeePosition = employeePosition;
 		this.leavewords = leavewords;
 		this.performances = performances;
@@ -103,10 +96,14 @@ public class Employee extends BaseBean {
 		this.workrecords = workrecords;
 		this.logs = logs;
 		this.keymanagements = keymanagements;
+		this.departs = departs;
 		this.taskmanagements = taskmanagements;
+		this.rolemanagements = rolemanagements;
 	}
 
-	
+	public Employee() {
+		super();
+	}
 	
 	public String getPassWord() {
 		return passWord;

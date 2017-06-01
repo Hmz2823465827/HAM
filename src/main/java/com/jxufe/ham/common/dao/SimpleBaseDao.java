@@ -119,7 +119,7 @@ public class SimpleBaseDao<E extends BaseBean, PK extends Serializable> {
 	@SuppressWarnings("unchecked")
 	public E find(PK id) {
 		Session session = getCurrentSession();
-		return (E) session.load(entityClass, id);
+		return (E) session.get(entityClass, id);
 	}
 
 	/**
