@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.jxufe.ham.system.entity.Taskmanagement" table="taskmanagement" dynamic-update="true" catalog="ham" optimistic-lock="version">
+		<id name ="taskmanagementId" type ="int">
+			<column name="taskmanagementeID"/>
+			<generator class="assigned"/>
+		</id>
+		<many-to-one name="employee" class="com.jxufe.ham.system.entity.Employee" >
+			<column name = "employeeID"></column>
+		</many-to-one>
+		<many-to-one name="task" class="com.jxufe.ham.system.entity.Task" >
+			<column name="taskID"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

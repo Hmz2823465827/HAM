@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jxufe.ham.system.entity.Followup" table="followup" dynamic-update="true" catalog="ham" optimistic-lock="version">
+        <id name="followUpId" type="int">
+            <column name="followupID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="custom" class="com.jxufe.ham.system.entity.Custom" >
+            <column name="customID" not-null="true"  />
+        </many-to-one>
+        <many-to-one name="employee" class="com.jxufe.ham.system.entity.Employee" >
+            <column name="employeeID" not-null="true"  />
+        </many-to-one>
+        <many-to-one name="house" class="com.jxufe.ham.system.entity.House" >
+            <column name="houseID" not-null="true" />
+        </many-to-one>
+        <property name="followUpStatue" type="int">
+            <column name="followup_statue" not-null="true" />
+        </property>
+        <property name="followUpDate" type="date">
+            <column name="followup_date" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

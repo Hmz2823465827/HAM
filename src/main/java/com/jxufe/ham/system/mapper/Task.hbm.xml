@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jxufe.ham.system.entity.Task" table="task" dynamic-update="true" catalog="ham" optimistic-lock="version">
+        <id name="taskId" type="int">
+            <column name="taskID" />
+            <generator class="identity" />
+        </id>
+        <property name="planDo" type="date">
+            <column name="plan_do" length="10" not-null="true" />
+        </property>
+        <property name="publishDate" type="date">
+            <column name="publish_date" length="10" not-null="true" />
+        </property>
+        <property name="taskStatue" type="boolean">
+            <column name="task_statue" not-null="true" />
+        </property>
+        <property name="taskLevel" type="java.lang.Integer">
+            <column name="task_level" />
+        </property>
+        <property name="taskInfo" type="string">
+            <column name="task_info" length="250" />
+        </property>
+        <set name="taskmanagements" table="taskmanagement" inverse="true" lazy="true" >
+            <key>
+                <column name="taskID" not-null="true" />
+            </key>
+            <one-to-many class="com.jxufe.ham.system.entity.Taskmanagement" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jxufe.ham.system.entity.Custom" table="custom" dynamic-update="true" catalog="ham" optimistic-lock="version">
+        <id name="customId" type="int">
+            <column name="customID"/>
+            <generator class="identity" />
+        </id>
+        <property name="customName" type="string">
+            <column name="custom_name" length="10" not-null="true" />
+        </property>
+        <property name="customSex" type="boolean">
+            <column name="custom_sex" not-null="true" />
+        </property>
+        <property name="customInfo" type="string">
+            <column name="custom_info" length="225" />
+        </property>
+        <property name="customRank" type="int">
+            <column name="custom_rank" not-null="true" />
+        </property>
+        <property name="purposePrice" type="java.lang.Float">
+            <column name="purpose_price" precision="12" scale="0" />
+        </property>
+        <property name="purposeArea" type="java.lang.Float">
+            <column name="purpose_area" precision="12" scale="0" />
+        </property>
+        <property name="purposePosition" type="string">
+            <column name="purpose_position" length="50" />
+        </property>
+        <set name="performances" table="performance" inverse="true" lazy="true" >
+            <key>
+                <column name="customID" />
+            </key>
+            <one-to-many class="com.jxufe.ham.system.entity.Performance" />
+        </set>
+        <set name="followups" table="followup" inverse="true" lazy="true" >
+            <key>
+                <column name="customID" not-null="true" />
+            </key>
+            <one-to-many class="com.jxufe.ham.system.entity.Followup" />
+        </set>
+    </class>
+</hibernate-mapping>

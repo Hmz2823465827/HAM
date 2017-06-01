@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jxufe.ham.system.entity.Pact" table="pact" dynamic-update="true" catalog="ham" optimistic-lock="version">
+        <id name="pactId" type="int">
+            <column name="pactID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="house" class="com.jxufe.ham.system.entity.House" >
+            <column name="houseID" not-null="true" />
+        </many-to-one>
+<!--         <many-to-one name="performance" class="com.jxufe.ham.system.entity.Performance" >
+            <column name="performanceID" />
+        </many-to-one> -->
+        <property name="pactStatue" type="int">
+            <column name="pact_statue" not-null="true" />
+        </property>
+        <property name="pactDate" type="date">
+            <column name="pact_date" length="10" not-null="true" />
+        </property>
+        <property name="pactInfo" type="string">
+            <column name="pact_info" length="250" />
+        </property>
+        <set name="performances" table="performance" inverse="true" lazy="true" >
+            <key>
+                <column name="pactID" />
+            </key>
+            <one-to-many class="com.jxufe.ham.system.entity.Performance" />
+        </set>
+    </class>
+</hibernate-mapping>
