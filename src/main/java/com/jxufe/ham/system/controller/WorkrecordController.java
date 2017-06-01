@@ -13,9 +13,7 @@ import com.jxufe.ham.system.service.WorkrecordService;
 public class WorkrecordController {
 	
 	private Log log = LogFactory.getLog(WorkrecordController.class);
-	
-	@Autowired
-	private WorkrecordService workrecordService;
+
 	
 	public WorkrecordController() {
 		
