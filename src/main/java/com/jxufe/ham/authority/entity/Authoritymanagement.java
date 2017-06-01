@@ -4,6 +4,10 @@ import com.jxufe.ham.common.entity.BaseBean;
 
 public class Authoritymanagement extends BaseBean{
 
+	public Authoritymanagement() {
+		super();
+	}
+
 	private static final long serialVersionUID = 1847900226283142336L;
 
 	private int authoritymanagementId;//权限控制编号

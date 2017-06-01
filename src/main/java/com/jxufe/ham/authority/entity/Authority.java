@@ -3,6 +3,7 @@ package com.jxufe.ham.authority.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jxufe.ham.common.entity.BaseBean;
 
 public class Authority extends BaseBean{
@@ -15,9 +16,10 @@ public class Authority extends BaseBean{
 	
 	private String operation;//操作
 	
-	
+	@JsonIgnore
 	private Set<Authoritymanagement> authoritymanagements = new HashSet<Authoritymanagement>(0);
 	
+	@JsonIgnore
 	private Set<Function> functions = new HashSet<Function>(0);
 	
 	

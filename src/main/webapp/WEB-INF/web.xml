@@ -36,7 +36,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>opensessioninview</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.htmls</url-pattern>
 	</filter-mapping>
 
 

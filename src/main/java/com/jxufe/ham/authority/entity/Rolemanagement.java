@@ -14,7 +14,7 @@ public class Rolemanagement extends BaseBean{
 	private Role role;//角色
 	
 	private Employee employee;//用户
-	
+
 	
 
 	public Role getRole() {
@@ -23,6 +23,18 @@ public class Rolemanagement extends BaseBean{
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public Rolemanagement() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Rolemanagement(int rolemanagementId, Role role, Employee employee) {
+		super();
+		RolemanagementId = rolemanagementId;
+		this.role = role;
+		this.employee = employee;
 	}
 
 	public Employee getEmployee() {
