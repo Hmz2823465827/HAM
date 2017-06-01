@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jxufe.ham.system.entity.Housekey" table="housekey" dynamic-update="true" catalog="ham" optimistic-lock="version">
+        <id name="housekeyID" type="int">
+            <column name="housekeyID" />
+            <generator class="assigned" />
+        </id>
+        <property name="housekeyStatue" type="boolean">
+            <column name="housekey_statue" not-null="true" />
+        </property>
+        <set name="keymanagements" table="keymanagement" inverse="true" lazy="true" >
+            <key>
+                <column name="housekeyID" not-null="true" />
+            </key>
+            <one-to-many class="com.jxufe.ham.system.entity.Keymanagement" />
+        </set>
+        <set name="houses" table="house" inverse="true" lazy="true" >
+            <key>
+                <column name="housekeyID" not-null="true" />
+            </key>
+            <one-to-many class="com.jxufe.ham.system.entity.House" />
+        </set>
+    </class>
+</hibernate-mapping>

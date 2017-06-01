@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jxufe.ham.authority.entity.Function" table="function" dynamic-update="true" catalog="ham" optimistic-lock="version">
+        <id name="functionId" type="int">
+            <column name="functionID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="authorityID" class="com.jxufe.ham.authority.entity.Authority" >
+            <column name="authorityID"  />
+        </many-to-one>
+        <many-to-one name="roleID" class="com.jxufe.ham.authority.entity.Role" >
+            <column name="roleID"/>
+        </many-to-one>
+        <property name="value" type="string">
+            <column name="value" length="12" not-null="true" />
+        </property>
+        <property name="type" type="string">
+            <column name="type" length="12" />
+        </property>
+    </class>
+</hibernate-mapping>
