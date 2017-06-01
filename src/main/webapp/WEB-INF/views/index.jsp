@@ -44,7 +44,9 @@
 <body>
 	<shiro:hasPermission name="user:del">不具有user:add权限用户显示此内容</shiro:hasPermission>
 	<br />
+	
 	<div id="all" class="container-fluid" style="background-color: #fff;">
+		
 		<div id="topall" class="container-fluid"
 			style="background-color: #F5F5F5; border: #F1F1F1 2px solid; border-radius: 5px;">
 
@@ -102,8 +104,9 @@
 						<button type="button" class="btn btn-warning btn-sm">签到</button>
 					</div>
 				</div>
+				<div id="functions">
 				<shiro:hasRole name="employee">
-					<div class="list-group roleTree" id="employeeTree">
+					<div class="list-group roleTree" id="employeeTree"></div>
 				</shiro:hasRole>
 				<shiro:hasRole name="departManage">
 					<div class="list-group roleTree " id="departManageTree"></div>
@@ -114,155 +117,151 @@
 				<shiro:hasRole name="admin">
 					<div class="list-group roleTree " id="adminTree"></div>
 				</shiro:hasRole>
+				</div>
+			</div>
+			
+			<div class="col-md-10 column" style="background-color: #fff" id="Panel">
+				<div class="panel panel-default">
+					<!-- Default panel contents -->
+					<div class="panel-heading">显示工作日志</div>
+					<div class="panel-body">
+						<!-- style="display: table; -->
+						<table id="table" class="table table-hover "
+							data-show-columns="true" data-search="true" data-pagination="true"></table>
+					</div>
+		
+				</div>
+			<!-- Table -->
+			<!--  -->
 			</div>
 		</div>
-
-	</div>
-
-
-	<div class="col-md-9 column" style="background-color: #fff" id="Panel">
-		<div class="panel panel-default">
-			<!-- Default panel contents -->
-			<div class="panel-heading">显示工作日志</div>
-			<div class="panel-body">
-				<!-- style="display: table; -->
-				<table id="table" class="table table-hover "
-					data-show-columns="true" data-search="true" data-pagination="true"></table>
-			</div>
-
-		</div>
-		<!-- Table -->
-		<!--  -->
-
-	</div>
-
-	</div>
-
 	</div>
 </body>
 
 <script>
 		
-//角色为employee时的ul
-var anonyUl = {
-		text: '通用',
-		href: '#parent1',
-		tags: ['6'],
-		nodes: [{
-			text: '通讯录',
-			href: '#child1',
+		//角色为employee时的ul
+		var anonyUl = {
+				text: '通用',
+				href: '#parent1',
+				tags: ['6'],
+				nodes: [{
+					text: '通讯录',
+					href: '#child1',
+					tags: ['0'],
+				}, {
+					text: '黑名单',
+					href: '#child2',
+					tags: ['0']
+				}, {
+					text: '工作日志',
+					href: '#child3',
+					tags: ['0']
+				}, {
+					text: '新闻',
+					href: '#child4',
+					tags: ['0']
+				}, {
+					text: '考勤统计',
+					href: '#child5',
+					tags: ['0']
+				}, {
+					text: '同比环比',
+					href: '#child6',
+					tags: ['0']
+				}]
+			};
+	
+		 var employeeUl = [anonyUl, {
+			text: '任务',
+			href: '#parent2',
+			tags: ['2'],
+			nodeId:22,
+			role:'employee',
+			nodes: [{
+				text: '查看任务',
+				href: '#child7',
+				tags: ['0'],
+			}, {
+				text: '申请完成任务',
+				href: '#child8',
+				tags: ['0']
+			}]		
+		}, {
+			text: '房源信息',
+			href: '#parent3',
 			tags: ['0'],
+			role:'employee'
 		}, {
-			text: '黑名单',
-			href: '#child2',
+			text: '跟进记录',
+			href: '#parent4',
 			tags: ['0']
 		}, {
-			text: '工作日志',
-			href: '#child3',
+			text: '钥匙信息',
+			href: '#parent5',
 			tags: ['0']
-		}, {
-			text: '新闻',
-			href: '#child4',
-			tags: ['0']
-		}, {
-			text: '考勤统计',
-			href: '#child5',
-			tags: ['0']
-		}, {
-			text: '同比环比',
-			href: '#child6',
-			tags: ['0']
-		}]
-	};
- var employeeUl = [anonyUl, {
-	text: '任务',
-	href: '#parent2',
-	tags: ['2'],
-	nodeId:22,
-	role:'employee',
-	nodes: [{
-		text: '查看任务',
-		href: '#child7',
-		tags: ['0'],
-	}, {
-		text: '申请完成任务',
-		href: '#child8',
-		tags: ['0']
-	}]		
-}, {
-	text: '房源信息',
-	href: '#parent3',
-	tags: ['0'],
-	role:'employee'
-}, {
-	text: '跟进记录',
-	href: '#parent4',
-	tags: ['0']
-}, {
-	text: '钥匙信息',
-	href: '#parent5',
-	tags: ['0']
-},{
-	text:'房屋管理',
-	href:'#parent6',
-	tags:['0']
-},{
-	text:'权限管理',
-	href:'#parent6',
-	tags:['0']
-}]; 
+		},{
+			text:'房屋管理',
+			href:'#parent6',
+			tags:['0']
+		},{
+			text:'权限管理',
+			href:'#parent6',
+			tags:['0']
+		}]; 
 
- var departManageUl=[anonyUl, {
-	text: '任务',
-	href: '#parent2',
-	tags: ['2'],
-	nodeId:22,
-	role:'employee',
-	nodes: [{
-		text: '查看任务',
-		href: '#child7',
-		tags: ['0'],
-	}, {
-		text: '申请完成任务',
-		href: '#child8',
-		tags: ['0']
-	},{
-		text: '发布任务',
-		href: '#child8',
-		tags: ['0']
-	}]		
-}, {
-	text: '员工管理',
-	href: '#parent3',
-	tags: ['0']
-}, {
-	text:'房屋管理',
-	href:'#parent6',
-	tags:['0']
-},{
-	text:'权限管理',
-	href:'#parent6',
-	tags:['0']
-}]; 
+		 var departManageUl=[anonyUl, {
+			text: '任务',
+			href: '#parent2',
+			tags: ['2'],
+			nodeId:22,
+			role:'employee',
+			nodes: [{
+				text: '查看任务',
+				href: '#child7',
+				tags: ['0'],
+			}, {
+				text: '申请完成任务',
+				href: '#child8',
+				tags: ['0']
+			},{
+				text: '发布任务',
+				href: '#child8',
+				tags: ['0']
+			}]		
+		}, {
+			text: '员工管理',
+			href: '#parent3',
+			tags: ['0']
+		}, {
+			text:'房屋管理',
+			href:'#parent6',
+			tags:['0']
+		},{
+			text:'权限管理',
+			href:'#parent6',
+			tags:['0']
+		}]; 
  
-var managerUl = [anonyUl,{
-	text:'部门管理',
-	href:'#parent6',
-	tags:['0']
-},{
-	text:'权限管理',
-}];
+		 var managerUl = 
+				[anonyUl,
+					{
+						text:'部门管理',
+						href:'#parent6',
+						tags:['0']
+					},{
+						text:'权限管理',
+					}];
+		
+		var adminUl = [{
+			text:'用户管理'
+		}];
 
-var adminUl = [{
-	text:'用户管理'
-}]
-
- var manageUl 
 		function showPanel(tableType) {
 			var $table = $('#table');
 			var $panelDisplay = $('.table');
 			var panelHeading = $(".panel-heading");
-			var panelHeadingVal = panelHeading.html("show   "+tableType);
+			var panelHeadingVal = panelHeading.html("show  "+tableType);
 			$panelDisplay.css("diplay", "none");
 			loadTable(tableType);
 			$table.css("display", "table");
@@ -378,17 +377,15 @@ var adminUl = [{
 			return filedlist[tableType];
 		}
 
-		$(function() {
-			
-		
+		$(function() {					
 			$('#employeeTree').treeview({
 				data:employeeUl
-			});
-			
-			$('#manageTree').treeview({
-				data:manageUl
+			});			
+			$('#managerTree').treeview({
+				data:managerUl
 			});
 
+			
  			function setTableType(data){
 				switch(data.text){
 					case "工作日志":
@@ -437,25 +434,7 @@ var adminUl = [{
 			/* var functionTree = $('#functiontree').treeview('checkNode', [ '1', { state.role: 'employee' } ]); */
 		
 			
-			  document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});	
+	    document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});	
  		});
-		
-/* 		function addRoleToLi(){
-			var lsList = $('.list-group-item');
-			for (var int = 0; int < lsList.length; int++) {
-				
-			}
-			for ( var ls in lsList) {
-				ls.prop()
-			}
-		} */
-		
-		/* $('#functiontree').on('nodeChecked',function(event, data) {
-			/* var tableType = setTableType(data);
-		    showPanel(tableType); */
-			/* alert("nodeChecked");
-		});  */
-	</script>
-
-
+		</script>
 </html>
