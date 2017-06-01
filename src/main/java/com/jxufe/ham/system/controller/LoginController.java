@@ -43,6 +43,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login(){
+		System.out.println("/HAM/index/login.htmls");
 		return "/welcome";
 	}
 	

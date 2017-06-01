@@ -1,18 +1,23 @@
 package com.jxufe.ham.authority.dao.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
 import org.springframework.stereotype.Repository;
 
 import com.jxufe.ham.authority.dao.FunctionDao;
 import com.jxufe.ham.authority.entity.Function;
 import com.jxufe.ham.common.entity.BaseBean;
 import com.jxufe.ham.common.util.Reflections;
+import com.jxufe.ham.common.util.StringUtils;
 
 @Repository
 public class FunctionDaoImpl extends FunctionDao {
+	
 	@Override
 	public List<Function> findAll() {
 		List<Function> list = super.findAll();
@@ -35,6 +40,7 @@ public class FunctionDaoImpl extends FunctionDao {
 	}
 
 	protected <E extends BaseBean> void initializeParam(Object e, String paramName) {
-		Reflections.invokeGetter(e, paramName);//在session未关闭是初始化参数
+//		Method method = Reflections.getAccessibleMethodByName(e, StringUtils.capitalize("get"+paramName));//在session未关闭是初始化参数
+		Hibernate.initialize(Reflections.getFieldValue(e, paramName));Hibernate.initialize(Reflections.getFieldValue(e, paramName));
 	}
 }
