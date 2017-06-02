@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jxufe.ham.system.service.HouseService;
 
 @Controller
+@RequestMapping("/house")
 public class HouseController {
 	
 	@Autowired
@@ -39,7 +40,7 @@ public class HouseController {
 		try {
 			houseService.delete(id);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.debug(e.getCause().getMessage());
 			result.put(ISDONE, false);
 			result.put(ERROR_MSG, "删除失败");
 			return result;

@@ -280,8 +280,8 @@
 			$.ajax({
 				cache: true,
 				type: "GET",
-				data: data,
-				datetype: "json",
+				data: {id:data},
+				 datetype: "json", 
 				url: ajaxUrl,
 				success:functions
 			});			
@@ -454,10 +454,10 @@
 	            alert('You click like action, row: ' + JSON.stringify(row));
 	        },
 	        'click .remove': function (e, value, row, index) {
-		        var ajaxUrl = "/HAM/del";
+		        var ajaxUrl = "/HAM/house/del.htmls";
 		        var data = row.houseId;
 	        	ajaxrequest(ajaxUrl,data,functions);
-	        	function functions(){
+	        	function functions(data){
 			        alert(row.houseId+"号房删除成功！");
 			        $table.bootstrapTable('remove', {
 		                field: 'houseId',
