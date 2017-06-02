@@ -1,0 +1,30 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#head {
+	height: 200px;
+}
+
+#text1 {
+	display: block;
+	margin-top: 60px;
+	font-size: 80px;
+}
+
+#middle {
+	height: 300px;
+}
+
+#buttom1 {
+	margin-left: 87px;
+}
+
+#foot {
+	height: 200px;
+}
+
+.form-horizontal {
+	margin-top: 20px;
+}

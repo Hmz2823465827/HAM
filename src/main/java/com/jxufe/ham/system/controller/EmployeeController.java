@@ -1,6 +1,8 @@
 package com.jxufe.ham.system.controller;
 
 import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +15,7 @@ import org.apache.shiro.subject.Subject;
 import org.jboss.logging.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -113,5 +116,45 @@ public class EmployeeController {
 		return hashMap;
 		
 	}
+	
+	@RequestMapping(value="/add",method=RequestMethod.POST)
+	public @ResponseBody Map<String, Object> add(HttpServletRequest request,Employee employee){
+		Map<String, Object> result = new HashMap<String, Object>();
+		try{
+			Assert.notNull(employee, "员工信息为空");
+			eService.save(employee);
+		}catch (Exception e) {
+			log.error(e.getMessage());
+			result.put(ISDONE, false);
+			result.put(ERROR_MSG, e.getMessage());
+			return result;
+		}
+		result.put(ISDONE, true);
+		result.put(MSG, "删除成功");
+		return result;
+	}
+	
+	@RequestMapping("/test")
+	public void add(){
+		Map<String, Object> result = new HashMap<String, Object>();
+		try{
+//			Employee emp = new Employee(null, 2, "asdf", "ads", "asdf","1", null, null, null, null, null, null, null, null, null, null, null)；
+			Employee employee =new Employee();
+			employee.setEmployeeName("test");		
+			employee.setPassWord("1");
+			Assert.notNull(employee, "员工信息为空");
+			eService.save(employee);
+		}catch (Exception e) {
+			log.error(e.getMessage());
+			result.put(ISDONE, false);
+			result.put(ERROR_MSG, e.getMessage());
+			return;
+		}
+		result.put(ISDONE, true);
+		result.put(MSG, "删除成功");
+		return;
+	}
+	
+	
 	
 }
