@@ -2,68 +2,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
-<base href="<%=basePath%>">
 <html>
 <head>
 <meta charset="UTF-8">
 <title>HouseAgencyManagement</title>
+<%@ include file="/WEB-INF/views/include/bootstrap.jsp"%>
 <script type="text/javascript" src="static/js/md5.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href='<c:url value="plugin/css/diycss.css"/>'>
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="plugin/bootstrap/css/bootstrap-theme.css"/>'>
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="plugin/bootstrap/css/bootstrap.min.css"/>'>
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="plugin/bootstrap/css/bootstrap-treeview.css"/>'>
-<link rel="stylesheet"
-	href='<c:url value="plugin/bootstrap-table/src/bootstrap-table.css"/>'>
-<link rel="stylesheet"
-	href='<c:url value="plugin/bootstrap/css/bootstrap-treeview.css"/>'>
-<script src='<c:url value="plugin/jquery-1.11.0.js"/>'></script>
-<script src='<c:url value="plugin/bootstrap/js/bootstrap.min.js"/>'></script>
-<script
-	src='<c:url value="plugin/bootstrap-table/src/bootstrap-table.js"/>'></script>
-<script src='<c:url value="plugin/bootstrap/js/bootstrap-treeview.js"/>'></script>
-<style>
-* {
-	margin: 0;
-	padding: 0;
-}
-
-#head {
-	height: 200px;
-}
-
-#text1 {
-	display: block;
-	margin-top: 60px;
-	font-size: 80px;
-}
-
-#middle {
-	height: 300px;
-}
-
-#buttom1 {
-	margin-left: 87px;
-}
-
-#foot {
-	height: 200px;
-}
-
-.form-horizontal {
-	margin-top: 20px;
-}
-</style>
-
+<link href="${ctx}/plugin/css/welcome/welcome.css" rel="stylesheet"/>
 </head>
 <body>
 	<div class="container">
