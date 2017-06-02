@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>HouseAgencyManagement</title>
 <%@ include file="/WEB-INF/views/include/bootstrap.jsp"%>
-<script type="text/javascript" src="static/js/md5.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="${ctx}/plugin/css/welcome/welcome.css" rel="stylesheet"/>
 </head>
@@ -85,7 +84,8 @@
 			datetype : "json",
 			data : $("#form1").serializeArray(),
 			url : "/HAM/index/login.htmls",
-			success : function(dataJson) {
+			success : function(data) {
+				var dataJson = eval('(' + data + ')'); 
 				if (dataJson.isLogin == true) {
 					window.setTimeout("loginsuccess()", 500);
 				}

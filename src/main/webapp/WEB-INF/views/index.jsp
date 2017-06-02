@@ -19,7 +19,6 @@
 	System.out.println(subject.hasRole("employee"));
 %>
 <base href="<%=basePath%>">
-<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>房屋中介管理系统</title>
 <link rel="stylesheet" href='<c:url value="plugin/css/diycss.css"/>'>
@@ -63,7 +62,7 @@
 
 						</ul>
 					</shiro:authenticated>
-					<form class="navbar-form navbar-left" role="search">
+					<form class="navbar-form navbar-left">
 						<div class="form-group">
 							<input type="text" class="form-control" />
 						</div>
@@ -71,7 +70,7 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown"><a href="plugin/#"
-							class="dropdown-toggle" data-toggle="dropdown">
+							class="dropdown-toggle">
 								${loginEmployee.employeeName} <strong class="caret"></strong>
 						</a>
 							<ul class="dropdown-menu">
@@ -124,10 +123,22 @@
 				<div class="panel panel-default">
 					<!-- Default panel contents -->
 					<div class="panel-heading">显示工作日志</div>
-					<div class="panel-body">
+					<div class="panel-body" style="display: none">
+					
 						<!-- style="display: table; -->
-						<table id="table" class="table table-hover "
-							data-show-columns="true" data-search="true" data-pagination="true"></table>
+						 <div id="toolbar">
+						    <button id="add" type="button" class="btn btn-default">
+						        <i class="glyphicon glyphicon-plus"></i>
+						    </button>					        
+					         <button id="remove" type="button" class="btn btn-default">
+						        <i class="glyphicon glyphicon-trash"></i>
+						    </button>
+						</div>
+						
+						<table id="table" class="table table-hover"  data-toolbar="#toolbar"
+						  data-search="true" data-show-columns="true" data-show-export="true"
+						  ></table>
+						  
 					</div>
 		
 				</div>
@@ -257,14 +268,30 @@
 			text:'用户管理'
 		}];
 
-		function showPanel(tableType) {
-			var $table = $('#table');
-			var $panelDisplay = $('.table');
+		var $table = $('#table'),
+	    $remove = $('#remove'),
+	    $add = $('#add'),
+        selections = [];
+		var $panelDisplay = $('.panel-body');
+		$panelDisplay.css("diplay", "none");
+
+		function ajaxrequest(ajaxUrl,data,functions){
+			
+			$.ajax({
+				cache: true,
+				type: "GET",
+				data: data,
+				datetype: "json",
+				url: ajaxUrl,
+				success:functions
+			});			
+		}
+
+		function showPanel(tableType) {							
 			var panelHeading = $(".panel-heading");
-			var panelHeadingVal = panelHeading.html("show  "+tableType);
-			$panelDisplay.css("diplay", "none");
+			var panelHeadingVal = panelHeading.html("show  "+tableType);			
 			loadTable(tableType);
-			$table.css("display", "table");
+			$panelDisplay.css("display", "panel-body");
 		}
 
 		function loadTable(tableType) {
@@ -275,8 +302,8 @@
 				data: {setName:tableType},
 				datetype: "json",
 				url: ajaxUrl,
-				success: function(dataJson) {
-/* 					var dataJson = eval('(' + data + ')'); */
+				success: function(data) {
+ 					var dataJson = eval('(' + data + ')'); 
 					if(dataJson.isDone == true) {
 						var $table = $('#table');
 						var columns = initTable(tableType, $table);
@@ -296,26 +323,43 @@
 
 		function initTable(tableType, $table) {
 			var filedlist = new Object();
+			
 			var houseColumns = [{
+                field: 'state',
+                checkbox: true,
+                align: 'center',
+            },{
 				field: 'houseId',
 				title: '房屋编号',
-				sortable: true
+				sortable: true,
+				align: 'center',
 			}, {
 				field: 'rentStatue',
 				title: '是否出租',
+				align: 'center',
 			}, {
 				field: 'saleStatue',
 				title: '是否出售',
+				align: 'center',
 			}, {
 				field: 'houseArea',
 				title: '房屋面积',
+				align: 'center',
 			}, {
 				field: 'clientName',
 				title: '房主姓名',
+				align: 'center',
 			}, {
 				field: 'clientPhone',
 				title: '房主联系方式',
-			}];
+				align: 'center',
+			},{
+                field: 'operate',
+                title: '操作',
+                align: 'center',
+                events: operateEvents,
+                formatter: operateFormatter
+            }];
 			var workRecordColumns = [{
 				field: 'workRecordId',
 				title: '考勤编号',
@@ -369,18 +413,69 @@
 				field: 'actualReturnDate',
 				title: '实际归还时间',
 			}];
-			filedlist['workrecord'] = workRecordColumns;
-			filedlist['house'] = houseColumns;
-			filedlist['task'] = task;
-			filedlist['keycontroll'] = keycontroller;
+			filedlist['workrecords'] = workRecordColumns;
+			filedlist['houses'] = houseColumns;
+			filedlist['tasks'] = task;
+			filedlist['keycontrolls'] = keycontroller;
+
+			 $remove.click(function () {
+	            var ids = getIdSelections();
+	            alert(ids);
+	            $table.bootstrapTable('remove', {
+	                field: 'id',
+	                values: ids
+	            });
+	            /* $remove.prop('disabled', true); */
+		     });
 
 			return filedlist[tableType];
 		}
 
-		$(function() {					
+
+		function getIdSelections() {
+	        return $.map($table.bootstrapTable('getSelections'), function (row) {
+	            return row.id
+	        });
+		}
+
+		function operateFormatter(value, row, index) {
+	        return [
+	            '<a class="like" href="javascript:void(0)" title="Like">',
+	            '<i class="glyphicon glyphicon-heart"></i>',
+	            '</a>  ',
+	            '<a class="remove" href="javascript:void(0)" title="Remove">',
+	            '<i class="glyphicon glyphicon-remove"></i>',
+	            '</a>'
+	        ].join('');
+	    }
+	    
+	    window.operateEvents = {
+	        'click .like': function (e, value, row, index) {
+	            alert('You click like action, row: ' + JSON.stringify(row));
+	        },
+	        'click .remove': function (e, value, row, index) {
+		        var ajaxUrl = "/HAM/del";
+		        var data = row.houseId;
+	        	ajaxrequest(ajaxUrl,data,functions);
+	        	function functions(){
+			        alert(row.houseId+"号房删除成功！");
+			        $table.bootstrapTable('remove', {
+		                field: 'houseId',
+		                values: [row.houseId]
+		            });
+				}
+	        }
+	    };
+
+		$(function() {	
+			 setTimeout(function () {
+		     	$table.bootstrapTable('resetView');
+		     }, 200);
+							
 			$('#employeeTree').treeview({
 				data:employeeUl
-			});			
+			});	
+					
 			$('#managerTree').treeview({
 				data:managerUl
 			});
@@ -433,8 +528,8 @@
 			/* $('#functiontree').treeview('checkAll', { silent: true }); */
 			/* var functionTree = $('#functiontree').treeview('checkNode', [ '1', { state.role: 'employee' } ]); */
 		
-			
-	    document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});	
+		document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});	
+		
  		});
 		</script>
 </html>
