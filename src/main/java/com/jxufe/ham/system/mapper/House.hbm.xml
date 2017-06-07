@@ -19,8 +19,8 @@
         <property name="saleStatue" type="boolean">
             <column name="sale_statue" not-null="true" />
         </property>
-        <property name="houseArea" type="float">
-            <column name="house_area" precision="12" scale="0" not-null="true" />
+        <property name="houseAddress" type="string">
+            <column name="house_address" length="225" not-null="true" />
         </property>
         <property name="unitRentPrice" type="java.lang.Float">
             <column name="unit_rent_price" precision="12" scale="0" />

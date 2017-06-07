@@ -1,6 +1,6 @@
 package com.jxufe.ham.system.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
