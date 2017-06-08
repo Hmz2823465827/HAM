@@ -1,5 +1,7 @@
 package com.jxufe.ham.system.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,5 +41,9 @@ public class HouseService extends BaseService<House, Integer>{
 		System.out.println(housekey);
 		entity.setHousekey(housekeyDao.find(houseKeyId));
 		super.save(entity);
+	}
+
+	public List<House> search(String string,Object... values) {
+		return houseDao.find(string, values);
 	}
 }

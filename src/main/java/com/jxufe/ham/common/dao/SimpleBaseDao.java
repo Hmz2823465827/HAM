@@ -339,6 +339,7 @@ public class SimpleBaseDao<E extends BaseBean, PK extends Serializable> {
 //	@Override
 	@SuppressWarnings("unchecked")
 	public List<E> find(final Criterion... criterions) {
+		System.out.println(createCriteria(criterions).list());
 		return createCriteria(criterions).list();
 	}
 	
