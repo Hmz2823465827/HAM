@@ -29,11 +29,11 @@
 				</div>
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
-							<li><a href="plugin/#">业绩排行</a></li>
-							<li><a href="plugin/#">留言板</a></li>
+					<ul class="nav navbar-nav">
+						<li><a href="plugin/#">业绩排行</a></li>
+						<li><a href="plugin/#">留言板</a></li>
 
-						</ul>
+					</ul>
 					<form class="navbar-form navbar-left">
 						<div class="form-group">
 							<input type="text" class="form-control" />
@@ -61,8 +61,12 @@
 			<div id="personal" class="col-md-2 column"
 				style="background-color: #;">
 				<div id="img1" style="height: 100px; width: 100px; float: left;">
-					<img src="${ctx}/plugin/img/img1.jpg"
+					<shiro:hasRole name="employee"><img src="${ctx}/plugin/img/img1.jpg"
 						style="border: 1px solid #C1E2B3; border-radius: 50%; height: 80px; width: 80px; margin: 10px;" />
+						</shiro:hasRole>
+					<shiro:hasRole name="admin"><img src="${ctx}/plugin/img/2.jpg"
+						style="border: 1px solid #C1E2B3; border-radius: 50%; height: 80px; width: 80px; margin: 10px;" />
+						</shiro:hasRole>
 				</div>
 
 				<div id="information"
@@ -70,9 +74,7 @@
 					<div id="depart" class="infospan">
 						<p>部门</p>
 					</div>
-					<div id="duties" class="infospan">
-						
-					</div>
+					<div id="duties" class="infospan"></div>
 					<div class="infospan">
 						<button type="button" class="btn btn-warning btn-sm" id="signIn"
 							onclick="ajaxrequest('/HAM/workrecord/signIn.htmls',testAlert())">签到</button>
@@ -118,6 +120,23 @@
 					</div>
 				</div>
 				<form id="houseForm">
+					<div class="alert alert-warning alert-dismissible" id="failAlert"
+						style="display: none">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<strong>fail!</strong>添加失败！
+					</div>
+					<div class="alert alert-success alert-dismissible"
+						data-dismiss="alert" role="alert" id="successAlert"
+						style="display: none">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close" id="#myAlert">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<strong>success!</strong>添加成功！
+					</div>
 					<div class="form-group">
 						<label for="address">房屋详细信息</label> <input type="text"
 							class="form-control" id="address" name="address"
@@ -138,6 +157,7 @@
 							name="rentStatue">出售意向
 						</label>
 					</div>
+
 					<div class="form-group">
 						<label for="unitRentPrice">单元出售价格</label> <input type="text"
 							class="form-control" id="unitsalePrice" name="unitsalePrice"
@@ -152,6 +172,11 @@
 						<label for="clientPhone">顾客电话</label> <input type="text"
 							class="form-control" id="clientPhone" name="clientPhone"
 							placeholder="clientPhone">
+					</div>
+					<div class="form-group">
+						<label for="houseAddress">房屋详细信息</label> <input type="text"
+							class="form-control" id="houseAddress" name="houseAddress"
+							placeholder="houseAddress">
 					</div>
 					<button id="SubmitButton" class="btn btn-default">Submit</button>
 				</form>
@@ -176,10 +201,10 @@
 				success:function(data){
 					var dataJson = eval('(' + data + ')');
 					if (dataJson.isDone == true){
-							alert("添加成功！");
+							$("#successAlert").css("display","block");
 						}
 					if (dataJson.isDone == false) {
-							alert("请求已提交，但添加失败！");
+						$("#successAlert").css("display","block");
 						}				
 				},
 				error:function(){
@@ -188,6 +213,10 @@
 			});	
 		});
 		
+		$('#successAlert').on('closed.bs.alert', function () {
+			$formDisplay.css("display","none");
+				showPanel("houses");
+			})
 		var $signIn = $("#signIn");//签到按钮
 		
 		//角色为employee时的ul
@@ -312,23 +341,9 @@
 	    $add = $('#add'),
         selections = [];
 		var $panelDisplay = $('.panel-body'), $formDisplay=$('#houseForm');
-		/* $panelDisplay.css("display", "none"); */
+		
 		$formDisplay.css("display","none");
 		
-
-/* 		function ajaxrequest(ajaxUrl,data,functions){
-			
-			$.ajax({
-				cache: true,
-				type: "GET",
-			    data: {id:data}, 
-				data:data,
-				datetype: "json", 
-				url: ajaxUrl,
-				success:functions
-			});			
-		} */
-
 		function showPanel(tableType) {							
 			var panelHeading = $(".panel-heading");
 			var panelHeadingVal = panelHeading.html("show  "+tableType);			
@@ -462,7 +477,6 @@
 
 			 $remove.click(function () {
 	            var ids = getIdSelections();
-	            alert(ids);
 	            $table.bootstrapTable('remove', {
 	                field: 'houseId',
 	                values: ids
@@ -482,7 +496,7 @@
 
 		function getIdSelections() {
 	        return $.map($table.bootstrapTable('getSelections'), function (row) {
-	            return row.id
+	            return row.houseId
 	        });
 		}
 
@@ -602,9 +616,6 @@
 			}
 		
 		document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});	
-
-
-		
  		});
 		</script>
 </html>

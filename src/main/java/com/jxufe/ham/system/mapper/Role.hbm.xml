@@ -8,7 +8,7 @@
             <generator class="identity" />
         </id>
         <property name="roleName" type="string">
-            <column name="roleName" length="25" not-null="true" />
+            <column name="role_name" length="25" not-null="true" />
         </property>
         <set name="rolemanagements" table="rolemanagement" inverse="true" lazy="true" >
             <key>

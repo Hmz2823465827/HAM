@@ -10,7 +10,9 @@ import org.hibernate.HibernateException;
 import org.springframework.stereotype.Repository;
 
 import com.jxufe.ham.authority.dao.FunctionDao;
+import com.jxufe.ham.authority.entity.Authority;
 import com.jxufe.ham.authority.entity.Function;
+import com.jxufe.ham.authority.entity.Role;
 import com.jxufe.ham.common.entity.BaseBean;
 import com.jxufe.ham.common.util.Reflections;
 import com.jxufe.ham.common.util.StringUtils;
@@ -21,8 +23,14 @@ public class FunctionDaoImpl extends FunctionDao {
 	@Override
 	public List<Function> findAll() {
 		List<Function> list = super.findAll();
-		initializeParam(list,"roleID");
-		initializeParam(list, "authorityID");
+		Iterator<Function> iterator = list.iterator();
+		for (Function function : list) {
+			if (function.getType().equals("perms")) {
+				Hibernate.initialize(function.getAuthorityID());
+			}else if(function.getType().equals("roles")){
+				Hibernate.initialize(function.getRoleID());
+			}
+		}
 		return list;
 	}
 
@@ -41,6 +49,6 @@ public class FunctionDaoImpl extends FunctionDao {
 
 	protected <E extends BaseBean> void initializeParam(Object e, String paramName) {
 //		Method method = Reflections.getAccessibleMethodByName(e, StringUtils.capitalize("get"+paramName));//在session未关闭是初始化参数
-		Hibernate.initialize(Reflections.getFieldValue(e, paramName));Hibernate.initialize(Reflections.getFieldValue(e, paramName));
+		Hibernate.initialize(Reflections.getFieldValue(e, paramName));
 	}
 }

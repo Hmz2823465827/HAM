@@ -3,6 +3,7 @@ package com.jxufe.ham.system.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.shiro.SecurityUtils;
 import org.hibernate.sql.Delete;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jxufe.ham.system.entity.Employee;
 import com.jxufe.ham.system.entity.House;
 import com.jxufe.ham.system.service.HouseService;
 
@@ -55,6 +57,10 @@ public class HouseController {
 	public @ResponseBody HashMap<String, Object> add(House house){
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 		try {
+			Integer employeeId = (Integer)SecurityUtils.getSubject().getPrincipal();
+			Employee employee = new Employee();
+			employee.setEmployeeId(employeeId);
+			house.setEmployee(employee);
 			houseService.save(house);
 		} catch (Exception e) {
 			logger.error(e.getMessage());

@@ -1,6 +1,7 @@
 package com.jxufe.ham.system.entity;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -23,7 +24,7 @@ public class Workrecord extends BaseBean{
 //	@JsonIgnore
 	private Employee employee;//员工
 	
-	private Date workRecordDate;//考勤日期
+	private Timestamp workRecordDate;//考勤日期
 	
 	private Date actualSignIn;//上班打卡时间
 	
@@ -33,14 +34,14 @@ public class Workrecord extends BaseBean{
 		super();
 	}
 
-	public Workrecord(int workRecordId, Employee employee, Date workRecordDate) {
+	public Workrecord(int workRecordId, Employee employee, Timestamp workRecordDate) {
 		super();
 		this.workRecordId = workRecordId;
 		this.employee = employee;
 		this.workRecordDate = workRecordDate;
 	}
 
-	public Workrecord(int workRecordId, Employee employee, Date workRecordDate, Date actualSignIn, Date leaveSignIn) {
+	public Workrecord(int workRecordId, Employee employee, Timestamp workRecordDate, Date actualSignIn, Date leaveSignIn) {
 		super();
 		this.workRecordId = workRecordId;
 		this.employee = employee;
@@ -65,11 +66,11 @@ public class Workrecord extends BaseBean{
 		this.employee = employee;
 	}
 
-	public Date getWorkRecordDate() {
+	public Timestamp getWorkRecordDate() {
 		return this.workRecordDate;
 	}
 
-	public void setWorkRecordDate(Date workRecordDate) {
+	public void setWorkRecordDate(Timestamp workRecordDate) {
 		this.workRecordDate = workRecordDate;
 	}
 

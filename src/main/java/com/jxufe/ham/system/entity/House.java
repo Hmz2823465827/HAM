@@ -25,18 +25,17 @@ public class House extends BaseBean {
 
 	private int houseId;//房屋编号
 	
-//	@JsonIgnore
+	@JsonIgnore
 	private Employee employee;//负责员工
 
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-//	@JsonIgnore
+	@JsonIgnore
 	private Housekey housekey;//房屋钥匙
 	
 	private boolean rentStatue;//租赁状态
 	
 	private boolean saleStatue;//销售状态
 	
-	private String houseAddress;//房屋面积
+	private String houseAddress;//房屋地址
 	
 	private Float unitRentPrice;//单位（price/area）出租价格
 	
@@ -113,7 +112,7 @@ public class House extends BaseBean {
 		this.housekey = housekey;
 	}
 
-	public boolean isRentStatue() {
+	public boolean getRentStatue() {
 		return this.rentStatue;
 	}
 
@@ -121,7 +120,7 @@ public class House extends BaseBean {
 		this.rentStatue = rentStatue;
 	}
 
-	public boolean isSaleStatue() {
+	public boolean getSaleStatue() {
 		return this.saleStatue;
 	}
 
