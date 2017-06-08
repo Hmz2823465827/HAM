@@ -1,6 +1,8 @@
 package com.jxufe.ham.system.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.shiro.SecurityUtils;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jxufe.ham.common.entity.PropertyFilter;
 import com.jxufe.ham.system.entity.Employee;
 import com.jxufe.ham.system.entity.House;
 import com.jxufe.ham.system.service.HouseService;
@@ -68,6 +71,28 @@ public class HouseController {
 			hashMap.put(ERROR_MSG, "添加失败");
 			return hashMap;
 		}
+		hashMap.put(ISDONE, true);
+		hashMap.put(MSG, "添加成功");
+		return hashMap;
+	}
+	
+	@RequestMapping("/getHouseByEmployeeID")
+	public @ResponseBody HashMap<String, Object> getHouseByEmployeeID(){
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		List<House> houseList = null;
+		try {
+			Integer employeeId = (Integer)SecurityUtils.getSubject().getPrincipal();
+			
+			List<PropertyFilter> list = new ArrayList<PropertyFilter>();
+			list.add(new PropertyFilter("EQI_employeeID",employeeId.toString()));
+			houseList = houseService.search(list);
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			hashMap.put(ISDONE, false);
+			hashMap.put(ERROR_MSG, "查询失败");
+			return hashMap;
+		}
+		hashMap.put("list", houseList);
 		hashMap.put(ISDONE, true);
 		hashMap.put(MSG, "添加成功");
 		return hashMap;
