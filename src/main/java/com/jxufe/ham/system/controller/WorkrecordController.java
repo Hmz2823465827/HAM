@@ -52,6 +52,7 @@ public class WorkrecordController {
 			hashMap.put(IS_DO, false);
 			hashMap.put(ERROR_MSG, "签到失败");
 		}
+		
 		return hashMap;
 	}
 	

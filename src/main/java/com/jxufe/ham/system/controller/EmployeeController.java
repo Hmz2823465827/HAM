@@ -1,6 +1,7 @@
 package com.jxufe.ham.system.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,9 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
 import org.jboss.logging.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jxufe.ham.common.entity.BaseBean;
 import com.jxufe.ham.system.entity.Employee;
 import com.jxufe.ham.system.myInterface.AutoAuthorizationClass;
 import com.jxufe.ham.system.service.EmployeeService;
@@ -156,6 +153,19 @@ public class EmployeeController {
 		return;
 	}
 	
-	
+	@RequestMapping("/batchDel")
+	public HashMap<String,Object> batchDel(List<Integer> idList){
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		try {
+			eService.delete(idList); 
+		} catch (Exception e) {
+			hashMap.put(ISDONE, false);
+			hashMap.put(ERROR_MSG, "批量删除失败");
+			return hashMap;
+		}
+		hashMap.put(ISDONE, true);
+		hashMap.put(MSG, "批量删除成功");
+		return hashMap;
+	}
 	
 }

@@ -55,4 +55,10 @@ public class EmployeeService extends BaseService<Employee, Integer>{
 		Assert.isInstanceOf(Set.class, object);
 		return (Set<E>)object;
 	}
+
+	public void delete(List<Integer> idList) {
+		for (Integer id : idList) {
+			employeeDao.delete(id);
+		}
+	}
 }
