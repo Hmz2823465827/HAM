@@ -601,9 +601,8 @@
 				}			
 			}
 		
-		document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.);	
+		document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});	
 
-		alert(${loginEmployee.employeePosition});
 
 		
  		});
