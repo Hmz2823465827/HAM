@@ -10,42 +10,16 @@
 <html>
 
 <head>
-
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-	Subject subject = SecurityUtils.getSubject();
-	System.out.println(subject.hasRole("employee"));
-%>
-<base href="<%=basePath%>">
+<%@ include file="/WEB-INF/views/include/bootstrap.jsp"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>房屋中介管理系统</title>
-<link rel="stylesheet" href='<c:url value="plugin/css/diycss.css"/>'>
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="plugin/bootstrap/css/bootstrap-theme.css"/>'>
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="plugin/bootstrap/css/bootstrap.min.css"/>'>
-<link rel="stylesheet" type="text/css"
-	href='<c:url value="plugin/bootstrap/css/bootstrap-treeview.css"/>'>
-<link rel="stylesheet"
-	href='<c:url value="plugin/bootstrap-table/src/bootstrap-table.css"/>'>
-<link rel="stylesheet"
-	href='<c:url value="plugin/bootstrap/css/bootstrap-treeview.css"/>'>
-<script src='<c:url value="plugin/jquery-1.11.0.js"/>'></script>
-<script src='<c:url value="plugin/bootstrap/js/bootstrap.min.js"/>'></script>
-<script
-	src='<c:url value="plugin/bootstrap-table/src/bootstrap-table.js"/>'></script>
-<script src='<c:url value="plugin/bootstrap/js/bootstrap-treeview.js"/>'></script>
 
 </head>
 
 <body>
-	<shiro:hasPermission name="user:del">不具有user:add权限用户显示此内容</shiro:hasPermission>
-	<br />
-	
+
 	<div id="all" class="container-fluid" style="background-color: #fff;">
-		
+
 		<div id="topall" class="container-fluid"
 			style="background-color: #F5F5F5; border: #F1F1F1 2px solid; border-radius: 5px;">
 
@@ -55,13 +29,11 @@
 				</div>
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
-					<shiro:authenticated>
 						<ul class="nav navbar-nav">
 							<li><a href="plugin/#">业绩排行</a></li>
 							<li><a href="plugin/#">留言板</a></li>
 
 						</ul>
-					</shiro:authenticated>
 					<form class="navbar-form navbar-left">
 						<div class="form-group">
 							<input type="text" class="form-control" />
@@ -70,8 +42,8 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown"><a href="plugin/#"
-							class="dropdown-toggle">
-								${loginEmployee.employeeName} <strong class="caret"></strong>
+							class="dropdown-toggle"> ${loginEmployee.employeeName} <strong
+								class="caret"></strong>
 						</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">个人信息</a></li>
@@ -89,7 +61,7 @@
 			<div id="personal" class="col-md-2 column"
 				style="background-color: #;">
 				<div id="img1" style="height: 100px; width: 100px; float: left;">
-					<img src="plugin/img/img1.jpg"
+					<img src="${ctx}/plugin/img/img1.jpg"
 						style="border: 1px solid #C1E2B3; border-radius: 50%; height: 80px; width: 80px; margin: 10px;" />
 				</div>
 
@@ -99,57 +71,103 @@
 						<p>部门</p>
 					</div>
 					<div id="duties" class="infospan"></div>
-					<div id="sign-in" class="infospan">
-						<button type="button" class="btn btn-warning btn-sm">签到</button>
+					<div class="infospan">
+						<button type="button" class="btn btn-warning btn-sm" id="signIn"
+							onclick="ajaxrequest('/HAM/workrecord/signIn.htmls',testAlert())">签到</button>
 					</div>
 				</div>
 				<div id="functions">
-				<shiro:hasRole name="employee">
-					<div class="list-group roleTree" id="employeeTree"></div>
-				</shiro:hasRole>
-				<shiro:hasRole name="departManage">
-					<div class="list-group roleTree " id="departManageTree"></div>
-				</shiro:hasRole>
-				<shiro:hasRole name="manager">
-					<div class="list-group roleTree " id="managerTree"></div>
-				</shiro:hasRole>
-				<shiro:hasRole name="admin">
-					<div class="list-group roleTree " id="adminTree"></div>
-				</shiro:hasRole>
+					<shiro:hasRole name="employee">
+						<div class="list-group roleTree" id="employeeTree"></div>
+					</shiro:hasRole>
+					<shiro:hasRole name="departManage">
+						<div class="list-group roleTree " id="departManageTree"></div>
+					</shiro:hasRole>
+					<shiro:hasRole name="manager">
+						<div class="list-group roleTree " id="managerTree"></div>
+					</shiro:hasRole>
+					<shiro:hasRole name="admin">
+						<div class="list-group roleTree " id="adminTree"></div>
+					</shiro:hasRole>
 				</div>
 			</div>
-			
-			<div class="col-md-10 column" style="background-color: #fff" id="Panel">
+
+			<div class="col-md-10 column" style="background-color: #fff"
+				id="Panel">
 				<div class="panel panel-default">
 					<!-- Default panel contents -->
 					<div class="panel-heading">显示工作日志</div>
 					<div class="panel-body" style="display: none">
-					
+
 						<!-- style="display: table; -->
-						 <div id="toolbar">
-						    <button id="add" type="button" class="btn btn-default">
-						        <i class="glyphicon glyphicon-plus"></i>
-						    </button>					        
-					         <button id="remove" type="button" class="btn btn-default">
-						        <i class="glyphicon glyphicon-trash"></i>
-						    </button>
+						<div id="toolbar">
+							<button id="add" type="button" class="btn btn-default">
+								<i class="glyphicon glyphicon-plus"></i>
+							</button>
+							<button id="remove" type="button" class="btn btn-default">
+								<i class="glyphicon glyphicon-trash"></i>
+							</button>
 						</div>
-						
-						<table id="table" class="table table-hover"  data-toolbar="#toolbar"
-						  data-search="true" data-show-columns="true" data-show-export="true"
-						  ></table>
-						  
+
+						<table id="table" class="table table-hover"
+							data-toolbar="#toolbar" data-pagination="true" data-search="true"
+							data-show-columns="true" data-show-export="true"></table>
+
 					</div>
-		
 				</div>
-			<!-- Table -->
-			<!--  -->
+				<form id="houseForm">
+					<div class="form-group">
+						<label for="address">房屋详细信息</label> <input type="text"
+							class="form-control" id="address" name="address"
+							placeholder="address">
+					</div>
+					<div class="checkbox">
+						<label> <input type="checkbox" id="rentStatue"
+							name="rentStatue"> 出租意向
+						</label>
+					</div>
+					<div class="form-group">
+						<label for="unitRentPrice">单元出租价格</label> <input type="text"
+							class="form-control" id="unitRentPrice" name="unitRentPrice"
+							placeholder="unitRentPrice">
+					</div>
+					<div class="checkbox">
+						<label> <input type="checkbox" id="rent_statue"
+							name="rentStatue">出售意向
+						</label>
+					</div>
+					<div class="form-group">
+						<label for="unitRentPrice">单元出售价格</label> <input type="text"
+							class="form-control" id="unitsalePrice" name="unitsalePrice"
+							placeholder="unitsalePrice">
+					</div>
+					<div class="form-group">
+						<label for="clientName">顾客姓名</label> <input type="text"
+							class="form-control" id="clientName" name="clientName"
+							placeholder="clientName">
+					</div>
+					<div class="form-group">
+						<label for="clientPhone">顾客电话</label> <input type="text"
+							class="form-control" id="clientPhone" name="clientPhone"
+							placeholder="clientPhone">
+					</div>
+					<button type="submit" class="btn btn-default" onclick="formSubmit">Submit</button>
+				</form>
 			</div>
 		</div>
 	</div>
 </body>
 
 <script>
+		
+		var $formAdd = $("houseForm");
+		
+		
+		function formSubmit(){
+			ajaxrequest("HAM/house/add",$formAdd.serializeJSON(),function(){alert("addSuccess");})
+		}
+		
+		var $signIn = $("#signIn");//签到按钮
 		
 		//角色为employee时的ul
 		var anonyUl = {
@@ -272,15 +290,18 @@
 	    $remove = $('#remove'),
 	    $add = $('#add'),
         selections = [];
-		var $panelDisplay = $('.panel-body');
-		$panelDisplay.css("diplay", "none");
+		var $panelDisplay = $('.panel-body'), $formDisplay=$('#houseForm');
+		/* $panelDisplay.css("display", "none"); */
+		$formDisplay.css("display","none");
+		
 
 		function ajaxrequest(ajaxUrl,data,functions){
 			
 			$.ajax({
 				cache: true,
 				type: "GET",
-				data: {id:data},
+				/* data: {id:data}, */
+				data:data,
 				 datetype: "json", 
 				url: ajaxUrl,
 				success:functions
@@ -291,7 +312,7 @@
 			var panelHeading = $(".panel-heading");
 			var panelHeadingVal = panelHeading.html("show  "+tableType);			
 			loadTable(tableType);
-			$panelDisplay.css("display", "panel-body");
+			$panelDisplay.css("display", "inline");
 		}
 
 		function loadTable(tableType) {
@@ -422,14 +443,20 @@
 	            var ids = getIdSelections();
 	            alert(ids);
 	            $table.bootstrapTable('remove', {
-	                field: 'id',
+	                field: 'houseId',
 	                values: ids
 	            });
 	            /* $remove.prop('disabled', true); */
 		     });
-
+			 
+			 $add.click(function(){
+				 $panelDisplay.css("display", "none");
+				 $formDisplay.css("display","block"); 
+			 });
+			 
 			return filedlist[tableType];
 		}
+		
 
 
 		function getIdSelections() {
@@ -466,7 +493,11 @@
 				}
 	        }
 	    };
-
+	    
+	    function testAlert(){
+	    	alert("test");
+	    }
+		
 		$(function() {	
 			 setTimeout(function () {
 		     	$table.bootstrapTable('resetView');
@@ -479,7 +510,13 @@
 			$('#managerTree').treeview({
 				data:managerUl
 			});
-
+			
+			$('#adminTree').treeview({
+				data:managerUl
+			});
+			$('#departManagerTree').treeview({
+				data:managerUl
+			});
 			
  			function setTableType(data){
 				switch(data.text){
@@ -519,14 +556,6 @@
 						break;
 				}			
 			}
-			
-		/* 	${'#functiontree'}.treeview('checkAll', { silent: true }); */
-		/* var node = $('#tree').treeview('checkNode', [ 22, { silent: true } ]);
-		node.getAttribute("role"); */
-		/* addRoleToLi(); */
-		/* node. */
-			/* $('#functiontree').treeview('checkAll', { silent: true }); */
-			/* var functionTree = $('#functiontree').treeview('checkNode', [ '1', { state.role: 'employee' } ]); */
 		
 		document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});	
 		

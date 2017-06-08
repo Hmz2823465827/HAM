@@ -36,7 +36,7 @@ public class House extends BaseBean {
 	
 	private boolean saleStatue;//销售状态
 	
-	private float houseArea;//房屋面积
+	private String houseAddress;//房屋面积
 	
 	private Float unitRentPrice;//单位（price/area）出租价格
 	
@@ -59,19 +59,19 @@ public class House extends BaseBean {
 		super();
 	}
 
-	public House(int houseId, Housekey housekey, boolean rentStatue, boolean saleStatue, float houseArea,
+	public House(int houseId, Housekey housekey, boolean rentStatue, boolean saleStatue, String houseAddress,
 			String clientName) {
 		super();
 		this.houseId = houseId;
 		this.housekey = housekey;
 		this.rentStatue = rentStatue;
 		this.saleStatue = saleStatue;
-		this.houseArea = houseArea;
+		this.houseAddress = houseAddress;
 		this.clientName = clientName;
 	}
 
 	public House(int houseId, Employee employee, Housekey housekey, boolean rentStatue, boolean saleStatue,
-			float houseArea, Float unitRentPrice, Float unitSalePrice, String clientName, String clientPhone, Set<Pact> pacts,
+			String houseAddress, Float unitRentPrice, Float unitSalePrice, String clientName, String clientPhone, Set<Pact> pacts,
 			Set<Followup> followups, Set<Housemap> housemaps) {
 		super();
 		this.houseId = houseId;
@@ -79,7 +79,7 @@ public class House extends BaseBean {
 		this.housekey = housekey;
 		this.rentStatue = rentStatue;
 		this.saleStatue = saleStatue;
-		this.houseArea = houseArea;
+		this.houseAddress = houseAddress;
 		this.unitRentPrice = unitRentPrice;
 		this.unitSalePrice = unitSalePrice;
 		this.clientName = clientName;
@@ -129,12 +129,12 @@ public class House extends BaseBean {
 		this.saleStatue = saleStatue;
 	}
 
-	public float getHouseArea() {
-		return this.houseArea;
+	public String getHouseAddress() {
+		return this.houseAddress;
 	}
 
-	public void setHouseArea(float houseArea) {
-		this.houseArea = houseArea;
+	public void setHouseAddress(String houseAddress) {
+		this.houseAddress = houseAddress;
 	}
 
 	public Float getUnitRentPrice() {
@@ -196,7 +196,7 @@ public class House extends BaseBean {
 	@Override
 	public String toString() {
 		return "House [houseId=" + houseId  +
-				",rentStatue=" + rentStatue + ", saleStatue=" + saleStatue + ", houseArea=" + houseArea + 
+				",rentStatue=" + rentStatue + ", saleStatue=" + saleStatue + ", houseAddress=" + houseAddress + 
 				",unitRentPrice="+ unitRentPrice + ",unitSalePrice="+unitSalePrice+
 				",clientName=" + clientName + ",clientPhone="+clientPhone+"]";
 	}

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jxufe.ham.system.entity.House;
 import com.jxufe.ham.system.service.HouseService;
 
 @Controller
@@ -48,6 +49,22 @@ public class HouseController {
 		result.put(ISDONE, true);
 		result.put(MSG, "删除成功");
 		return result;
+	}
+	
+	@RequestMapping("/add")
+	public @ResponseBody HashMap<String, Object> add(House house){
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		try {
+			houseService.save(house);
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			hashMap.put(ISDONE, false);
+			hashMap.put(ERROR_MSG, "添加失败");
+			return hashMap;
+		}
+		hashMap.put(ISDONE, true);
+		hashMap.put(MSG, "添加成功");
+		return hashMap;
 	}
 
 }

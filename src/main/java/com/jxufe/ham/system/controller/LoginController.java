@@ -87,7 +87,7 @@ public class LoginController {
 			}
 			
 		} catch (Exception e) {
-			log.equals(e.getMessage());
+			log.error(e.getMessage());
 		} 
 		return hashMap;
 //		return new ModelAndView("index");
