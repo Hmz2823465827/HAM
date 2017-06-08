@@ -30,7 +30,7 @@ public class Employee extends BaseBean {
 	//序列化ID
 	private static final long serialVersionUID = 7031407605308824083L;
 
-	private int employeeId;//员工编号
+	private Integer employeeId;//员工编号
 	
 	private Depart departID;//所属部门
 	
@@ -73,8 +73,12 @@ public class Employee extends BaseBean {
 	
 	@JsonIgnore
 	private Set<Rolemanagement> rolemanagements = new HashSet<Rolemanagement>(0);//角色集合
-	
-	public Employee(int employeeId, Depart departID, String employeeName, Boolean employeeSex, String employeePhone,
+
+	public Employee() {
+		super();
+	}
+
+	public Employee(Integer employeeId, Depart departID, String employeeName, Boolean employeeSex, String employeePhone,
 			String passWord, int employeePosition, Set<Leaveword> leavewords, Set<Performance> performances,
 			Set<House> houses, Set<Followup> followups, Set<Workrecord> workrecords, Set<Log> logs,
 			Set<Keymanagement> keymanagements, Set<Depart> departs, Set<Taskmanagement> taskmanagements,
@@ -99,10 +103,78 @@ public class Employee extends BaseBean {
 		this.rolemanagements = rolemanagements;
 	}
 
-	public Employee() {
-		super();
+	@Override
+	public String toString() {
+		return "Employee [employeeId=" + employeeId + ", departID=" + departID + ", employeeName=" + employeeName
+				+ ", employeeSex=" + employeeSex + ", employeePhone=" + employeePhone + ", passWord=" + passWord
+				+ ", employeePosition=" + employeePosition + "]";
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((employeeId == null) ? 0 : employeeId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (employeeId == null) {
+			if (other.employeeId != null)
+				return false;
+		} else if (!employeeId.equals(other.employeeId))
+			return false;
+		return true;
+	}
+
+	public Integer getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public Depart getDepartID() {
+		return departID;
+	}
+
+	public void setDepartID(Depart departID) {
+		this.departID = departID;
+	}
+
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+
+	public Boolean getEmployeeSex() {
+		return employeeSex;
+	}
+
+	public void setEmployeeSex(Boolean employeeSex) {
+		this.employeeSex = employeeSex;
+	}
+
+	public String getEmployeePhone() {
+		return employeePhone;
+	}
+
+	public void setEmployeePhone(String employeePhone) {
+		this.employeePhone = employeePhone;
+	}
+
 	public String getPassWord() {
 		return passWord;
 	}
@@ -111,48 +183,8 @@ public class Employee extends BaseBean {
 		this.passWord = passWord;
 	}
 
-	public int getEmployeeId() {
-		return this.employeeId;
-	}
-
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	public Depart getDepartID() {
-		return this.departID;
-	}
-
-	public void setDepartID(Depart departID) {
-		this.departID = departID;
-	}
-
-	public String getEmployeeName() {
-		return this.employeeName;
-	}
-
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
-	}
-
-	public Boolean getEmployeeSex() {
-		return this.employeeSex;
-	}
-
-	public void setEmployeeSex(Boolean employeeSex) {
-		this.employeeSex = employeeSex;
-	}
-
-	public String getEmployeePhone() {
-		return this.employeePhone;
-	}
-
-	public void setEmployeePhone(String employeePhone) {
-		this.employeePhone = employeePhone;
-	}
-
 	public int getEmployeePosition() {
-		return this.employeePosition;
+		return employeePosition;
 	}
 
 	public void setEmployeePosition(int employeePosition) {
@@ -160,7 +192,7 @@ public class Employee extends BaseBean {
 	}
 
 	public Set<Leaveword> getLeavewords() {
-		return this.leavewords;
+		return leavewords;
 	}
 
 	public void setLeavewords(Set<Leaveword> leavewords) {
@@ -168,7 +200,7 @@ public class Employee extends BaseBean {
 	}
 
 	public Set<Performance> getPerformances() {
-		return this.performances;
+		return performances;
 	}
 
 	public void setPerformances(Set<Performance> performances) {
@@ -176,7 +208,7 @@ public class Employee extends BaseBean {
 	}
 
 	public Set<House> getHouses() {
-		return this.houses;
+		return houses;
 	}
 
 	public void setHouses(Set<House> houses) {
@@ -184,7 +216,7 @@ public class Employee extends BaseBean {
 	}
 
 	public Set<Followup> getFollowups() {
-		return this.followups;
+		return followups;
 	}
 
 	public void setFollowups(Set<Followup> followups) {
@@ -192,7 +224,7 @@ public class Employee extends BaseBean {
 	}
 
 	public Set<Workrecord> getWorkrecords() {
-		return this.workrecords;
+		return workrecords;
 	}
 
 	public void setWorkrecords(Set<Workrecord> workrecords) {
@@ -200,7 +232,7 @@ public class Employee extends BaseBean {
 	}
 
 	public Set<Log> getLogs() {
-		return this.logs;
+		return logs;
 	}
 
 	public void setLogs(Set<Log> logs) {
@@ -208,7 +240,7 @@ public class Employee extends BaseBean {
 	}
 
 	public Set<Keymanagement> getKeymanagements() {
-		return this.keymanagements;
+		return keymanagements;
 	}
 
 	public void setKeymanagements(Set<Keymanagement> keymanagements) {
@@ -222,7 +254,6 @@ public class Employee extends BaseBean {
 	public void setDeparts(Set<Depart> departs) {
 		this.departs = departs;
 	}
-	
 
 	public Set<Taskmanagement> getTaskmanagements() {
 		return taskmanagements;
@@ -239,6 +270,8 @@ public class Employee extends BaseBean {
 	public void setRolemanagements(Set<Rolemanagement> rolemanagements) {
 		this.rolemanagements = rolemanagements;
 	}
+	
+	
 
 	
 }
