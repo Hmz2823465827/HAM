@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.jxufe.ham.authority.entity.Authority;
 import com.jxufe.ham.authority.entity.Function;
 import com.jxufe.ham.authority.entity.Role;
+import com.jxufe.ham.common.entity.PropertyFilter;
 import com.jxufe.ham.system.entity.Custom;
 import com.jxufe.ham.system.entity.Employee;
 import com.jxufe.ham.system.entity.Followup;
@@ -39,6 +40,8 @@ import javax.inject.Inject;
 // @Component
 public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section> {
 
+	
+	
 	Log log = LogFactory.getLog(ChainDefinitionSectionMetaSource.class);
 
 	@Autowired
@@ -46,13 +49,14 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 
 	@Autowired
 	private FunctionService functionService;
+	
 	// 静态资源访问权限
 	private String filterChainDefinitions = "/plugin/**=anon";
 
 	public Ini.Section getObject() throws Exception {
 		// Session session = sessionFactory.Session();
 		// session.beginTransaction();
-		List list = functionService.getAll();
+		List<Function> list = functionService.getAll();
 		Ini ini = new Ini();
 		// 加载默认的url
 		ini.load(filterChainDefinitions);
@@ -61,7 +65,9 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 		// 里面的键就是链接URL,值就是存在什么条件才能访问该链接
 		for (Iterator<Function> it = list.iterator(); it.hasNext();) {
 			Function function = it.next();
-			Hibernate.initialize(function);
+//			List<PropertyFilter> listFilter = new ArrayList<PropertyFilter>();
+//			listFilter.add(new PropertyFilter("EQS_",))
+//			functionService.search(new {})
 			// 构成permission字符串
 			if (StringUtils.isNotEmpty(function.getValue()) && StringUtils.isNotEmpty(function.getType())) {
 				String permission = "";
@@ -74,13 +80,14 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 					permission = "anon";
 					break;
 				case 2:
-
 					Authority authority = function.getAuthorityID();
-					permission = "perms[" + authority.getAuthorityname() + "]";
+					permission = "perms[" + authority.getOperation() + "]";
+					System.out.println("perms[" + authority.getOperation() + "]");
 					break;
 				case 3:
 					Role role = function.getRoleID();
-					permission = "roles[" + role.getRolename() + "]";
+					permission = "roles[" + role.getRoleName() + "]";
+					System.out.println("roles[" + role.getRoleName() + "]");
 					break;
 				default:
 					break;

@@ -4,12 +4,15 @@ package com.jxufe.ham.authority.shiro;
 
 import java.lang.reflect.Method;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.inject.Inject;
 
+import com.jxufe.ham.authority.entity.Role;
 import com.jxufe.ham.authority.entity.Rolemanagement;
 import com.jxufe.ham.common.entity.BaseBean;
+import com.jxufe.ham.common.util.Reflections;
 import com.jxufe.ham.system.entity.Employee;
 import com.jxufe.ham.system.service.EmployeeService;
 import org.apache.commons.logging.Log;
@@ -52,18 +55,24 @@ public class MyRealm extends AuthorizingRealm{
             //用户的角色集合
             Set<Rolemanagement> rolemanagements = employee.getRolemanagements();
             Set<String> roleNameSet = new HashSet<String>();
+//            Role role = Reflections.invokeGetter(obj, propertyName);
+            for (String string : roleNameSet) {
+				
+			}
 			try {
 				roleNameSet = getParamFromManagement(rolemanagements,"role","roleName");
+				
 			} catch (Exception e) {
 				log.error(e.getMessage());
 			}//从管理表中获取属性中的属性
-//			System.out.println(roleNameSet);
+			
+			
             info.setRoles(roleNameSet);
             //用户的角色对应的所有权限，如果只使用角色定义访问权限
             Set<Rolemanagement> roleMangementSet= employee.getRolemanagements();
             for (Rolemanagement rolemanagement : roleMangementSet) {
                 try {
-					info.addStringPermissions(getParamFromManagement(rolemanagement.getRole().getAuthoritymanagements(),"authority","authorityName"));
+					info.addStringPermissions(getParamFromManagement(rolemanagement.getRole().getAuthoritymanagements(),"authority","operation"));
 				} catch (Exception e) {
 					log.error(e.getMessage());
 				}
@@ -86,19 +95,11 @@ public class MyRealm extends AuthorizingRealm{
     private Set<String> getParamFromManagement(Set<? extends BaseBean> managementSet, String paramName, String sonParamName) throws Exception {
     	Set<String> sonParamSet = new HashSet<String>();
 		for (BaseBean baseBean : managementSet) {
-			String paramMethodName;//方法名称
-			paramMethodName = "get" + toUpperCase4Index(paramName);
-			Method paramMethod = baseBean.getClass().getDeclaredMethod(paramMethodName);
-			Object object = paramMethod.invoke(baseBean);
-			String sonParamMethodName;//获取到的实体类的方法名
-			sonParamMethodName = "get" + toUpperCase4Index(sonParamName);
-			Method sonParamMethod = object.getClass().getDeclaredMethod(sonParamMethodName);
-			Object stringObject = sonParamMethod.invoke(object);
-			if(!(stringObject instanceof String)){
-				throw new Exception("获取字符串属性集合失败");
-			}
-			sonParamSet.add((String)stringObject);
+			Object object = Reflections.getFieldValue(baseBean, paramName);
+			System.out.println(object);
+			sonParamSet.add((String)Reflections.invokeGetter(object, sonParamName));
 		}
+		System.out.println(sonParamSet);
 		return sonParamSet;
 	}
     

@@ -75,5 +75,11 @@ public class Function extends BaseBean{
 	public void setAuthorityID(Authority authorityID) {
 		this.authorityID = authorityID;
 	}
+
+	@Override
+	public String toString() {
+		return "Function [functionId=" + functionId + ", value=" + value + ", authorityID=" + authorityID + ", roleID="
+				+ roleID + ", type=" + type + "]";
+	}
 	
 }

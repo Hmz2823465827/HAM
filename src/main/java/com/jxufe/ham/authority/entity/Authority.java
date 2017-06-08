@@ -7,12 +7,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jxufe.ham.common.entity.BaseBean;
 
 public class Authority extends BaseBean{
-
+	
 	private static final long serialVersionUID = 6272337420044047378L;
 	
 	private int authorityId;//权限编号
-	
-//	private String table;//相关表
 	
 	private String operation;//操作
 	
@@ -21,16 +19,13 @@ public class Authority extends BaseBean{
 	
 	@JsonIgnore
 	private Set<Function> functions = new HashSet<Function>(0);
-	
-	
-	
+
 	public Authority() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-
-	public Authority(int authorityId, String operation, Set<Authoritymanagement> authoritymanagements,Set<Function> functions) {
+	public Authority(int authorityId, String operation, Set<Authoritymanagement> authoritymanagements,
+			Set<Function> functions) {
 		super();
 		this.authorityId = authorityId;
 		this.operation = operation;
@@ -38,14 +33,12 @@ public class Authority extends BaseBean{
 		this.functions = functions;
 	}
 
-
-	public Set<Authoritymanagement> getAuthoritymanagements() {
-		return authoritymanagements;
+	public int getAuthorityId() {
+		return authorityId;
 	}
 
-
-	public void setAuthoritymanagements(Set<Authoritymanagement> authoritymanagements) {
-		this.authoritymanagements = authoritymanagements;
+	public void setAuthorityId(int authorityId) {
+		this.authorityId = authorityId;
 	}
 
 	public String getOperation() {
@@ -56,30 +49,49 @@ public class Authority extends BaseBean{
 		this.operation = operation;
 	}
 
-	public String getAuthorityname() {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<Authoritymanagement> getAuthoritymanagements() {
+		return authoritymanagements;
 	}
 
-
-	public int getAuthorityId() {
-		return authorityId;
+	public void setAuthoritymanagements(Set<Authoritymanagement> authoritymanagements) {
+		this.authoritymanagements = authoritymanagements;
 	}
-
-
-	public void setAuthorityId(int authorityId) {
-		this.authorityId = authorityId;
-	}
-
 
 	public Set<Function> getFunctions() {
 		return functions;
 	}
 
-
 	public void setFunctions(Set<Function> functions) {
 		this.functions = functions;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + authorityId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Authority other = (Authority) obj;
+		if (authorityId != other.authorityId)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Authority [authorityId=" + authorityId + ", operation=" + operation + "]";
+	}
+	
+	
 	
 }

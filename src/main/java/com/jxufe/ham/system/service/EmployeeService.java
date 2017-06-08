@@ -52,9 +52,7 @@ public class EmployeeService extends BaseService<Employee, Integer>{
 		Assert.notNull(bean, "用户不存在");
 		Assert.notNull(bean.getHouses(),"房屋集合不存在");
 		Object object = Reflections.invokeGetter(bean, setName);
-		
 		Assert.isInstanceOf(Set.class, object);
-		System.out.println(bean.getHouses().toString());
 		return (Set<E>)object;
 	}
 }

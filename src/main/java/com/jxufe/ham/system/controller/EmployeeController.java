@@ -142,6 +142,7 @@ public class EmployeeController {
 			Employee employee =new Employee();
 			employee.setEmployeeName("test");		
 			employee.setPassWord("1");
+			
 			Assert.notNull(employee, "员工信息为空");
 			eService.save(employee);
 		}catch (Exception e) {

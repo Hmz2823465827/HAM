@@ -8,6 +8,8 @@ import com.jxufe.ham.common.entity.BaseBean;
 
 public class Role extends BaseBean{
 
+	
+
 	private static final long serialVersionUID = -7573667182853507192L;
 
 	private int roleId;//编号ID
@@ -22,8 +24,6 @@ public class Role extends BaseBean{
 	
 	@JsonIgnore
 	private Set<Function> functions = new HashSet<Function>(0);
-	
-	
 
 	public Role() {
 		super();
@@ -39,17 +39,20 @@ public class Role extends BaseBean{
 		this.functions = functions;
 	}
 
+	public int getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
+
 	public String getRoleName() {
 		return roleName;
 	}
 
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
-	}
-
-	public String getRolename() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public Set<Rolemanagement> getRolemanagements() {
@@ -68,14 +71,6 @@ public class Role extends BaseBean{
 		this.authoritymanagements = authoritymanagements;
 	}
 
-	public int getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
-	}
-
 	public Set<Function> getFunctions() {
 		return functions;
 	}
@@ -84,5 +79,32 @@ public class Role extends BaseBean{
 		this.functions = functions;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + roleId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Role other = (Role) obj;
+		if (roleId != other.roleId)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Role [roleId=" + roleId + ", roleName=" + roleName + "]";
+	}
+	
 	
 }

@@ -5,7 +5,7 @@
     <class name="com.jxufe.ham.system.entity.Housekey" table="housekey" dynamic-update="true" catalog="ham" optimistic-lock="version">
         <id name="housekeyID" type="int">
             <column name="housekeyID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="housekeyStatue" type="boolean">
             <column name="housekey_statue" not-null="true" />
