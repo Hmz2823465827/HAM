@@ -42,13 +42,13 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown"><a href="plugin/#"
-							class="dropdown-toggle"> ${loginEmployee.employeeName} <strong
-								class="caret"></strong>
+							class="dropdown-toggle" data-toggle="dropdown">
+								${loginEmployee.employeeName} <strong class="caret"></strong>
 						</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">个人信息</a></li>
 								<li class="divider"></li>
-								<li><a href="#">${role}</a></li>
+								<li><a href="login.htmls">退出</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -70,7 +70,9 @@
 					<div id="depart" class="infospan">
 						<p>部门</p>
 					</div>
-					<div id="duties" class="infospan"></div>
+					<div id="duties" class="infospan">
+						
+					</div>
 					<div class="infospan">
 						<button type="button" class="btn btn-warning btn-sm" id="signIn"
 							onclick="ajaxrequest('/HAM/workrecord/signIn.htmls',testAlert())">签到</button>
@@ -151,7 +153,7 @@
 							class="form-control" id="clientPhone" name="clientPhone"
 							placeholder="clientPhone">
 					</div>
-					<button type="submit" class="btn btn-default" onclick="formSubmit">Submit</button>
+					<button id="SubmitButton" class="btn btn-default">Submit</button>
 				</form>
 			</div>
 		</div>
@@ -160,12 +162,31 @@
 
 <script>
 		
-		var $formAdd = $("houseForm");
-		
-		
-		function formSubmit(){
-			ajaxrequest("HAM/house/add",$formAdd.serializeJSON(),function(){alert("addSuccess");})
-		}
+		var $formAdd = $("#houseForm");
+			
+		$("#SubmitButton").click(function(e) {
+			e.preventDefault();
+			
+			$.ajax({
+				cache: true,
+				type: "POST",
+			    data: $formAdd.serialize(), 
+				datetype: "json", 
+				url: "/HAM/house/add.htmls",
+				success:function(data){
+					var dataJson = eval('(' + data + ')');
+					if (dataJson.isDone == true){
+							alert("添加成功！");
+						}
+					if (dataJson.isDone == false) {
+							alert("请求已提交，但添加失败！");
+						}				
+				},
+				error:function(){
+					alert("error!");
+				}
+			});	
+		});
 		
 		var $signIn = $("#signIn");//签到按钮
 		
@@ -295,18 +316,18 @@
 		$formDisplay.css("display","none");
 		
 
-		function ajaxrequest(ajaxUrl,data,functions){
+/* 		function ajaxrequest(ajaxUrl,data,functions){
 			
 			$.ajax({
 				cache: true,
 				type: "GET",
-				/* data: {id:data}, */
+			    data: {id:data}, 
 				data:data,
-				 datetype: "json", 
+				datetype: "json", 
 				url: ajaxUrl,
 				success:functions
 			});			
-		}
+		} */
 
 		function showPanel(tableType) {							
 			var panelHeading = $(".panel-heading");
@@ -554,10 +575,35 @@
 					case 3:
 						return "总经理";
 						break;
+					case 4:
+						return "管理员";
+						break;
+				}			
+			}
+
+			function setEmployeedepart(data){
+				switch(data){
+					case 0:
+						return "试用人员";
+						break;
+					case 1:
+						return "财务部";
+						break;
+					case 2:
+						return "销售部";
+						break;
+					case 3:
+						return "后勤管理部";
+						break;
+					case 4:
+						return "管理员";
+						break;
 				}			
 			}
 		
 		document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});	
+
+
 		
  		});
 		</script>
