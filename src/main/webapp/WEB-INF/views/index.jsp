@@ -71,9 +71,7 @@
 
 				<div id="information"
 					style="height: 100px; width: 100px; float: left;">
-					<div id="depart" class="infospan">
-						<p>部门</p>
-					</div>
+					<div id="depart" class="infospan"></div>
 					<div id="duties" class="infospan"></div>
 					<div class="infospan">
 						<button type="button" class="btn btn-warning btn-sm" id="signIn"
@@ -343,20 +341,40 @@
 		var $panelDisplay = $('.panel-body'), $formDisplay=$('#houseForm');
 		
 		$formDisplay.css("display","none");
+
 		
-		function showPanel(tableType) {							
+		function showPanel(tableTypeURL) {							
 			var panelHeading = $(".panel-heading");
 			var panelHeadingVal = panelHeading.html("show  "+tableType);			
-			loadTable(tableType);
+			loadTable(tableTypeURL);
 			$panelDisplay.css("display", "inline");
 		}
 
-		function loadTable(tableType) {
-			var ajaxUrl = "/HAM/employee/loadSetbyParam.htmls";
+		function loadTable(tableTypeURL) {
+			
+			var ajaxUrl = "/HAM" + tableTypeURL;
+			
+			var tableType = function(tableTypeURL){
+				switch(tableTypeURL){
+				case "houses/getHousesByEmployeeId.htmls":
+					return "houses";
+					break;
+				case "workrecords/getWorkrecordsByEmployeeId.htmls":
+					return "workrecords";
+					break;
+				case "tasks/getTasksByEmployeeId.htmls":
+					return "taskmanagements";
+					break;
+				case "keycontrolls/getKeyControllersByEmployeeId.htmls":
+					return "keycontrolls";
+					break;
+				}
+			}
+			 
 			$.ajax({
 				cache: true,
 				type: "GET",
-				data: {setName:tableType},
+				data: ${loginEmployee.employeeId},
 				datetype: "json",
 				url: ajaxUrl,
 				success: function(data) {
@@ -377,6 +395,30 @@
 			});
 
 		}
+
+		function setTableTypetoURL(data){
+			switch(data.text){
+				case "房源信息":
+					return "house/getHouseByEmployeeId.htmls";
+					break;
+				case "工作日志":
+					return "workrecord/getWorkrecordByEmployeeId.htmls";
+					break;
+				case "查看任务":
+					return "task/getTaskByEmployeeId.htmls";
+					break;
+				case "钥匙信息":
+					return "key/getKeyByEmployeeId.htmls";
+					break;
+			}
+		}
+
+		
+
+		$('#employeeTree').on('nodeSelected',function(event, data) {
+			var tableTypeURL = setTableTypetoURL(data);
+		    showPanel(tableTypeURL);
+		});
 
 		function initTable(tableType, $table) {
 			var filedlist = new Object();
@@ -472,7 +514,7 @@
 			}];
 			filedlist['workrecords'] = workRecordColumns;
 			filedlist['houses'] = houseColumns;
-			filedlist['tasks'] = task;
+			filedlist['taskmanagements'] = task;
 			filedlist['keycontrolls'] = keycontroller;
 
 			 $remove.click(function () {
@@ -493,7 +535,7 @@
 		}
 		
 
-
+		/* 显示表格后关于表格的操作 */
 		function getIdSelections() {
 	        return $.map($table.bootstrapTable('getSelections'), function (row) {
 	            return row.houseId
@@ -552,29 +594,8 @@
 			$('#departManagerTree').treeview({
 				data:managerUl
 			});
+
 			
- 			function setTableType(data){
-				switch(data.text){
-					case "工作日志":
-						return "workrecords";
-						break;
-					case "查看任务":
-						return "tasks";
-						break;
-					case "房源信息":
-						return "houses";
-						break;
-					case "钥匙信息":
-						return "keycontrolls";
-						break;
-				}
-			} 
-
-			$('#employeeTree').on('nodeSelected',function(event, data) {
-				var tableType = setTableType(data);
-			    showPanel(tableType);
-			});
-
 			function setEmployeePosition(data){
 				switch(data){
 					case 0:
@@ -597,9 +618,6 @@
 
 			function setEmployeedepart(data){
 				switch(data){
-					case 0:
-						return "试用人员";
-						break;
 					case 1:
 						return "财务部";
 						break;
@@ -610,12 +628,17 @@
 						return "后勤管理部";
 						break;
 					case 4:
-						return "管理员";
+						return "人力资源部";
+						break;
+					case 5:
+						return "行政管理部";
 						break;
 				}			
 			}
 		
-		document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});	
+		document.getElementById("duties").innerHTML = setEmployeePosition(${loginEmployee.employeePosition});
+
+		document.getElementById("depart").innerHTML = setEmployeedepart(${loginEmployee.departID.departId});
  		});
 		</script>
 </html>
